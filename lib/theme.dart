@@ -2,6 +2,24 @@ import 'package:flutter/material.dart';
 
 ThemeData theme = ThemeData(
     useMaterial3: true,
+    cardColor: Colors.white,
+    iconTheme: IconThemeData(color: Colors.blue),
     colorScheme:
-        ColorScheme.light(primary: Colors.blue, secondary: Colors.green),
-    scaffoldBackgroundColor: Colors.white);
+        ColorScheme.light(primary: Colors.blue, secondary: Colors.blue),
+    scaffoldBackgroundColor: Colors.blue.withOpacity(.15));
+
+class Styling {
+  // These breakpoints come straight from tailwindcss. We are only going to be using the md and large one here.
+  static const breakpoint_sm = 640;
+  static const breakpoint_md = 768;
+  static const breakpoint_lg = 1024;
+  static const breakpoint_xl = 1280;
+
+  static bool isLargeScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width > breakpoint_lg;
+  }
+
+  static bool isMediumScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width > breakpoint_md;
+  }
+}
