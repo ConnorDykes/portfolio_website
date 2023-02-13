@@ -4,9 +4,11 @@ ThemeData theme = ThemeData(
     useMaterial3: true,
     cardColor: Colors.white,
     iconTheme: IconThemeData(color: Colors.blue),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        unselectedLabelStyle: TextStyle(color: Colors.black)),
     colorScheme:
         ColorScheme.light(primary: Colors.blue, secondary: Colors.blue),
-    scaffoldBackgroundColor: Colors.blue.withOpacity(.15));
+    scaffoldBackgroundColor: Colors.grey[100]);
 
 class Styling {
   // These breakpoints come straight from tailwindcss. We are only going to be using the md and large one here.

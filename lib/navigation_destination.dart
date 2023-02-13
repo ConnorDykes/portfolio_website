@@ -17,10 +17,10 @@ class Destination {
       );
 
   BottomNavigationBarItem get toBottomDestination => BottomNavigationBarItem(
-        activeIcon: selectedIcon,
-        icon: icon,
-        label: title.data,
-      );
+      activeIcon: selectedIcon,
+      icon: icon,
+      label: title.data,
+      tooltip: title.data);
 }
 
 List<Destination> destinations = [
