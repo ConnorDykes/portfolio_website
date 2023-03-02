@@ -118,7 +118,6 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   }
 
   mainPageView(selectedIndex) {
-    // <====== altMenuIndex
     switch (selectedIndex) {
       case 0:
         return AboutPage();

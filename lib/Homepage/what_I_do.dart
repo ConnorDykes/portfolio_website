@@ -21,7 +21,7 @@ class _WhatIDoState extends State<WhatIDo> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-
+    debugPrint(segmentedControlGroupValue.toString());
     return Container(
       width: 350,
       child: Column(
@@ -44,36 +44,42 @@ class _WhatIDoState extends State<WhatIDo> {
             ),
           ),
           CupertinoSlidingSegmentedControl(
+              thumbColor: theme.colorScheme.primary,
               groupValue: segmentedControlGroupValue,
-              children: {0: Text("Platforms"), 1: Text("Languages")},
+              children: {
+                0: Text("Platforms",
+                    style: TextStyle(
+                        color: segmentedControlGroupValue == 0
+                            ? Colors.white
+                            : Colors.black)),
+                1: Text(
+                  "Languages",
+                  style: TextStyle(
+                      color: segmentedControlGroupValue == 1
+                          ? Colors.white
+                          : Colors.black),
+                )
+              },
               onValueChanged: (value) {
                 if (value != null) {
-                  debugPrint(value.toString());
                   setState(() {
                     segmentedControlGroupValue = value;
                   });
                 }
               }),
-          // todo: this isnt working
-          if (segmentedControlGroupValue == 0) ...{
-            GridView.count(
+          ConstrainedBox(
+            constraints: BoxConstraints(minHeight: 450),
+            child: GridView.count(
                 shrinkWrap: true,
                 primary: false,
                 padding: const EdgeInsets.all(20),
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 crossAxisCount: 2,
-                children: platformGridViewItems),
-          } else ...{
-            GridView.count(
-                shrinkWrap: true,
-                primary: false,
-                padding: const EdgeInsets.all(20),
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                crossAxisCount: 2,
-                children: languagesGridViewItems)
-          }
+                children: segmentedControlGroupValue == 0
+                    ? platformGridViewItems
+                    : languagesGridViewItems),
+          )
         ],
       ),
     );
@@ -114,7 +120,7 @@ final platforms = [
         color: Colors.black,
         size: 48,
       ),
-      title: Text("iOS")),
+      title: Text("iOS & MacOS")),
   GridViewItem(
       icon: FaIcon(
         FontAwesomeIcons.android,
@@ -124,33 +130,41 @@ final platforms = [
       title: Text("Android")),
   GridViewItem(
       icon: FaIcon(
+        FontAwesomeIcons.windows,
+        size: 48,
+      ),
+      title: Text("Windows & Desktop")),
+  GridViewItem(
+      icon: FaIcon(
         FontAwesomeIcons.code,
         size: 48,
+        color: Colors.lightBlue,
       ),
       title: Text("Web")),
-  GridViewItem(
-      icon: FaIcon(
-        FontAwesomeIcons.html5,
-        color: Colors.red,
-        size: 48,
-      ),
-      title: Text("HTML 5")),
-  GridViewItem(
-      icon: FaIcon(
-        FontAwesomeIcons.css3,
-        size: 48,
-      ),
-      title: Text("CSS 3")),
-  GridViewItem(
-      icon: FaIcon(
-        FontAwesomeIcons.squareJs,
-        color: Colors.amber,
-        size: 48,
-      ),
-      title: Text("Java Script")),
 ];
 
 final languages = [
+  GridViewItem(
+      icon: Image.asset(
+        'dart.png',
+        height: 48,
+        width: 48,
+      ),
+      title: Text("Dart")),
+  GridViewItem(
+      icon: Image.asset(
+        'kotlin.png',
+        height: 48,
+        width: 48,
+      ),
+      title: Text("Kotlin")),
+  GridViewItem(
+      icon: Image.asset(
+        'swift.png',
+        height: 48,
+        width: 48,
+      ),
+      title: Text("Swift")),
   GridViewItem(
       icon: FaIcon(
         FontAwesomeIcons.html5,
@@ -177,4 +191,4 @@ List<Container> platformGridViewItems =
     platforms.map((platform) => platform.toGridViewItem).toList();
 
 List<Container> languagesGridViewItems =
-    platforms.map((platform) => platform.toGridViewItem).toList();
+    languages.map((language) => language.toGridViewItem).toList();
