@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AboutMe extends StatelessWidget {
-  AboutMe({super.key, required this.isMobile});
-
-  bool isMobile;
+  AboutMe({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

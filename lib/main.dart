@@ -46,6 +46,24 @@ class MobileScaffold extends StatefulWidget {
 
 class _MobileScaffoldState extends State<MobileScaffold> {
   int selectedIndex = 0;
+  mainPageView(selectedIndex) {
+    switch (selectedIndex) {
+      case 0:
+        return MobileAboutPage();
+
+      case 1:
+        return MobileWorkPage();
+
+      case 2:
+        return MobileProjectsPage();
+
+      case 3:
+        return MobileEducationPage();
+
+      default:
+        return MobileAboutPage();
+    }
+  }
 
   void onTap(int index) {
     setState(() {
@@ -57,40 +75,19 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-          elevation: 3,
-          showUnselectedLabels: true,
-          unselectedItemColor: Colors.black,
-          unselectedFontSize: 14,
-          unselectedLabelStyle: TextStyle(color: Colors.amber),
-          selectedItemColor: theme.colorScheme.primary,
-          selectedIconTheme: IconThemeData(color: theme.colorScheme.primary),
-          currentIndex: selectedIndex,
-          onTap: (index) => onTap(index),
-          items: bottomNavBarDestination),
-      backgroundColor: theme.scaffoldBackgroundColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const NameAndDescription(),
-              ProfilePhoto(
-                size: Size(widget.size, widget.size),
-              ),
-              ContactMe(),
-              AboutMe(
-                isMobile: true,
-              ),
-              WhatIDo(isMobile: true)
-            ],
-          ),
-        ),
-      ),
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        bottomNavigationBar: BottomNavigationBar(
+            elevation: 3,
+            showUnselectedLabels: true,
+            unselectedItemColor: Colors.black,
+            unselectedFontSize: 14,
+            unselectedLabelStyle: TextStyle(color: Colors.amber),
+            selectedItemColor: theme.colorScheme.primary,
+            selectedIconTheme: IconThemeData(color: theme.colorScheme.primary),
+            currentIndex: selectedIndex,
+            onTap: (index) => onTap(index),
+            items: bottomNavBarDestination),
+        backgroundColor: theme.scaffoldBackgroundColor,
+        body: mainPageView(selectedIndex));
   }
 }
 
@@ -132,7 +129,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         return EducationPage();
 
       default:
-        return AboutMe(isMobile: false);
+        return AboutMe();
     }
   }
 

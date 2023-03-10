@@ -12,3 +12,17 @@ class WorkPage extends StatelessWidget {
     );
   }
 }
+
+class MobileWorkPage extends StatefulWidget {
+  const MobileWorkPage({super.key});
+
+  @override
+  State<MobileWorkPage> createState() => _MobileWorkPageState();
+}
+
+class _MobileWorkPageState extends State<MobileWorkPage> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
