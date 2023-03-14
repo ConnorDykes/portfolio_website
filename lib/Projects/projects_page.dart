@@ -124,31 +124,31 @@ List<ProjectCard> projects = [
       title: 'BelayTrader',
       description: 'A platform for rock climbers looking for climbing'
           ' partners.',
-      image: 'belayTrader.png'),
+      image: 'assets/belayTrader.png'),
   const ProjectCard(
       title: 'Eqalink',
       description:
           'A social network centered around privacy that gives control to you. '
           ' partners.',
-      image: 'eqalink_logo.png'),
+      image: 'assets/eqalink_logo.png'),
   const ProjectCard(
       title: 'ABC Climbing',
       description:
           'An app that provides accessile cirriculum for the Olympic Youth Climbing Program at ABC Kids Climbing in Boulder CO. This app also functions as an oboarding tool for training coaches and instructors.',
-      image: 'abc_climbing.png'),
+      image: 'assets/abc_climbing.png'),
   const ProjectCard(
       title: 'Kokoro Academy',
       description:
           'A platfrom for the members of Kokoro Academy, A Jui Jitsu Studio in Springfield MO. Members can share notifications, view class schedule, exclusive video content and more.',
-      image: 'kokoro_logo.png'),
+      image: 'assets/kokoro_logo.png'),
   const ProjectCard(
       title: 'Training Log',
       description:
           'An hassle free way to record, categorize, and view your training session. Fully customizeable for any sport.',
-      image: 'training_log_logo.png'),
+      image: 'assets/training_log_logo.png'),
   const ProjectCard(
       title: 'Potlucky',
       description:
           'Organize potlucks, group dinner, or food for any event. Integrated recipie book allows you to share your favorites and always have the recipies of any event you have been to. ',
-      image: 'potlucky_logo.png'),
+      image: 'assets/potlucky_logo.png'),
 ];

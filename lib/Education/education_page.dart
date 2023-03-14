@@ -51,7 +51,7 @@ class _EducationPageState extends State<EducationPage> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Image.asset(
-                  'Kickapoo.png',
+                  'assets/Kickapoo.png',
                   height: 200,
                 ),
               )
@@ -95,7 +95,7 @@ class _EducationPageState extends State<EducationPage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.asset(
-                    'otc.png',
+                    'assets/assets/otc.png',
                     height: 200,
                   ),
                 ),
@@ -165,7 +165,7 @@ class _EducationPageState extends State<EducationPage> {
                 ),
               ),
               Image.asset(
-                'missouri_state.png',
+                'assets/missouri_state.png',
                 height: 200,
               )
             ],
@@ -309,7 +309,7 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
                   ),
                   Text('Springfield, MO'),
                   Image.asset(
-                    'Kickapoo.png',
+                    'assets/Kickapoo.png',
                     height: 150,
                   )
                 ],
@@ -361,7 +361,7 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
-                          'otc.png',
+                          'assets/otc.png',
                           height: 150,
                         ),
                       ),
@@ -392,7 +392,7 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
                   child: Column(
                     children: [
                       Image.asset(
-                        'missouri_state.png',
+                        'assets/missouri_state.png',
                         height: 100,
                       ),
                       ConstrainedBox(

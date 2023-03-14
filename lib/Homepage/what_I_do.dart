@@ -109,7 +109,7 @@ final platforms = [
       title: Text("Flutter")),
   GridViewItem(
       icon: Image.asset(
-        'firebase.png',
+        'assets/firebase.png',
         height: 48,
         width: 48,
       ),
@@ -146,21 +146,21 @@ final platforms = [
 final languages = [
   GridViewItem(
       icon: Image.asset(
-        'dart.png',
+        'assets/dart.png',
         height: 48,
         width: 48,
       ),
       title: Text("Dart")),
   GridViewItem(
       icon: Image.asset(
-        'kotlin.png',
+        'assets/kotlin.png',
         height: 48,
         width: 48,
       ),
       title: Text("Kotlin")),
   GridViewItem(
       icon: Image.asset(
-        'swift.png',
+        'assets/swift.png',
         height: 48,
         width: 48,
       ),

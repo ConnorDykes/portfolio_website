@@ -42,129 +42,124 @@ class NavBarContactMe extends StatelessWidget {
     return Expanded(
       child: Container(
         height: 100,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              height: 1,
-              width: 200,
-              color: Colors.grey[300],
-            ),
-            Text(
-              "Contact me",
-              style: TextStyle(fontSize: 18),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                height: 1,
                 width: 200,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                          side: BorderSide(
-                              color: Colors.blue,
-                              width: 1.0,
-                              style: BorderStyle.solid),
-                          elevation: 3),
-                      child: Container(
-                        width: 85,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Icons.phone_rounded,
-                            ),
-                            SelectableText(
-                              textAlign: TextAlign.left,
-                              "Call",
-                              style: theme.textTheme.bodyLarge,
-                            ),
-                          ],
+                color: Colors.grey[300],
+              ),
+              Text(
+                "Contact me",
+                style: TextStyle(fontSize: 18),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 200,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue, elevation: 3),
+                        child: Container(
+                          width: 85,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.phone_rounded,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                textAlign: TextAlign.left,
+                                "Call",
+                                style: theme.textTheme.bodyLarge!
+                                    .copyWith(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
+                        onPressed: () => _call(),
                       ),
-                      onPressed: () => _call(),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 200,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                          side: BorderSide(
-                              color: Colors.blue,
-                              width: 1.0,
-                              style: BorderStyle.solid),
-                          elevation: 3),
-                      child: Container(
-                        width: 85,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Icons.email_rounded,
-                            ),
-                            SelectableText(
-                              textAlign: TextAlign.left,
-                              "Email",
-                              style: theme.textTheme.bodyLarge,
-                            ),
-                          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 200,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue, elevation: 3),
+                        child: Container(
+                          width: 85,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(Icons.email_rounded, color: Colors.white),
+                              Text(
+                                textAlign: TextAlign.left,
+                                "Email",
+                                style: theme.textTheme.bodyLarge!
+                                    .copyWith(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
+                        onPressed: () =>
+                            _email('mailto: connormdykes@gmail.com'),
                       ),
-                      onPressed: () => _email('mailto: connormdykes@gmail.com'),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 200,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                          side: BorderSide(
-                              color: Colors.blue,
-                              width: 1.0,
-                              style: BorderStyle.solid),
-                          elevation: 3),
-                      child: Container(
-                        width: 85,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            FaIcon(
-                              FontAwesomeIcons.github,
-                            ),
-                            Text(
-                              textAlign: TextAlign.left,
-                              "GitHub",
-                              style: theme.textTheme.bodyLarge,
-                            ),
-                          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 200,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue, elevation: 3),
+                        child: Container(
+                          width: 85,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.github,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                textAlign: TextAlign.left,
+                                "GitHub",
+                                style: theme.textTheme.bodyLarge!
+                                    .copyWith(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
+                        onPressed: () => _github(),
                       ),
-                      onPressed: () => _github(),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

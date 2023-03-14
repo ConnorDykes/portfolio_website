@@ -59,7 +59,7 @@ class _ProfilePhotoState extends State<ProfilePhoto>
               ),
             )),
         Image.asset(
-          'profile_photo.png',
+          'assets/profile_photo.png',
           height: widget.size.height,
           width: widget.size.width,
         ),
