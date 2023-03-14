@@ -10,6 +10,9 @@ class ProjectsPage extends StatelessWidget {
         children: [
           Flexible(
             child: GridView.count(
+              padding: const EdgeInsets.all(16),
+              mainAxisSpacing: 3,
+              crossAxisSpacing: 3,
               crossAxisCount: 2,
               children: projects,
             ),
@@ -30,7 +33,13 @@ class MobileProjectsPage extends StatefulWidget {
 class _MobileProjectsPageState extends State<MobileProjectsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return GridView.count(
+      padding: const EdgeInsets.all(16),
+      mainAxisSpacing: 3,
+      crossAxisSpacing: 3,
+      crossAxisCount: 1,
+      children: projects,
+    );
   }
 }
 
@@ -50,71 +59,96 @@ class ProjectCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Card(
+      clipBehavior: Clip.hardEdge,
       color: Colors.white,
-      child: Column(
-        children: [
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: theme.textTheme.headlineMedium,
-          ),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 200),
-            child: Divider(
-              indent: 10,
-              endIndent: 10,
-              thickness: 3,
-              color: theme.colorScheme.primary,
+      child: InkWell(
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text('Compiling....'),
+                    content: Text(
+                        "Come back soon for more details, media, and demos "),
+                  ));
+        },
+        child: Column(
+          children: [
+            const Spacer(),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.headlineMedium,
             ),
-          ),
-          Material(
-            elevation: 3,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Image.asset(
-                image,
-                height: 200,
-                width: 200,
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 200),
+              child: Divider(
+                indent: 10,
+                endIndent: 10,
+                thickness: 3,
+                color: theme.colorScheme.primary,
               ),
             ),
-          ),
-          Text(
-            description,
-            textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge,
-          ),
-        ],
+            const Spacer(),
+            Material(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.asset(
+                  image,
+                  height: 150,
+                  width: 150,
+                ),
+              ),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                description,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyLarge,
+              ),
+            ),
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
 }
 
 List<ProjectCard> projects = [
-  ProjectCard(
+  const ProjectCard(
       title: 'BelayTrader',
-      description: 'A social platform for rock climbers looking for climbing'
+      description: 'A platform for rock climbers looking for climbing'
           ' partners.',
       image: 'belayTrader.png'),
-  ProjectCard(
-      title: 'BelayTrader',
-      description: 'A social platform for rock climbers looking for climbing'
+  const ProjectCard(
+      title: 'Eqalink',
+      description:
+          'A social network centered around privacy that gives control to you. '
           ' partners.',
-      image: 'belayTrader.png'),
-  ProjectCard(
-      title: 'BelayTrader',
-      description: 'A social platform for rock climbers looking for climbing'
-          ' partners.',
-      image: 'belayTrader.png'),
-  ProjectCard(
-      title: 'BelayTrader',
-      description: 'A social platform for rock climbers looking for climbing'
-          ' partners.',
-      image: 'belayTrader.png'),
-  ProjectCard(
-      title: 'BelayTrader',
-      description: 'A social platform for rock climbers looking for climbing'
-          ' partners.',
-      image: 'belayTrader.png'),
+      image: 'eqalink_logo.png'),
+  const ProjectCard(
+      title: 'ABC Climbing',
+      description:
+          'An app that provides accessile cirriculum for the Olympic Youth Climbing Program at ABC Kids Climbing in Boulder CO. This app also functions as an oboarding tool for training coaches and instructors.',
+      image: 'abc_climbing.png'),
+  const ProjectCard(
+      title: 'Kokoro Academy',
+      description:
+          'A platfrom for the members of Kokoro Academy, A Jui Jitsu Studio in Springfield MO. Members can share notifications, view class schedule, exclusive video content and more.',
+      image: 'kokoro_logo.png'),
+  const ProjectCard(
+      title: 'Training Log',
+      description:
+          'An hassle free way to record, categorize, and view your training session. Fully customizeable for any sport.',
+      image: 'training_log_logo.png'),
+  const ProjectCard(
+      title: 'Potlucky',
+      description:
+          'Organize potlucks, group dinner, or food for any event. Integrated recipie book allows you to share your favorites and always have the recipies of any event you have been to. ',
+      image: 'potlucky_logo.png'),
 ];

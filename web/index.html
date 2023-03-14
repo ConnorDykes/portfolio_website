@@ -40,6 +40,7 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -55,5 +56,20 @@
       });
     });
   </script>
+  <script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyBS3p-3ANNlEckdUCGbJEOSssp48-57UWQ",
+  authDomain: "connordykes-com.firebaseapp.com",
+  projectId: "connordykes-com",
+  storageBucket: "connordykes-com.appspot.com",
+  messagingSenderId: "411553169601",
+  appId: "1:411553169601:web:dfc3a7ece16b6d91765440",
+  measurementId: "G-C8652DJYT4"
+};
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  
 </body>
 </html>
