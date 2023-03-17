@@ -16,14 +16,6 @@ class AboutPage extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(width: 25),
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[WhatIDo(isMobile: false)],
-            ),
-          ),
-          SizedBox(width: 50),
           Flexible(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -32,6 +24,14 @@ class AboutPage extends StatelessWidget {
                 Divider(thickness: 1, color: Colors.grey[300]),
                 AboutMe(),
               ],
+            ),
+          ),
+          SizedBox(width: 50),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[WhatIDo(isMobile: false)],
             ),
           ),
           SizedBox(width: 25),
@@ -57,11 +57,14 @@ class MobileAboutPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const NameAndDescription(),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: const NameAndDescription(),
+            ),
             ProfilePhoto(
               size: Size(size, size),
             ),
-            ContactMe(),
+            MyInfo(),
             AboutMe(),
             WhatIDo(isMobile: true)
           ],

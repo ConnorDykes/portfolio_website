@@ -51,7 +51,7 @@ class _EducationPageState extends State<EducationPage> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Image.asset(
-                  'assets/Kickapoo.png',
+                  'assets/kickapoo.png',
                   height: 200,
                 ),
               )
@@ -95,7 +95,7 @@ class _EducationPageState extends State<EducationPage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.asset(
-                    'assets/assets/otc.png',
+                    'assets/otc.png',
                     height: 200,
                   ),
                 ),
@@ -182,32 +182,30 @@ class _EducationPageState extends State<EducationPage> {
           "2020 - Now",
         ),
         content: Card(
-          child: Flexible(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Self Taught',
-                    style: theme.textTheme.headlineMedium!,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Self Taught',
+                  style: theme.textTheme.headlineMedium!,
+                ),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 200),
+                  child: Divider(
+                    indent: 10,
+                    endIndent: 10,
+                    thickness: 3,
+                    color: theme.colorScheme.primary,
                   ),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 200),
-                    child: Divider(
-                      indent: 10,
-                      endIndent: 10,
-                      thickness: 3,
-                      color: theme.colorScheme.primary,
-                    ),
-                  ),
-                  Text(
-                    'I began by learning Swift and Swift UI to develope mobile applications for iOS and MacOS. Then turned my focus to Java and Kotlin for Android apps. After that I dove into web development with HTML, CSS, and JavaScript. I was eager to begin developing some of my ideas but though it was very time consuming to develope for all thses platforms at once. Which led me to dabble in React and React Native. Once I got comfortable there I stumbled upon Flutter and have been completly in love with it every since.',
-                    maxLines: null,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+                ),
+                Text(
+                  'I began by learning Swift and Swift UI to develope mobile applications for iOS and MacOS. Then turned my focus to Java and Kotlin for Android apps. After that I dove into web development with HTML, CSS, and JavaScript. I was eager to begin developing some of my ideas but though it was very time consuming to develope for all thses platforms at once. Which led me to dabble in React and React Native. Once I got comfortable there I stumbled upon Flutter and have been completly in love with it every since.',
+                  maxLines: null,
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
         ),
@@ -309,7 +307,7 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
                   ),
                   Text('Springfield, MO'),
                   Image.asset(
-                    'assets/Kickapoo.png',
+                    'assets/kickapoo.png',
                     height: 150,
                   )
                 ],
@@ -331,43 +329,41 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Ozarks Technical',
-                      style: theme.textTheme.headlineMedium,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Ozarks Technical',
+                    style: theme.textTheme.headlineMedium,
+                  ),
+                  Text(
+                    'Community College',
+                    style: theme.textTheme.headlineMedium,
+                  ),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: Divider(
+                      indent: 10,
+                      endIndent: 10,
+                      thickness: 3,
+                      color: theme.colorScheme.primary,
                     ),
-                    Text(
-                      'Community College',
-                      style: theme.textTheme.headlineMedium,
-                    ),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 200),
-                      child: Divider(
-                        indent: 10,
-                        endIndent: 10,
-                        thickness: 3,
-                        color: theme.colorScheme.primary,
+                  ),
+                  Text(
+                    'Springfield, MO',
+                    textAlign: TextAlign.center,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        'assets/otc.png',
+                        height: 150,
                       ),
                     ),
-                    Text(
-                      'Springfield, MO',
-                      textAlign: TextAlign.center,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/otc.png',
-                          height: 150,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             ],
           ),
@@ -388,46 +384,44 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Flexible(
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        'assets/missouri_state.png',
-                        height: 100,
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/missouri_state.png',
+                      height: 100,
+                    ),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 200),
+                      child: Divider(
+                        indent: 10,
+                        endIndent: 10,
+                        thickness: 3,
+                        color: theme.colorScheme.primary,
                       ),
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 200),
-                        child: Divider(
-                          indent: 10,
-                          endIndent: 10,
-                          thickness: 3,
-                          color: theme.colorScheme.primary,
-                        ),
+                    ),
+                    Text('Springfield, MO'),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        'Bachelor of Science',
+                        style: theme.textTheme.bodyLarge!
+                            .copyWith(color: Colors.black38, fontSize: 20),
                       ),
-                      Text('Springfield, MO'),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Text(
-                          'Bachelor of Science',
-                          style: theme.textTheme.bodyLarge!
-                              .copyWith(color: Colors.black38, fontSize: 20),
-                        ),
-                      ),
-                      Text(
-                        'in',
-                        style: theme.textTheme.bodyMedium!
-                            .copyWith(color: Colors.black38),
-                      ),
-                      Text(
-                        'Recreation, Sport,',
-                        style: theme.textTheme.headlineSmall!,
-                      ),
-                      Text(
-                        '& Park Administration',
-                        style: theme.textTheme.headlineSmall!,
-                      ),
-                    ],
-                  ),
+                    ),
+                    Text(
+                      'in',
+                      style: theme.textTheme.bodyMedium!
+                          .copyWith(color: Colors.black38),
+                    ),
+                    Text(
+                      'Recreation, Sport,',
+                      style: theme.textTheme.headlineSmall!,
+                    ),
+                    Text(
+                      '& Park Administration',
+                      style: theme.textTheme.headlineSmall!,
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -444,32 +438,30 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
           "2020 - Now",
         ),
         content: Card(
-          child: Flexible(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Self Taught',
-                    style: theme.textTheme.headlineMedium!,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Self Taught',
+                  style: theme.textTheme.headlineMedium!,
+                ),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 200),
+                  child: Divider(
+                    indent: 10,
+                    endIndent: 10,
+                    thickness: 3,
+                    color: theme.colorScheme.primary,
                   ),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 200),
-                    child: Divider(
-                      indent: 10,
-                      endIndent: 10,
-                      thickness: 3,
-                      color: theme.colorScheme.primary,
-                    ),
-                  ),
-                  Text(
-                    'I began by learning Swift and Swift UI to develope mobile applications for iOS and MacOS. Then turned my focus to Java and Kotlin for Android apps. After that I dove into web development with HTML, CSS, and JavaScript. I was eager to begin developing some of my ideas but it was very time consuming to develope for all thses platforms at once. Which led me to dabble in React and React Native. Once I got comfortable there I stumbled upon Flutter and have been completly in love with it every since.',
-                    maxLines: null,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+                ),
+                Text(
+                  'I began by learning Swift and Swift UI to develope mobile applications for iOS and MacOS. Then turned my focus to Java and Kotlin for Android apps. After that I dove into web development with HTML, CSS, and JavaScript. I was eager to begin developing some of my ideas but it was very time consuming to develope for all thses platforms at once. Which led me to dabble in React and React Native. Once I got comfortable there I stumbled upon Flutter and have been completly in love with it every since.',
+                  maxLines: null,
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
         ),

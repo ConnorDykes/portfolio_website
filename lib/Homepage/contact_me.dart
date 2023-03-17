@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -30,12 +32,12 @@ class NavBarContactMe extends StatelessWidget {
     }
   }
 
-  Future<void> _github() async {
-    final uri = Uri.parse('https://github.com/ConnorDykes');
-    if (!await launchUrl(uri)) {
-      throw Exception('Could not launch $uri');
-    }
-  }
+  // Future<void> _github() async {
+  //   final uri = Uri.parse('https://github.com/ConnorDykes');
+  //   if (!await launchUrl(uri)) {
+  //     throw Exception('Could not launch $uri');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -124,40 +126,40 @@ class NavBarContactMe extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 200,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue, elevation: 3),
-                        child: Container(
-                          width: 85,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.github,
-                                color: Colors.white,
-                              ),
-                              Text(
-                                textAlign: TextAlign.left,
-                                "GitHub",
-                                style: theme.textTheme.bodyLarge!
-                                    .copyWith(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                        onPressed: () => _github(),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              //   Padding(
+              //     padding: const EdgeInsets.all(8.0),
+              //     child: Container(
+              //       width: 200,
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           ElevatedButton(
+              //             style: ElevatedButton.styleFrom(
+              //                 backgroundColor: Colors.blue, elevation: 3),
+              //             child: Container(
+              //               width: 85,
+              //               child: Row(
+              //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //                 children: [
+              //                   FaIcon(
+              //                     FontAwesomeIcons.github,
+              //                     color: Colors.white,
+              //                   ),
+              //                   Text(
+              //                     textAlign: TextAlign.left,
+              //                     "GitHub",
+              //                     style: theme.textTheme.bodyLarge!
+              //                         .copyWith(color: Colors.white),
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //             onPressed: () => _github(),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
             ],
           ),
         ),
@@ -166,30 +168,10 @@ class NavBarContactMe extends StatelessWidget {
   }
 }
 
-class ContactMe extends StatelessWidget {
-  const ContactMe({
+class MyInfo extends StatelessWidget {
+  const MyInfo({
     super.key,
   });
-
-  Future<void> _email(string) async {
-    final uri = Uri(
-      scheme: 'mailto',
-      path: 'connormdykes@gmail.com',
-    );
-    if (!await launchUrl(uri)) {
-      throw Exception('Could not launch $uri');
-    }
-  }
-
-  Future<void> _call() async {
-    final uri = Uri(
-      scheme: 'tel',
-      path: '4178611985',
-    );
-    if (!await launchUrl(uri)) {
-      throw Exception('Could not launch $uri');
-    }
-  }
 
   Future<void> _github() async {
     final uri = Uri.parse('https://github.com/ConnorDykes');
@@ -212,7 +194,7 @@ class ContactMe extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
             textAlign: TextAlign.left,
-            "Contact Me",
+            "My Info",
             style: theme.textTheme.headlineMedium,
           ),
           ConstrainedBox(
@@ -233,35 +215,21 @@ class ContactMe extends StatelessWidget {
                   const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
                   FilledButton(
                     style: FilledButton.styleFrom(elevation: 3),
-                    child: Icon(
-                      Icons.phone_rounded,
+                    child: const Icon(
+                      Icons.file_present_rounded,
                       color: Colors.white,
                     ),
-                    onPressed: () => _call(),
+                    onPressed: () {
+                      AnchorElement anchorElement =
+                          AnchorElement(href: 'assets/resume.pdf');
+                      anchorElement.download = "Download Resume";
+                      anchorElement.click();
+                    },
                   ),
                   const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
                   SelectableText(
                     textAlign: TextAlign.left,
-                    "Call",
-                    style: theme.textTheme.bodyLarge,
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
-                  FilledButton(
-                    style: FilledButton.styleFrom(elevation: 3),
-                    child: Icon(
-                      Icons.email_rounded,
-                      color: Colors.white,
-                    ),
-                    onPressed: () => _email('mailto: connormdykes@gmail.com'),
-                  ),
-                  const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
-                  SelectableText(
-                    textAlign: TextAlign.left,
-                    "Email",
+                    "Resume",
                     style: theme.textTheme.bodyLarge,
                   ),
                 ],

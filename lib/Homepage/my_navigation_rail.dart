@@ -46,7 +46,7 @@ class MyNavigationRail extends StatelessWidget {
       elevation: 3,
       minExtendedWidth: 200,
       selectedIndex: selectedIndex,
-      extended: Styling.isLargeScreen(context),
+      extended: true,
       destinations: navRailDestinations,
       onDestinationSelected: (index) => onTap(index),
     );

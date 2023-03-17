@@ -33,6 +33,8 @@ dependencies:
   url_launcher: ^6.1.9
   font_awesome_flutter: ^10.3.0
   enhance_stepper: ^0.1.1
+  colorful_safe_area: ^1.0.0
+  timelines: ^0.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -42,6 +44,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:portfolio_website/Education/education_page.dart';
 import 'package:portfolio_website/Homepage/about_me.dart';
 import 'package:portfolio_website/Homepage/about_page.dart';
@@ -13,6 +14,7 @@ import 'package:portfolio_website/Projects/projects_page.dart';
 import 'package:portfolio_website/Work/work_page.dart';
 import 'package:portfolio_website/navigation_destination.dart';
 import 'package:portfolio_website/theme.dart';
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,6 +48,7 @@ class MobileScaffold extends StatefulWidget {
 
 class _MobileScaffoldState extends State<MobileScaffold> {
   int selectedIndex = 0;
+
   mainPageView(selectedIndex) {
     switch (selectedIndex) {
       case 0:
@@ -68,6 +71,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   void onTap(int index) {
     setState(() {
       selectedIndex = index;
+      Scaffold.of(context).openDrawer();
     });
   }
 
@@ -75,17 +79,66 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-            elevation: 3,
-            showUnselectedLabels: true,
-            unselectedItemColor: Colors.black,
-            unselectedFontSize: 14,
-            unselectedLabelStyle: TextStyle(color: Colors.amber),
-            selectedItemColor: theme.colorScheme.primary,
-            selectedIconTheme: IconThemeData(color: theme.colorScheme.primary),
-            currentIndex: selectedIndex,
-            onTap: (index) => onTap(index),
-            items: bottomNavBarDestination),
+        drawer: Drawer(
+            child: NavigationRail(
+          backgroundColor: theme.scaffoldBackgroundColor,
+          leading: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                  margin: EdgeInsets.all(4),
+                  width: 120.0,
+                  height: 120.0,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 2),
+                      color: Colors.blue[100],
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          alignment: Alignment.topCenter,
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/profile_photo.png')))),
+              Text(
+                "Connor Dykes",
+                style: TextStyle(fontSize: 22),
+              ),
+              Text(
+                "Flutter Developer",
+                style:
+                    TextStyle(color: theme.colorScheme.primary, fontSize: 20),
+              ),
+              Container(
+                height: 1,
+                width: 200,
+                color: Colors.grey[300],
+              ),
+            ],
+          ),
+          trailing: NavBarContactMe(theme: theme),
+          selectedLabelTextStyle:
+              TextStyle(color: theme.colorScheme.primary, fontSize: 18),
+          selectedIconTheme: IconThemeData(color: Colors.white),
+          elevation: 3,
+          minExtendedWidth: 200,
+          selectedIndex: selectedIndex,
+          extended: true,
+          destinations: navRailDestinations,
+          onDestinationSelected: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+            Navigator.pop(context);
+          },
+        )),
+        floatingActionButton: Builder(builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: FloatingActionButton(
+              onPressed: () => Scaffold.of(context).openDrawer(),
+              child: Icon(Icons.menu_rounded),
+            ),
+          );
+        }),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
         backgroundColor: theme.scaffoldBackgroundColor,
         body: mainPageView(selectedIndex));
   }
@@ -98,8 +151,8 @@ class DesktopScaffold extends StatefulWidget {
     required this.size,
   });
 
-  final ThemeData theme;
   final double size;
+  final ThemeData theme;
 
   @override
   State<DesktopScaffold> createState() => _DesktopScaffoldState();

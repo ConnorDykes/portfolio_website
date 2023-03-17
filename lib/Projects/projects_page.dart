@@ -11,8 +11,8 @@ class ProjectsPage extends StatelessWidget {
           Flexible(
             child: GridView.count(
               padding: const EdgeInsets.all(16),
-              mainAxisSpacing: 3,
-              crossAxisSpacing: 3,
+              mainAxisSpacing: 32,
+              crossAxisSpacing: 32,
               crossAxisCount: 2,
               children: projects,
             ),
@@ -60,59 +60,73 @@ class ProjectCard extends StatelessWidget {
 
     return Card(
       clipBehavior: Clip.hardEdge,
-      color: Colors.white,
       child: InkWell(
         onTap: () {
           showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                    title: Text('Compiling....'),
-                    content: Text(
-                        "Come back soon for more details, media, and demos "),
+                    title: Text("I'm working on it"),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          'assets/alien.png',
+                          height: 200,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "Come back soon for more details, media, and demos "),
+                        ),
+                      ],
+                    ),
                   ));
         },
-        child: Column(
-          children: [
-            const Spacer(),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.headlineMedium,
-            ),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 200),
-              child: Divider(
-                indent: 10,
-                endIndent: 10,
-                thickness: 3,
-                color: theme.colorScheme.primary,
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              const Spacer(),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.headlineMedium,
               ),
-            ),
-            const Spacer(),
-            Material(
-              elevation: 3,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.asset(
-                  image,
-                  height: 150,
-                  width: 150,
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 200),
+                child: Divider(
+                  indent: 10,
+                  endIndent: 10,
+                  thickness: 3,
+                  color: theme.colorScheme.primary,
                 ),
               ),
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                description,
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodyLarge,
+              const Spacer(),
+              Material(
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    image,
+                    height: 150,
+                    width: 150,
+                  ),
+                ),
               ),
-            ),
-            const Spacer(),
-          ],
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  description,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyLarge,
+                ),
+              ),
+              const Spacer(),
+            ],
+          ),
         ),
       ),
     );
@@ -128,8 +142,7 @@ List<ProjectCard> projects = [
   const ProjectCard(
       title: 'Eqalink',
       description:
-          'A social network centered around privacy that gives control to you. '
-          ' partners.',
+          'A social network centered around privacy that gives control to you. ',
       image: 'assets/eqalink_logo.png'),
   const ProjectCard(
       title: 'ABC Climbing',
