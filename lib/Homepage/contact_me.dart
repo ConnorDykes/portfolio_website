@@ -186,28 +186,14 @@ class MyInfo extends StatelessWidget {
     final primary = theme.colorScheme.primary;
     return Card(
       child: Container(
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.only(top: 4),
         decoration: BoxDecoration(
           color: theme.cardColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(
-            textAlign: TextAlign.left,
-            "My Info",
-            style: theme.textTheme.headlineMedium,
-          ),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 200),
-            child: Divider(
-              indent: 10,
-              endIndent: 10,
-              thickness: 3,
-              color: theme.colorScheme.primary,
-            ),
-          ),
-          Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-          Row(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
@@ -227,7 +213,7 @@ class MyInfo extends StatelessWidget {
                     },
                   ),
                   const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
-                  SelectableText(
+                  Text(
                     textAlign: TextAlign.left,
                     "Resume",
                     style: theme.textTheme.bodyLarge,
@@ -238,7 +224,9 @@ class MyInfo extends StatelessWidget {
                 children: [
                   const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
                   FilledButton(
-                    style: FilledButton.styleFrom(elevation: 3),
+                    style: FilledButton.styleFrom(
+                      elevation: 3,
+                    ),
                     child: FaIcon(
                       FontAwesomeIcons.github,
                       color: Colors.white,
@@ -255,7 +243,7 @@ class MyInfo extends StatelessWidget {
               )
             ],
           ),
-        ]),
+        ),
       ),
     );
   }

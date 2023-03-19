@@ -117,56 +117,67 @@ class _EducationPageState extends State<EducationPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Text(
-                      'Bachelor of Science',
-                      style: theme.textTheme.headlineSmall!
-                          .copyWith(color: Colors.black38),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'in',
-                        style: theme.textTheme.bodyMedium!
+              Flexible(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Bachelor of Science',
+                        style: theme.textTheme.headlineSmall!
                             .copyWith(color: Colors.black38),
                       ),
-                    ),
-                    Text(
-                      'Recreation, Sport, & Park Administration',
-                      style: theme.textTheme.headlineMedium!,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'from',
-                        style: theme.textTheme.bodyMedium!
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'in',
+                          style: theme.textTheme.bodyMedium!
+                              .copyWith(color: Colors.black38),
+                        ),
+                      ),
+                      Text(
+                        'Recreation, Sport, & Park Administration',
+                        style: theme.textTheme.headlineMedium!,
+                        textAlign: TextAlign.center,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'from',
+                          style: theme.textTheme.bodyMedium!
+                              .copyWith(color: Colors.black38),
+                        ),
+                      ),
+                      Text(
+                        'Missouri State University',
+                        style: theme.textTheme.headlineSmall!
                             .copyWith(color: Colors.black38),
                       ),
-                    ),
-                    Text(
-                      'Missouri State University',
-                      style: theme.textTheme.headlineSmall!
-                          .copyWith(color: Colors.black38),
-                    ),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 200),
-                      child: Divider(
-                        indent: 10,
-                        endIndent: 10,
-                        thickness: 3,
-                        color: theme.colorScheme.primary,
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 200),
+                        child: Divider(
+                          indent: 10,
+                          endIndent: 10,
+                          thickness: 3,
+                          color: theme.colorScheme.primary,
+                        ),
                       ),
-                    ),
-                    Text('Springfield, MO'),
-                  ],
+                      Text('Springfield, MO'),
+                    ],
+                  ),
                 ),
               ),
-              Image.asset(
-                'assets/missouri_state.png',
-                height: 200,
+              Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    'assets/missouri_state.png',
+                    // height: 200,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
               )
             ],
           ),

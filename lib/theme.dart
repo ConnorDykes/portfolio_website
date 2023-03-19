@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 ThemeData theme = ThemeData(
     useMaterial3: true,
-    cardColor: Colors.white,
+
+    //cardColor: Colors.white,
     iconTheme: IconThemeData(color: Colors.blue),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         unselectedLabelStyle: TextStyle(color: Colors.black)),
