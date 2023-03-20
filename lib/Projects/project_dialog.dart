@@ -1,5 +1,7 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/Projects/project_modle.dart';
+import 'package:portfolio_website/theme.dart';
 
 class ProjectDialog extends StatefulWidget {
   const ProjectDialog({
@@ -18,14 +20,166 @@ class _MyWidgetState extends State<ProjectDialog> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final ProjectModel project = widget.project;
+
+    final rowChildren = [
+      Flexible(
+        flex: 2,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text(
+                    'Summary',
+                    style: theme.textTheme.headlineSmall,
+                  ),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: Divider(
+                      indent: 10,
+                      endIndent: 10,
+                      thickness: 3,
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                  Text(
+                    project.description ?? '',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      Flexible(
+        flex: 1,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(children: [
+                Text(
+                  'Features',
+                  style: theme.textTheme.headlineSmall,
+                  textAlign: TextAlign.center,
+                ),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 200),
+                  child: Divider(
+                    indent: 10,
+                    endIndent: 10,
+                    thickness: 3,
+                    color: theme.colorScheme.primary,
+                  ),
+                ),
+                ...project.features?.map((feature) => Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          feature,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ))) ??
+                    []
+              ]),
+            ),
+          ),
+        ),
+      ),
+    ];
+
+    final columnChildren = [
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(15)),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Text(
+                  'Summary',
+                  style: theme.textTheme.headlineSmall,
+                ),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 200),
+                  child: Divider(
+                    indent: 10,
+                    endIndent: 10,
+                    thickness: 3,
+                    color: theme.colorScheme.primary,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    project.description ?? '',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(children: [
+                  Text(
+                    'Features',
+                    style: theme.textTheme.headlineSmall,
+                    textAlign: TextAlign.center,
+                  ),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: Divider(
+                      indent: 10,
+                      endIndent: 10,
+                      thickness: 3,
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 200),
+                      child: Column(children: [
+                        ...project.features?.map((feature) => Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  feature,
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ))) ??
+                            []
+                      ]),
+                    ),
+                  )
+                ]),
+              ),
+            ),
+          ],
+        ),
+      ),
+      Padding(padding: EdgeInsets.all(16))
+    ];
+
     return Scaffold(
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-      // floatingActionButton: FloatingActionButton.small(
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: Icon(Icons.close)),
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: theme.scaffoldBackgroundColor,
         title: Text(project.name.toString()),
         titleTextStyle: theme.textTheme.headlineLarge,
@@ -63,89 +217,74 @@ class _MyWidgetState extends State<ProjectDialog> {
             ],
           ),
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Flexible(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Summay',
-                              style: theme.textTheme.headlineSmall,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxHeight: 350, maxWidth: MediaQuery.of(context).size.width),
+              child: ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                children: [
+                  ...project.images?.map(
+                        (image) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: OpenContainer(
+                            closedColor: Colors.transparent,
+                            openColor: theme.scaffoldBackgroundColor,
+                            closedShape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            transitionType: ContainerTransitionType.fadeThrough,
+                            openBuilder: (context, action) => Stack(
+                              children: [
+                                Container(
+                                  height: MediaQuery.of(context).size.height,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Image.asset(
+                                    image ?? '',
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 8,
+                                  right: 8,
+                                  child: FloatingActionButton.small(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Icon(Icons.close)),
+                                ),
+                              ],
                             ),
-                            ConstrainedBox(
-                              constraints: const BoxConstraints(maxWidth: 200),
-                              child: Divider(
-                                indent: 10,
-                                endIndent: 10,
-                                thickness: 3,
-                                color: theme.colorScheme.primary,
+                            closedBuilder: (context, action) => ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Image.asset(
+                                image ?? '',
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            Text(
-                              project.description ?? '',
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(children: [
-                          Text(
-                            'Features',
-                            style: theme.textTheme.headlineSmall,
-                            textAlign: TextAlign.center,
-                          ),
-                          ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 200),
-                            child: Divider(
-                              indent: 10,
-                              endIndent: 10,
-                              thickness: 3,
-                              color: theme.colorScheme.primary,
-                            ),
-                          ),
-                          ...project.features?.map((feature) => Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    feature,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ))) ??
-                              []
-                        ]),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                      ) ??
+                      [Text('no image')]
+                ],
+              ),
             ),
-          ),
+          ],
         ),
+        Styling.isLargeScreen(context)
+            ? Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      children: rowChildren,
+                    )),
+              )
+            : Column(
+                children: columnChildren,
+              ),
       ]),
     );
   }

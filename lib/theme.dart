@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData theme = ThemeData(
     useMaterial3: true,
-
+    textTheme: GoogleFonts.rubikTextTheme().copyWith(
+        headlineMedium: TextStyle(color: Colors.black),
+        headlineSmall: TextStyle(color: Colors.black),
+        headlineLarge: TextStyle(color: Colors.black)),
     //cardColor: Colors.white,
     iconTheme: IconThemeData(color: Colors.blue),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

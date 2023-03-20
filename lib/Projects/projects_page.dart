@@ -82,7 +82,7 @@ class _ProjectCardState extends State<ProjectCard> {
         closedElevation: 0,
         openShape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        transitionDuration: Duration(milliseconds: 1000),
+        transitionDuration: Duration(milliseconds: 600),
         openColor: Colors.transparent,
         middleColor: Colors.transparent,
         closedColor: Colors.transparent,
@@ -168,7 +168,12 @@ List<ProjectModel> projects = [
           ' Eager Climbers can create posts letting locals know they are looking for a partner.'
           ' Climbers can create meet up groups and find friends in the comfort ans safety of a group setting',
       images: [
-        'assets/belaytrader_mockup.png'
+        'assets/belaytrader_mockup.png',
+        'assets/belaytrader1.png',
+        'assets/belaytrader2.png',
+        'assets/belaytrader3.png',
+        'assets/belaytrader4.png',
+        'assets/belaytrader5.png',
       ],
       features: [
         '• Integrated Messaging',
