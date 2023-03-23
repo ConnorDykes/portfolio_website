@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio_website/theme.dart';
 
 class WhatIDo extends StatefulWidget {
   WhatIDo({super.key, required this.isMobile});
@@ -86,20 +87,40 @@ class _WhatIDoState extends State<WhatIDo> {
   }
 }
 
-class GridViewItem {
+class GridViewItem extends StatelessWidget {
+  GridViewItem({
+    required this.icon,
+    required this.title,
+    Color? this.color,
+  });
   final Widget icon;
   final Text title;
-
-  GridViewItem({required this.icon, required this.title});
-
-  Container get toGridViewItem => Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.white),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [icon, title]),
-      );
+  final Color? color;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12), color: Colors.white),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [icon, title]),
+    );
+    ;
+  }
 }
+
+// class GridViewItem {
+
+//   GridViewItem({required this.icon, required this.title});
+
+//   Container get toGridViewItem => Container(
+//         decoration: BoxDecoration(
+//             borderRadius: BorderRadius.circular(10), color: Colors.white),
+//         child: Column(
+//             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//             children: [icon, title]),
+//       );
+// }
 
 final platforms = [
   GridViewItem(
@@ -187,8 +208,16 @@ final languages = [
       title: Text("Java Script")),
 ];
 
-List<Container> platformGridViewItems =
-    platforms.map((platform) => platform.toGridViewItem).toList();
+List<GridViewItem> platformGridViewItems = platforms
+    .map((platform) => GridViewItem(
+          icon: platform.icon,
+          title: platform.title,
+        ))
+    .toList();
 
-List<Container> languagesGridViewItems =
-    languages.map((language) => language.toGridViewItem).toList();
+List<GridViewItem> languagesGridViewItems = languages
+    .map((language) => GridViewItem(
+          icon: language.icon,
+          title: language.title,
+        ))
+    .toList();

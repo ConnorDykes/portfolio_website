@@ -2,5 +2,6 @@
 //* run this first to build
 flutter build web --web-renderer canvaskit
 
+
 //* then this to deploy to web
 firebase deploy

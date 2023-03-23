@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
-final jobs = [
+final softwareJobs = [
   WorkCard(
     title: 'Flutter Mobile Developer',
     company: 'BelayTrader',
@@ -28,24 +29,111 @@ final jobs = [
   )
 ];
 
-class WorkPage extends StatelessWidget {
+final otherJobs = [
+  WorkCard(
+    title: 'Manager',
+    company: 'Dynamic Earth Equipment',
+    dates: '2014 - April 2016',
+    image: 'assets/dynamic_earth.png',
+  ),
+  WorkCard(
+    title: 'Youth Programs Manager',
+    company: 'Zenith Climbing Center',
+    dates: 'April 2016 - August 2020',
+    image: 'assets/zenith.png',
+  ),
+  WorkCard(
+    title: 'General Manager',
+    company: 'ABC Kids Climbing',
+    dates: 'August 2022 - Now',
+    image: 'assets/abc_climbing.png',
+  ),
+];
+
+class WorkPage extends StatefulWidget {
   const WorkPage({super.key});
 
+  @override
+  State<WorkPage> createState() => _WorkPageState();
+}
+
+class _WorkPageState extends State<WorkPage> {
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Expanded(
-      child: Timeline.tileBuilder(
-        scrollDirection: Axis.horizontal,
-        builder: TimelineTileBuilder.fromStyle(
-          contentsAlign: ContentsAlign.alternating,
-          contentsBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: jobs[index],
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Work',
+              style: theme.textTheme.headlineMedium,
+              textAlign: TextAlign.center,
+            ),
           ),
-          itemCount: jobs.length,
-        ),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 200),
+            child: Divider(
+              indent: 10,
+              endIndent: 10,
+              thickness: 3,
+              color: theme.colorScheme.primary,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CupertinoSlidingSegmentedControl(
+                thumbColor: theme.colorScheme.primary,
+                groupValue: index,
+                children: {
+                  0: Text("Software",
+                      style: TextStyle(
+                          color: index == 0 ? Colors.white : Colors.black)),
+                  1: Text(
+                    "Other",
+                    style: TextStyle(
+                        color: index == 1 ? Colors.white : Colors.black),
+                  )
+                },
+                onValueChanged: (value) {
+                  if (value != null) {
+                    setState(() {
+                      index = value;
+                    });
+                  }
+                }),
+          ),
+          index == 0
+              ? Expanded(
+                  child: Timeline.tileBuilder(
+                    scrollDirection: Axis.horizontal,
+                    builder: TimelineTileBuilder.fromStyle(
+                      contentsAlign: ContentsAlign.alternating,
+                      contentsBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: softwareJobs[index],
+                      ),
+                      itemCount: softwareJobs.length,
+                    ),
+                  ),
+                )
+              : Expanded(
+                  child: Timeline.tileBuilder(
+                    scrollDirection: Axis.horizontal,
+                    builder: TimelineTileBuilder.fromStyle(
+                      contentsAlign: ContentsAlign.alternating,
+                      contentsBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: otherJobs[index],
+                      ),
+                      itemCount: otherJobs.length,
+                    ),
+                  ),
+                ),
+        ],
       ),
     );
   }
@@ -70,27 +158,11 @@ class WorkCard extends StatelessWidget {
     final theme = Theme.of(context);
     return Card(
       clipBehavior: Clip.hardEdge,
-      elevation: 3,
-      child: InkWell(
-        onTap: () => showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: Text("I'm working on it"),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        'assets/alien.png',
-                        height: 200,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                            "Come back soon for more details, media, and demos "),
-                      ),
-                    ],
-                  ),
-                )),
+      elevation: 0,
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.black12),
+            borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: EdgeInsets.all(24.0),
           child: Column(
@@ -138,21 +210,88 @@ class MobileWorkPage extends StatefulWidget {
 }
 
 class _MobileWorkPageState extends State<MobileWorkPage> {
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Center(
-      child: Timeline.tileBuilder(
-        builder: TimelineTileBuilder.fromStyle(
-          contentsAlign: ContentsAlign.alternating,
-          contentsBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: jobs[index],
+    return SingleChildScrollView(
+      child: Column(children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            'Work',
+            style: theme.textTheme.headlineMedium,
+            textAlign: TextAlign.center,
           ),
-          itemCount: jobs.length,
         ),
-      ),
+        Divider(
+          indent: 100,
+          endIndent: 100,
+          thickness: 3,
+          color: theme.colorScheme.primary,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CupertinoSlidingSegmentedControl(
+              thumbColor: theme.colorScheme.primary,
+              groupValue: index,
+              children: {
+                0: Text("Software",
+                    style: TextStyle(
+                        color: index == 0 ? Colors.white : Colors.black)),
+                1: Text(
+                  "Other",
+                  style: TextStyle(
+                      color: index == 1 ? Colors.white : Colors.black),
+                )
+              },
+              onValueChanged: (value) {
+                if (value != null) {
+                  setState(() {
+                    index = value;
+                  });
+                }
+              }),
+        ),
+        index == 0
+            ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Timeline.tileBuilder(
+                  theme: TimelineTheme.of(context).copyWith(
+                    nodePosition: .9,
+                  ),
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  builder: TimelineTileBuilder.fromStyle(
+                    contentsAlign: ContentsAlign.reverse,
+                    contentsBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: softwareJobs[index],
+                    ),
+                    itemCount: softwareJobs.length,
+                  ),
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Timeline.tileBuilder(
+                  theme: TimelineTheme.of(context).copyWith(
+                    nodePosition: .1,
+                  ),
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  builder: TimelineTileBuilder.fromStyle(
+                    contentsAlign: ContentsAlign.basic,
+                    contentsBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: otherJobs[index],
+                    ),
+                    itemCount: otherJobs.length,
+                  ),
+                ),
+              ),
+      ]),
     );
   }
 }
