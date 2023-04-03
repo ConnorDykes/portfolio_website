@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/Homepage/contact_me.dart';
 import 'package:portfolio_website/NavBar/profile_photo.dart';
-import 'package:portfolio_website/main.dart';
 import 'package:portfolio_website/navigation_destination.dart';
-import 'package:portfolio_website/theme.dart';
 
 class MyNavigationRail extends StatelessWidget {
   const MyNavigationRail({

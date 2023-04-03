@@ -221,7 +221,10 @@ List<ProjectModel> projects = [
       platfroms: [
         Platforms.iOS,
         Platforms.android,
-      ]),
+      ],
+      iOSLink: 'https://apps.apple.com/us/app/belaytrader/id1604032228',
+      androidLink:
+          'https://play.google.com/store/apps/details?id=com.BelayTrader'),
 
   //* Eqalink
   ProjectModel(
@@ -241,11 +244,10 @@ List<ProjectModel> projects = [
         'assets/eqalink/screenshot5.jpeg',
         'assets/eqalink/screenshot6.jpeg',
       ],
-      platfroms: [
-        Platforms.iOS,
-        Platforms.android,
-        Platforms.web
-      ]),
+      platfroms: [Platforms.iOS, Platforms.android, Platforms.web],
+      iOSLink: 'https://apps.apple.com/us/app/eqalink/id6444545803',
+      androidLink: null,
+      webLink: 'https://eqalink.com/#/'),
 
   //* ABC Climbing
   ProjectModel(
@@ -266,30 +268,36 @@ List<ProjectModel> projects = [
       platfroms: [
         Platforms.iOS,
         Platforms.android,
-      ]),
+      ],
+      iOSLink: 'https://apps.apple.com/us/app/abc-climbing/id1616366631',
+      androidLink:
+          'https://play.google.com/store/apps/details?id=com.abc_climbing'),
 
   //* Kokoro Academy
   ProjectModel(
-      name: 'Kokoro Academy',
-      summary:
-          'A platfrom for the members of Kokoro Academy, A Jui Jitsu Studio in Springfield MO. ',
-      icon: 'assets/kokoro_logo.png',
-      description:
-          'Members can stay up-to-date on whats happening in the gym from convenience of their phones.'
-          ' Any new updates come in as a notification so members get it the minute its public.'
-          ' Access to exclusive video content and lessons.'
-          ' Shop for merch, view up coming classes, and book lessons, all from one location.'
-          ' Also features a robust admin panel',
-      images: [
-        'assets/kokoro_academy/mockup.png',
-        'assets/kokoro_academy/screenshot1.png',
-        'assets/kokoro_academy/screenshot2.png',
-        'assets/kokoro_academy/screenshot3.png',
-      ],
-      platfroms: [
-        Platforms.iOS,
-        Platforms.android,
-      ]),
+    name: 'Kokoro Academy',
+    summary:
+        'A platfrom for the members of Kokoro Academy, A Jui Jitsu Studio in Springfield MO. ',
+    icon: 'assets/kokoro_logo.png',
+    description:
+        'Members can stay up-to-date on whats happening in the gym from convenience of their phones.'
+        ' Any new updates come in as a notification so members get it the minute its public.'
+        ' Access to exclusive video content and lessons.'
+        ' Shop for merch, view up coming classes, and book lessons, all from one location.'
+        ' Also features a robust admin panel',
+    images: [
+      'assets/kokoro_academy/mockup.png',
+      'assets/kokoro_academy/screenshot1.png',
+      'assets/kokoro_academy/screenshot2.png',
+      'assets/kokoro_academy/screenshot3.png',
+    ],
+    platfroms: [
+      Platforms.iOS,
+      Platforms.android,
+    ],
+    iOSLink: null,
+    androidLink: null,
+  ),
 
   //* PotLucky
   ProjectModel(
@@ -313,7 +321,10 @@ List<ProjectModel> projects = [
       platfroms: [
         Platforms.iOS,
         Platforms.android,
-      ]),
+      ],
+      iOSLink: 'https://apps.apple.com/us/app/potlucky/id1614754298',
+      androidLink:
+          'https://play.google.com/store/apps/details?id=com.food_with_friends'),
 
   //* TrainingLog
   ProjectModel(
@@ -331,7 +342,9 @@ List<ProjectModel> projects = [
       platfroms: [
         Platforms.iOS,
         Platforms.android,
-      ]),
+      ],
+      iOSLink: null,
+      androidLink: null),
 ];
 
 List<ProjectCard> projectCards = projects

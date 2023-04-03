@@ -30,7 +30,7 @@ class _MyWidgetState extends State<ProjectDialog> {
           clipBehavior: Clip.hardEdge,
           elevation: 3,
           child: InkWell(
-            onTap: () {},
+            onTap: project.iOSLink == null ? null : () {},
             child: Container(
               height: 75,
               width: 75,

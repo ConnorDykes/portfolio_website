@@ -46,7 +46,6 @@ class MobileAboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final width = MediaQuery.sizeOf(context).width;
     double size = width < 450 ? 225.0 : 400.0;
 
@@ -71,6 +70,5 @@ class MobileAboutPage extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

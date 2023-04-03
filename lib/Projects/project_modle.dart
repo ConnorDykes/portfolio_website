@@ -7,7 +7,9 @@ class ProjectModel {
 
   String? summary;
   List<String>? images;
-  String? link;
+  String? iOSLink;
+  String? androidLink;
+  String? webLink;
   List<Platforms>? platfroms;
 
   ProjectModel(
@@ -16,6 +18,8 @@ class ProjectModel {
       this.description,
       this.summary,
       this.images,
-      this.link,
+      this.iOSLink,
+      this.androidLink,
+      this.webLink,
       this.platfroms});
 }

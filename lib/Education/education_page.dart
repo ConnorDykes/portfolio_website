@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:enhance_stepper/enhance_stepper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:portfolio_website/theme.dart';
 
 class EducationPage extends StatefulWidget {
   const EducationPage({super.key});
