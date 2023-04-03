@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio_website/Homepage/what_I_do.dart';
 import 'package:portfolio_website/Projects/project_modle.dart';
 import 'package:portfolio_website/theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectDialog extends StatefulWidget {
   const ProjectDialog({
@@ -30,7 +31,14 @@ class _MyWidgetState extends State<ProjectDialog> {
           clipBehavior: Clip.hardEdge,
           elevation: 3,
           child: InkWell(
-            onTap: project.iOSLink == null ? null : () {},
+            onTap: project.iOSLink == null
+                ? null
+                : () async {
+                    final uri = Uri.parse(project.iOSLink ?? '');
+                    if (!await launchUrl(uri)) {
+                      throw Exception('Could not launch $uri');
+                    }
+                  },
             child: Container(
               height: 75,
               width: 75,
@@ -52,7 +60,14 @@ class _MyWidgetState extends State<ProjectDialog> {
           clipBehavior: Clip.hardEdge,
           elevation: 3,
           child: InkWell(
-            onTap: () {},
+            onTap: project.androidLink == null
+                ? null
+                : () async {
+                    final uri = Uri.parse(project.androidLink ?? '');
+                    if (!await launchUrl(uri)) {
+                      throw Exception('Could not launch $uri');
+                    }
+                  },
             child: Container(
               height: 75,
               width: 75,
@@ -74,7 +89,14 @@ class _MyWidgetState extends State<ProjectDialog> {
           clipBehavior: Clip.hardEdge,
           elevation: 3,
           child: InkWell(
-            onTap: () {},
+            onTap: project.webLink == null
+                ? null
+                : () async {
+                    final uri = Uri.parse(project.webLink ?? '');
+                    if (!await launchUrl(uri)) {
+                      throw Exception('Could not launch $uri');
+                    }
+                  },
             child: Container(
               height: 75,
               width: 75,
