@@ -3,46 +3,52 @@ import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
 final softwareJobs = [
-  WorkCard(
-    title: 'Flutter Mobile Developer',
-    company: 'BelayTrader',
-    dates: 'Nov 2021 - March 2022',
-    image: 'assets/belayTrader.png',
+  const WorkCard(
+    title: 'Flutter Developer',
+    company: 'M Genio',
+    dates: 'June 2023 - Present',
+    image: 'assets/Mgenio.png',
   ),
-  WorkCard(
-    title: 'Flutter Mobile Developer',
-    company: 'Kokoro Academy',
-    dates: 'March 2022 - June 2022',
-    image: 'assets/kokoro_logo.png',
+  const WorkCard(
+    title: 'Flutter Developer',
+    company: 'Eqalink',
+    dates: 'November 2022 - June 2023',
+    image: 'assets/eqalink_logo.png',
   ),
-  WorkCard(
-    title: 'Flutter Mobile Developer',
+  const WorkCard(
+    title: 'Flutter Developer',
     company: 'ABC Kids Climbing',
     dates: 'July 2022 - August 2022',
     image: 'assets/abc_climbing.png',
   ),
-  WorkCard(
-    title: 'Fullstack Flutter Developer',
-    company: 'Eqalink',
-    dates: 'November 2022 - Now',
-    image: 'assets/eqalink_logo.png',
-  )
+  const WorkCard(
+    title: 'Flutter Developer',
+    company: 'Kokoro Academy',
+    dates: 'March 2022 - June 2022',
+    image: 'assets/kokoro_logo.png',
+  ),
+  const WorkCard(
+    title: 'Flutter Developer',
+    company: 'BelayTrader',
+    dates: 'Nov 2021 - March 2022',
+    image: 'assets/belayTrader.png',
+  ),
 ];
 
 final otherJobs = [
-  WorkCard(
+  const WorkCard(
     title: 'Manager',
     company: 'Dynamic Earth Equipment',
     dates: '2014 - April 2016',
     image: 'assets/dynamic_earth.png',
   ),
-  WorkCard(
+  const WorkCard(
     title: 'Youth Programs Manager',
     company: 'Zenith Climbing Center',
     dates: 'April 2016 - August 2020',
     image: 'assets/zenith.png',
   ),
-  WorkCard(
+  const WorkCard(
     title: 'General Manager',
     company: 'ABC Kids Climbing',
     dates: 'August 2022 - Now',
@@ -83,29 +89,29 @@ class _WorkPageState extends State<WorkPage> {
               color: theme.colorScheme.primary,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CupertinoSlidingSegmentedControl(
-                thumbColor: theme.colorScheme.primary,
-                groupValue: index,
-                children: {
-                  0: Text("Software",
-                      style: TextStyle(
-                          color: index == 0 ? Colors.white : Colors.black)),
-                  1: Text(
-                    "Other",
-                    style: TextStyle(
-                        color: index == 1 ? Colors.white : Colors.black),
-                  )
-                },
-                onValueChanged: (value) {
-                  if (value != null) {
-                    setState(() {
-                      index = value;
-                    });
-                  }
-                }),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: CupertinoSlidingSegmentedControl(
+          //       thumbColor: theme.colorScheme.primary,
+          //       groupValue: index,
+          //       children: {
+          //         0: Text("Software",
+          //             style: TextStyle(
+          //                 color: index == 0 ? Colors.white : Colors.black)),
+          //         1: Text(
+          //           "Other",
+          //           style: TextStyle(
+          //               color: index == 1 ? Colors.white : Colors.black),
+          //         )
+          //       },
+          //       onValueChanged: (value) {
+          //         if (value != null) {
+          //           setState(() {
+          //             index = value;
+          //           });
+          //         }
+          //       }),
+          // ),
           index == 0
               ? Expanded(
                   child: Timeline.tileBuilder(
@@ -164,7 +170,7 @@ class WorkCard extends StatelessWidget {
             border: Border.all(color: Colors.black12),
             borderRadius: BorderRadius.circular(12)),
         child: Padding(
-          padding: EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -261,7 +267,7 @@ class _MobileWorkPageState extends State<MobileWorkPage> {
                   theme: TimelineTheme.of(context).copyWith(
                     nodePosition: .9,
                   ),
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   builder: TimelineTileBuilder.fromStyle(
                     contentsAlign: ContentsAlign.reverse,
@@ -279,7 +285,7 @@ class _MobileWorkPageState extends State<MobileWorkPage> {
                   theme: TimelineTheme.of(context).copyWith(
                     nodePosition: .1,
                   ),
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   builder: TimelineTileBuilder.fromStyle(
                     contentsAlign: ContentsAlign.basic,
