@@ -207,7 +207,6 @@ List<ProjectModel> projects = [
           'Fantasy Climbing is the only fantasy sports app for real competition  Sport Climbing.'
           ' Create a League, Draft a team of real professional climbers, and watch as you earn real points based on their performance.',
       images: [
-        'assets/fantasy_climbing/mock_up.png',
         'assets/fantasy_climbing/fantasyClimbing1.png',
         'assets/fantasy_climbing/fantasyClimbing2.png',
         'assets/fantasy_climbing/fantasyClimbing3.png',
@@ -226,7 +225,7 @@ List<ProjectModel> projects = [
       name: 'MY MTA',
       summary:
           'The official app for public transportation services in New York City ',
-      icon: 'assets/mta/icon.png',
+      icon: 'assets/mta/logo.png',
       description:
           'This is the official app for all transportation in the city of New York.'
           ' Create custom trips with step by step maps and instructions.'
@@ -276,6 +275,24 @@ List<ProjectModel> projects = [
       androidLink:
           'https://play.google.com/store/apps/details?id=com.BelayTrader'),
 
+  //* Bitmo
+  ProjectModel(
+    name: 'Bitmo',
+    summary: 'Peer to Peer Bitcoin transfer powered by the lightning network',
+    icon: 'assets/bitmo/icon.png',
+    description: 'instantly send bitcoin to your peers.',
+    images: [
+      'assets/bitmo/screen1.png',
+      'assets/bitmo/screen2.png',
+      'assets/bitmo/screen3.png',
+      'assets/bitmo/screen4.png',
+      'assets/bitmo/screen5.png',
+    ],
+    platforms: [Platforms.iOS, Platforms.android],
+    iOSLink: null,
+    androidLink: null,
+  ),
+
   //* Eqalink
   ProjectModel(
       name: 'Eqalink',
@@ -298,6 +315,28 @@ List<ProjectModel> projects = [
       iOSLink: 'https://apps.apple.com/us/app/eqalink/id6444545803',
       androidLink: null,
       webLink: 'https://eqalink.com/#/'),
+
+  //* SimpleCart
+  ProjectModel(
+    name: 'SimpleCart',
+    summary: 'Grocery shopping made easy ',
+    icon: 'assets/simple_cart/icon.png',
+    description:
+        'Make recipes, plan your meals and have all the ingredients instantly added to your cart.'
+        ' Have all your items delivered right to your door with Walmart deliver.',
+    images: [
+      'assets/simple_cart/screen1.png',
+      'assets/simple_cart/screen2.png',
+      'assets/simple_cart/screen3.png',
+      'assets/simple_cart/screen4.png',
+    ],
+    platforms: [
+      Platforms.iOS,
+      Platforms.android,
+    ],
+    iOSLink: null,
+    androidLink: null,
+  ),
 
   //* ABC Climbing
   ProjectModel(
@@ -340,6 +379,28 @@ List<ProjectModel> projects = [
       'assets/kokoro_academy/screenshot1.png',
       'assets/kokoro_academy/screenshot2.png',
       'assets/kokoro_academy/screenshot3.png',
+    ],
+    platforms: [
+      Platforms.iOS,
+      Platforms.android,
+    ],
+    iOSLink: null,
+    androidLink: null,
+  ),
+
+  //* Scry
+  ProjectModel(
+    name: 'Scry',
+    summary: 'Trade magic card and organize games',
+    icon: 'assets/scry/icon.png',
+    description:
+        'Trade Magic the Gathering cards with real people. Organize games with real players',
+    images: [
+      'assets/scry/screen1.png',
+      'assets/scry/screen2.png',
+      'assets/scry/screen3.png',
+      'assets/scry/screen4.png',
+      'assets/scry/screen5.png',
     ],
     platforms: [
       Platforms.iOS,

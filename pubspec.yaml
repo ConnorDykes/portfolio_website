@@ -73,6 +73,10 @@ flutter:
     - assets/abc_climbing/
     - assets/kokoro_academy/
     - assets/potlucky/
+    - assets/mta/
+    - assets/bitmo/
+    - assets/scry/
+    - assets/simple_cart/
     - assets/fantasy_climbing/
     
 
