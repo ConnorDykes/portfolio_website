@@ -221,6 +221,33 @@ List<ProjectModel> projects = [
       iOSLink: '',
       androidLink: ''),
 
+  //* MTA
+  ProjectModel(
+      name: 'MY MTA',
+      summary:
+          'The official app for public transportation services in New York City ',
+      icon: 'assets/mta/icon.png',
+      description:
+          'This is the official app for all transportation in the city of New York.'
+          ' Create custom trips with step by step maps and instructions.'
+          ' See live vehicles and get notified when your vehicles or cars are arriving.',
+      images: [
+        'assets/mta/banner.png',
+        'assets/mta/mta1.png',
+        'assets/mta/mta2.png',
+        'assets/mta/mta3.png',
+        'assets/mta/mta4.png',
+        'assets/mta/mta5.png',
+        'assets/mta/mta6.png',
+        'assets/mta/mta7.png',
+      ],
+      platforms: [
+        Platforms.iOS,
+        Platforms.android,
+      ],
+      iOSLink: '',
+      androidLink: ''),
+
   //* BelayTrader
   ProjectModel(
       name: 'BelayTrader',
