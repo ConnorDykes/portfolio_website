@@ -26,7 +26,7 @@ class _MyWidgetState extends State<ProjectDialog> {
 
     final platformButtons = [
       //* if platform is iOS
-      if (project.platfroms!.contains(Platforms.iOS))
+      if (project.platforms!.contains(Platforms.iOS))
         Card(
           clipBehavior: Clip.hardEdge,
           elevation: 3,
@@ -55,7 +55,7 @@ class _MyWidgetState extends State<ProjectDialog> {
         ),
 
       //* if platfrom is android
-      if (project.platfroms!.contains(Platforms.android))
+      if (project.platforms!.contains(Platforms.android))
         Card(
           clipBehavior: Clip.hardEdge,
           elevation: 3,
@@ -84,7 +84,7 @@ class _MyWidgetState extends State<ProjectDialog> {
         ),
 
       //* if platfrom os web
-      if (project.platfroms!.contains(Platforms.web))
+      if (project.platforms!.contains(Platforms.web))
         Card(
           clipBehavior: Clip.hardEdge,
           elevation: 3,

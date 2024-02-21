@@ -10,7 +10,7 @@ class ProjectModel {
   String? iOSLink;
   String? androidLink;
   String? webLink;
-  List<Platforms>? platfroms;
+  List<Platforms>? platforms;
 
   ProjectModel(
       {this.name,
@@ -21,5 +21,5 @@ class ProjectModel {
       this.iOSLink,
       this.androidLink,
       this.webLink,
-      this.platfroms});
+      this.platforms});
 }

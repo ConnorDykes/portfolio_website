@@ -88,7 +88,7 @@ class _MobileProjectsPageState extends State<MobileProjectsPage> {
 class ProjectCard extends StatefulWidget {
   const ProjectCard({
     super.key,
-    required ProjectModel this.project,
+    required this.project,
   });
 
   final ProjectModel project;
@@ -123,7 +123,7 @@ class _ProjectCardState extends State<ProjectCard> {
           closedElevation: 0,
           openShape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          transitionDuration: Duration(milliseconds: 600),
+          transitionDuration: const Duration(milliseconds: 600),
           openColor: Colors.transparent,
           middleColor: Colors.transparent,
           closedColor: Colors.transparent,
@@ -134,7 +134,7 @@ class _ProjectCardState extends State<ProjectCard> {
             elevation: 3,
             child: AnimatedContainer(
               height: 350,
-              duration: Duration(milliseconds: 150),
+              duration: const Duration(milliseconds: 150),
               decoration: BoxDecoration(
                 color: hovered
                     ? Colors.black12.withOpacity(.05)
@@ -198,6 +198,29 @@ class _ProjectCardState extends State<ProjectCard> {
 }
 
 List<ProjectModel> projects = [
+  //* Fantasy Climbing
+  ProjectModel(
+      name: 'Fantasy Climbing',
+      summary: 'Fantasy Sports for Competition Sport Climbing',
+      icon: 'assets/fantasy_climbing/app_icon.png',
+      description:
+          'Fantasy Climbing is the only fantasy sports app for real competition  Sport Climbing.'
+          ' Create a League, Draft a team of real professional climbers, and watch as you earn real points based on their performance.',
+      images: [
+        'assets/fantasy_climbing/mock_up.png',
+        'assets/fantasy_climbing/fantasyClimbing1.png',
+        'assets/fantasy_climbing/fantasyClimbing2.png',
+        'assets/fantasy_climbing/fantasyClimbing3.png',
+        'assets/fantasy_climbing/fantasyClimbing4.png',
+        'assets/fantasy_climbing/fantasyClimbing5.png',
+      ],
+      platforms: [
+        Platforms.iOS,
+        Platforms.android,
+      ],
+      iOSLink: '',
+      androidLink: ''),
+
   //* BelayTrader
   ProjectModel(
       name: 'BelayTrader',
@@ -218,7 +241,7 @@ List<ProjectModel> projects = [
         'assets/belaytrader4.png',
         'assets/belaytrader5.png',
       ],
-      platfroms: [
+      platforms: [
         Platforms.iOS,
         Platforms.android,
       ],
@@ -244,7 +267,7 @@ List<ProjectModel> projects = [
         'assets/eqalink/screenshot5.jpeg',
         'assets/eqalink/screenshot6.jpeg',
       ],
-      platfroms: [Platforms.iOS, Platforms.android, Platforms.web],
+      platforms: [Platforms.iOS, Platforms.android, Platforms.web],
       iOSLink: 'https://apps.apple.com/us/app/eqalink/id6444545803',
       androidLink: null,
       webLink: 'https://eqalink.com/#/'),
@@ -265,7 +288,7 @@ List<ProjectModel> projects = [
         'assets/abc_climbing/screenshot2.jpeg',
         'assets/abc_climbing/screenshot3.jpeg',
       ],
-      platfroms: [
+      platforms: [
         Platforms.iOS,
         Platforms.android,
       ],
@@ -291,7 +314,7 @@ List<ProjectModel> projects = [
       'assets/kokoro_academy/screenshot2.png',
       'assets/kokoro_academy/screenshot3.png',
     ],
-    platfroms: [
+    platforms: [
       Platforms.iOS,
       Platforms.android,
     ],
@@ -318,7 +341,7 @@ List<ProjectModel> projects = [
         'assets/potlucky/screenshot4.png',
         'assets/potlucky/screenshot5.png',
       ],
-      platfroms: [
+      platforms: [
         Platforms.iOS,
         Platforms.android,
       ],
@@ -339,7 +362,7 @@ List<ProjectModel> projects = [
       images: [
         'assets/training_log.png',
       ],
-      platfroms: [
+      platforms: [
         Platforms.iOS,
         Platforms.android,
       ],
@@ -354,9 +377,9 @@ List<ProjectCard> projectCards = projects
     .toList();
 
 // [
-//  
-//  
-//   
+//
+//
+//
 //   const ProjectCard(
 //       title: 'Training Log',
 //       description:
