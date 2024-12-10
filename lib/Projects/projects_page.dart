@@ -118,7 +118,7 @@ class _ProjectCardState extends State<ProjectCard> {
           hovered = false;
         }),
         child: OpenContainer(
-          transitionType: ContainerTransitionType.fadeThrough,
+          transitionType: ContainerTransitionType.fade,
           openElevation: 0,
           closedElevation: 0,
           openShape:
@@ -198,6 +198,34 @@ class _ProjectCardState extends State<ProjectCard> {
 }
 
 List<ProjectModel> projects = [
+  //* SIX
+  ProjectModel(
+      name: 'SIX',
+      summary: 'Achieve Radical Fulfillment',
+      icon: 'assets/six/icon.png',
+      description:
+          'Track your emotional fitness. Find Key Moments through your day and discover what brings you value.'
+          ' Build for all mobile devices including Wear OS and Apple Watch.'
+          ' Leverage powerful ai algorithms to gain insight into your life.'
+          ' Follow friends and connect over well being.',
+      images: [
+        'assets/six/screen1.png',
+        'assets/six/screen2.png',
+        'assets/six/screen3.png',
+        'assets/six/screen4.png',
+        'assets/six/screen5.png',
+        'assets/six/screen6.png',
+        'assets/six/screen7.png',
+      ],
+      platforms: [
+        Platforms.iOS,
+        Platforms.android,
+      ],
+      iOSLink:
+          'https://apps.apple.com/us/app/six-an-emotional-fitness-app/id6449885349',
+      androidLink:
+          'https://play.google.com/store/apps/details?id=com.immersionneuro.six'),
+
   //* Fantasy Climbing
   ProjectModel(
       name: 'Fantasy Climbing',
@@ -231,7 +259,6 @@ List<ProjectModel> projects = [
           ' Create custom trips with step by step maps and instructions.'
           ' See live vehicles and get notified when your vehicles or cars are arriving.',
       images: [
-        'assets/mta/banner.png',
         'assets/mta/mta1.png',
         'assets/mta/mta2.png',
         'assets/mta/mta3.png',

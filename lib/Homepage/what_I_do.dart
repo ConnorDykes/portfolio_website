@@ -22,7 +22,7 @@ class _WhatIDoState extends State<WhatIDo> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     debugPrint(segmentedControlGroupValue.toString());
-    return Container(
+    return SizedBox(
       width: 350,
       child: Column(
         children: [
@@ -68,7 +68,7 @@ class _WhatIDoState extends State<WhatIDo> {
                 }
               }),
           ConstrainedBox(
-            constraints: BoxConstraints(minHeight: 450),
+            constraints: const BoxConstraints(minHeight: 450),
             child: GridView.count(
                 shrinkWrap: true,
                 primary: false,
@@ -87,10 +87,11 @@ class _WhatIDoState extends State<WhatIDo> {
 }
 
 class GridViewItem extends StatelessWidget {
-  GridViewItem({
+  const GridViewItem({
+    super.key,
     required this.icon,
     required this.title,
-    Color? this.color,
+    this.color,
   });
   final Widget icon;
   final Text title;
@@ -101,10 +102,18 @@ class GridViewItem extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12), color: Colors.white),
       child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [icon, title]),
+          children: [
+            icon,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(child: title),
+              ],
+            )
+          ]),
     );
-    ;
   }
 }
 
@@ -122,7 +131,7 @@ class GridViewItem extends StatelessWidget {
 // }
 
 final platforms = [
-  GridViewItem(
+  const GridViewItem(
       icon: FlutterLogo(
         size: 48,
       ),
@@ -133,28 +142,31 @@ final platforms = [
         height: 48,
         width: 48,
       ),
-      title: Text("Firebase")),
-  GridViewItem(
+      title: const Text("Firebase")),
+  const GridViewItem(
       icon: FaIcon(
         FontAwesomeIcons.apple,
         color: Colors.black,
         size: 48,
       ),
-      title: Text("iOS & MacOS")),
-  GridViewItem(
+      title: Text(
+        "iOS, WatchOS, & MacOS",
+        textAlign: TextAlign.center,
+      )),
+  const GridViewItem(
       icon: FaIcon(
         FontAwesomeIcons.android,
         color: Colors.lightGreen,
         size: 48,
       ),
-      title: Text("Android")),
-  GridViewItem(
+      title: Text("Android & Wear OS")),
+  const GridViewItem(
       icon: FaIcon(
         FontAwesomeIcons.windows,
         size: 48,
       ),
       title: Text("Windows & Desktop")),
-  GridViewItem(
+  const GridViewItem(
       icon: FaIcon(
         FontAwesomeIcons.code,
         size: 48,
@@ -170,35 +182,35 @@ final languages = [
         height: 48,
         width: 48,
       ),
-      title: Text("Dart")),
+      title: const Text("Dart")),
   GridViewItem(
       icon: Image.asset(
         'assets/kotlin.png',
         height: 48,
         width: 48,
       ),
-      title: Text("Kotlin")),
+      title: const Text("Kotlin")),
   GridViewItem(
       icon: Image.asset(
         'assets/swift.png',
         height: 48,
         width: 48,
       ),
-      title: Text("Swift")),
-  GridViewItem(
+      title: const Text("Swift")),
+  const GridViewItem(
       icon: FaIcon(
         FontAwesomeIcons.html5,
         color: Colors.red,
         size: 48,
       ),
       title: Text("HTML 5")),
-  GridViewItem(
+  const GridViewItem(
       icon: FaIcon(
         FontAwesomeIcons.css3,
         size: 48,
       ),
       title: Text("CSS 3")),
-  GridViewItem(
+  const GridViewItem(
       icon: FaIcon(
         FontAwesomeIcons.squareJs,
         color: Colors.amber,

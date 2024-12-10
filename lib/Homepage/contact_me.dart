@@ -183,7 +183,7 @@ class MyInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final primary = theme.colorScheme.primary;
+   
     return Card(
       child: Container(
         padding: EdgeInsets.only(top: 4),

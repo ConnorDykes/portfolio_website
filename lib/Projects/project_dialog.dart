@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 class ProjectDialog extends StatefulWidget {
   const ProjectDialog({
     super.key,
-    required ProjectModel this.project,
+    required this.project,
   });
 
   final ProjectModel project;

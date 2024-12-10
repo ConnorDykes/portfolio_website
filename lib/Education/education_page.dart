@@ -10,7 +10,7 @@ class EducationPage extends StatefulWidget {
 }
 
 class _EducationPageState extends State<EducationPage> {
-  int _index = 0;
+  int _index = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _EducationPageState extends State<EducationPage> {
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  Text('Springfield, MO'),
+                  const Text('Springfield, MO'),
                 ],
               ),
               Padding(
@@ -59,12 +59,12 @@ class _EducationPageState extends State<EducationPage> {
         ),
       ),
       EnhanceStep(
-        icon: Icon(Icons.school),
+        icon: const Icon(Icons.school),
         title: Text(
           "Accociates Degree",
           style: theme.textTheme.headlineSmall,
         ),
-        subtitle: Text(
+        subtitle: const Text(
           "2013 - 2015",
         ),
         content: Card(
@@ -86,7 +86,7 @@ class _EducationPageState extends State<EducationPage> {
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  Text('Springfield, MO'),
+                  const Text('Springfield, MO'),
                 ],
               ),
               Padding(
@@ -104,12 +104,12 @@ class _EducationPageState extends State<EducationPage> {
         ),
       ),
       EnhanceStep(
-        icon: Icon(Icons.school),
+        icon: const Icon(Icons.school),
         title: Text(
           "Bachelor Degree",
           style: theme.textTheme.headlineSmall,
         ),
-        subtitle: Text(
+        subtitle: const Text(
           "2015 - 2018",
         ),
         content: Card(
@@ -162,7 +162,7 @@ class _EducationPageState extends State<EducationPage> {
                           color: theme.colorScheme.primary,
                         ),
                       ),
-                      Text('Springfield, MO'),
+                      const Text('Springfield, MO'),
                     ],
                   ),
                 ),
@@ -183,12 +183,12 @@ class _EducationPageState extends State<EducationPage> {
         ),
       ),
       EnhanceStep(
-        icon: FaIcon(FontAwesomeIcons.code),
+        icon: const FaIcon(FontAwesomeIcons.code),
         title: Text(
           "Software Development",
           style: theme.textTheme.headlineSmall,
         ),
-        subtitle: Text(
+        subtitle: const Text(
           "2020 - Now",
         ),
         content: Card(
@@ -210,7 +210,7 @@ class _EducationPageState extends State<EducationPage> {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                Text(
+                const Text(
                   'I began by learning Swift and Swift UI to develope mobile applications for iOS and MacOS. Then turned my focus to Java and Kotlin for Android apps. After that I dove into web development with HTML, CSS, and JavaScript. I was eager to begin developing some of my ideas but though it was very time consuming to develope for all thses platforms at once. Which led me to dabble in React and React Native. Once I got comfortable there I stumbled upon Flutter and have been completly in love with it every since.',
                   maxLines: null,
                   textAlign: TextAlign.center,
@@ -315,7 +315,7 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  Text('Springfield, MO'),
+                  const Text('Springfield, MO'),
                   Image.asset(
                     'assets/kickapoo.png',
                     height: 150,
@@ -327,12 +327,12 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
         ),
       ),
       EnhanceStep(
-        icon: Icon(Icons.school),
+        icon: const Icon(Icons.school),
         title: Text(
           "Associate's Degree",
           style: theme.textTheme.headlineSmall,
         ),
-        subtitle: Text(
+        subtitle: const Text(
           "2013 - 2015",
         ),
         content: Card(
@@ -359,7 +359,7 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Springfield, MO',
                     textAlign: TextAlign.center,
                   ),
@@ -380,12 +380,12 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
         ),
       ),
       EnhanceStep(
-        icon: Icon(Icons.school),
+        icon: const Icon(Icons.school),
         title: Text(
           "Bachelor's Degree",
           style: theme.textTheme.headlineSmall,
         ),
-        subtitle: Text(
+        subtitle: const Text(
           "2015 - 2018",
         ),
         content: Card(
@@ -409,7 +409,7 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
                         color: theme.colorScheme.primary,
                       ),
                     ),
-                    Text('Springfield, MO'),
+                    const Text('Springfield, MO'),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
@@ -439,12 +439,12 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
         ),
       ),
       EnhanceStep(
-        icon: FaIcon(FontAwesomeIcons.code),
+        icon: const FaIcon(FontAwesomeIcons.code),
         title: Text(
           "Software Development",
           style: theme.textTheme.headlineSmall,
         ),
-        subtitle: Text(
+        subtitle: const Text(
           "2020 - Now",
         ),
         content: Card(
@@ -466,7 +466,7 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
                     color: theme.colorScheme.primary,
                   ),
                 ),
-                Text(
+                const Text(
                   'I began by learning Swift and Swift UI to develope mobile applications for iOS and MacOS. Then turned my focus to Java and Kotlin for Android apps. After that I dove into web development with HTML, CSS, and JavaScript. I was eager to begin developing some of my ideas but it was very time consuming to develope for all thses platforms at once. Which led me to dabble in React and React Native. Once I got comfortable there I stumbled upon Flutter and have been completly in love with it every since.',
                   maxLines: null,
                   textAlign: TextAlign.center,
