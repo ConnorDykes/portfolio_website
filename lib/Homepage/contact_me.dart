@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,7 +10,7 @@ class NavBarContactMe extends StatelessWidget {
 
   final ThemeData theme;
 
-  Future<void> _email(string) async {
+  Future<void> _email() async {
     final uri = Uri(
       scheme: 'mailto',
       path: 'connormdykes@gmail.com',
@@ -42,7 +40,7 @@ class NavBarContactMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: SizedBox(
         height: 100,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -55,13 +53,13 @@ class NavBarContactMe extends StatelessWidget {
                 width: 200,
                 color: Colors.grey[300],
               ),
-              Text(
+              const Text(
                 "Contact me",
                 style: TextStyle(fontSize: 18),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
+                child: SizedBox(
                   width: 200,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -70,12 +68,12 @@ class NavBarContactMe extends StatelessWidget {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue, elevation: 3),
-                        child: Container(
+                        child: SizedBox(
                           width: 85,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.phone_rounded,
                                 color: Colors.white,
                               ),
@@ -96,7 +94,7 @@ class NavBarContactMe extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
+                child: SizedBox(
                   width: 200,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -104,12 +102,13 @@ class NavBarContactMe extends StatelessWidget {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue, elevation: 3),
-                        child: Container(
+                        child: SizedBox(
                           width: 85,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Icon(Icons.email_rounded, color: Colors.white),
+                              const Icon(Icons.email_rounded,
+                                  color: Colors.white),
                               Text(
                                 textAlign: TextAlign.left,
                                 "Email",
@@ -119,8 +118,7 @@ class NavBarContactMe extends StatelessWidget {
                             ],
                           ),
                         ),
-                        onPressed: () =>
-                            _email('mailto: connormdykes@gmail.com'),
+                        onPressed: () => _email(),
                       ),
                     ],
                   ),
@@ -183,10 +181,10 @@ class MyInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-   
+
     return Card(
       child: Container(
-        padding: EdgeInsets.only(top: 4),
+        padding: const EdgeInsets.only(top: 4),
         decoration: BoxDecoration(
           color: theme.cardColor,
           borderRadius: BorderRadius.circular(10),
@@ -205,11 +203,11 @@ class MyInfo extends StatelessWidget {
                       Icons.file_present_rounded,
                       color: Colors.white,
                     ),
-                    onPressed: () {
-                      AnchorElement anchorElement =
-                          AnchorElement(href: 'assets/resume.pdf');
-                      anchorElement.download = "Download Resume";
-                      anchorElement.click();
+                    onPressed: () async {
+                      final Uri uri = Uri.parse('assets/resume.pdf');
+                      if (!await launchUrl(uri, webOnlyWindowName: '_blank')) {
+                        throw Exception('Could not launch $uri');
+                      }
                     },
                   ),
                   const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
@@ -227,7 +225,7 @@ class MyInfo extends StatelessWidget {
                     style: FilledButton.styleFrom(
                       elevation: 3,
                     ),
-                    child: FaIcon(
+                    child: const FaIcon(
                       FontAwesomeIcons.github,
                       color: Colors.white,
                     ),

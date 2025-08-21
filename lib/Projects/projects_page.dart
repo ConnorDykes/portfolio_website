@@ -99,6 +99,50 @@ class ProjectCard extends StatefulWidget {
 
 class _ProjectCardState extends State<ProjectCard> {
   bool hovered = false;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final String? icon = widget.project.icon;
+    if (icon != null) {
+      precacheImage(AssetImage(icon), context);
+    }
+  }
+
+  Widget _fadedAssetImage(
+    String asset, {
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.cover,
+  }) {
+    return Image.asset(
+      asset,
+      width: width,
+      height: height,
+      fit: fit,
+      filterQuality: FilterQuality.medium,
+      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+        if (wasSynchronouslyLoaded) return child;
+        return AnimatedOpacity(
+          opacity: frame == null ? 0 : 1,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+          child: child,
+        );
+      },
+      errorBuilder: (context, error, stack) {
+        debugPrint('Image.asset failed to load: $asset');
+        return Container(
+          color: Colors.black12,
+          alignment: Alignment.center,
+          child: Text(
+            'Missing asset\n$asset',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +162,7 @@ class _ProjectCardState extends State<ProjectCard> {
           hovered = false;
         }),
         child: OpenContainer(
-          transitionType: ContainerTransitionType.fade,
+          transitionType: ContainerTransitionType.fadeThrough,
           openElevation: 0,
           closedElevation: 0,
           openShape:
@@ -169,10 +213,11 @@ class _ProjectCardState extends State<ProjectCard> {
                           borderRadius: BorderRadius.circular(15)),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
-                        child: Image.asset(
+                        child: _fadedAssetImage(
                           icon,
                           height: 150,
                           width: 150,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -301,6 +346,62 @@ List<ProjectModel> projects = [
       iOSLink: 'https://apps.apple.com/us/app/belaytrader/id1604032228',
       androidLink:
           'https://play.google.com/store/apps/details?id=com.BelayTrader'),
+
+  //* The Stack
+  ProjectModel(
+    name: 'The Stack Marketplace',
+    summary: 'A complete one of a kind market place for all trading card games',
+    icon: 'assets/the_stack/logo.png',
+    description:
+        'Buy, sell, and trade all your trading card games in one place. this app features an expansive Postgres database with complex relationships and queries. It has a robust backend server written in Deno for a variety of services. It features intricate integrations with STIPE for payment processs and payouts as well as complete shipment tracking with the USPS. Visit The Stack Marketplace at https://thestackmarketplace.com',
+    images: [
+      'assets/the_stack/screen1.png',
+      'assets/the_stack/screen2.png',
+      'assets/the_stack/screen3.png',
+      'assets/the_stack/screen4.png',
+    ],
+    platforms: [Platforms.iOS, Platforms.android, Platforms.web],
+    iOSLink: null,
+    androidLink: null,
+    webLink: 'https://thestackmarketplace.com',
+  ),
+  //* Longs Peak Parts
+  ProjectModel(
+    name: 'Longs Peak Parts',
+    summary:
+        'An internal tool for fast and accurate part recommendations off junked vehicles',
+    icon: 'assets/longs_peak_parts/icon.png',
+    description:
+        'This app was developed for the company Longs Peak Parts. It is an internal tool for fast and accurate part recommendations off junked vehicles. Employees can quickly scan a vehicles vin code to get a match and show high prices parts on that vehicle. This app also includes advances Ebay api integration that interface with the Longs peak parts website. ',
+    images: [
+      'assets/longs_peak_parts/screen1.png',
+      'assets/longs_peak_parts/screen2.png',
+      'assets/longs_peak_parts/screen3.png',
+    ],
+    platforms: [Platforms.iOS, Platforms.android, Platforms.web],
+    iOSLink: null,
+    androidLink: null,
+    webLink: 'https://thestackmarketplace.com',
+  ),
+
+  //* SendTrain
+  ProjectModel(
+    name: 'SendTrain',
+    summary: 'AI driven training plans for rock climbers',
+    icon: 'assets/sendtrain/icon.png',
+    description:
+        'Get a once of training plan for your next climbing session. SendTrain uses AI to generate a training plan based on your goals and experience level. Then tracks an reminds you about your works. If you miss a workout, your personalized AI coach can adjust your schedule to get you back on track.  ',
+    images: [
+      'assets/sendtrain/screen1.png',
+      'assets/sendtrain/screen2.png',
+      'assets/sendtrain/screen3.png',
+      'assets/sendtrain/screen4.png',
+    ],
+    platforms: [Platforms.iOS, Platforms.android, Platforms.web],
+    iOSLink: null,
+    androidLink: null,
+    webLink: 'https://thestackmarketplace.com',
+  ),
 
   //* Bitmo
   ProjectModel(

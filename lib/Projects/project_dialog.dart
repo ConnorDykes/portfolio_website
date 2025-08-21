@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio_website/Homepage/what_I_do.dart';
 import 'package:portfolio_website/Projects/project_modle.dart';
-import 'package:portfolio_website/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectDialog extends StatefulWidget {
@@ -19,6 +18,55 @@ class ProjectDialog extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<ProjectDialog> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final ProjectModel project = widget.project;
+    final List<String> assetsToCache = [
+      if (project.icon != null) project.icon!,
+      ...?project.images,
+    ];
+    for (final String assetPath in assetsToCache) {
+      precacheImage(AssetImage(assetPath), context);
+    }
+  }
+
+  Widget _fadedAssetImage(
+    String asset, {
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.cover,
+  }) {
+    return Image.asset(
+      asset,
+      width: width,
+      height: height,
+      fit: fit,
+      filterQuality: FilterQuality.medium,
+      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+        if (wasSynchronouslyLoaded) return child;
+        return AnimatedOpacity(
+          opacity: frame == null ? 0 : 1,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+          child: child,
+        );
+      },
+      errorBuilder: (context, error, stack) {
+        debugPrint('Image.asset failed to load: $asset');
+        return Container(
+          color: Colors.black12,
+          alignment: Alignment.center,
+          child: Text(
+            'Missing asset\n$asset',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -39,7 +87,7 @@ class _MyWidgetState extends State<ProjectDialog> {
                       throw Exception('Could not launch $uri');
                     }
                   },
-            child: Container(
+            child: const SizedBox(
               height: 75,
               width: 75,
               child: GridViewItem(
@@ -68,7 +116,7 @@ class _MyWidgetState extends State<ProjectDialog> {
                       throw Exception('Could not launch $uri');
                     }
                   },
-            child: Container(
+            child: const SizedBox(
               height: 75,
               width: 75,
               child: GridViewItem(
@@ -97,7 +145,7 @@ class _MyWidgetState extends State<ProjectDialog> {
                       throw Exception('Could not launch $uri');
                     }
                   },
-            child: Container(
+            child: const SizedBox(
               height: 75,
               width: 75,
               child: GridViewItem(
@@ -113,80 +161,13 @@ class _MyWidgetState extends State<ProjectDialog> {
         ),
     ];
 
-    final rowChildren = [
-      Flexible(
-        flex: 2,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(15)),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Text(
-                    'Summary',
-                    style: theme.textTheme.headlineSmall,
-                  ),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 200),
-                    child: Divider(
-                      indent: 10,
-                      endIndent: 10,
-                      thickness: 3,
-                      color: theme.colorScheme.primary,
-                    ),
-                  ),
-                  Text(
-                    project.description ?? '',
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-      Flexible(
-        flex: 1,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(15)),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(children: [
-                Text(
-                  'Platforms',
-                  style: theme.textTheme.headlineSmall,
-                  textAlign: TextAlign.center,
-                ),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200),
-                  child: Divider(
-                    indent: 10,
-                    endIndent: 10,
-                    thickness: 3,
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: platformButtons)
-              ]),
-            ),
-          ),
-        ),
-      ),
-    ];
+    // Removed unused desktop row layout remnants
 
     final columnChildren = [
       Padding(
         padding: const EdgeInsets.all(16.0),
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 700),
+          constraints: const BoxConstraints(maxWidth: 700),
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(15)),
@@ -223,7 +204,7 @@ class _MyWidgetState extends State<ProjectDialog> {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 700),
+          constraints: const BoxConstraints(maxWidth: 700),
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(15)),
@@ -252,7 +233,7 @@ class _MyWidgetState extends State<ProjectDialog> {
           ),
         ),
       ),
-      Padding(padding: EdgeInsets.all(16))
+      const Padding(padding: EdgeInsets.all(16))
     ];
 
     return Scaffold(
@@ -269,7 +250,7 @@ class _MyWidgetState extends State<ProjectDialog> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Icon(Icons.close)),
+                child: const Icon(Icons.close)),
           )
         ],
       ),
@@ -285,10 +266,11 @@ class _MyWidgetState extends State<ProjectDialog> {
                     borderRadius: BorderRadius.circular(15)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
+                  child: _fadedAssetImage(
                     project.icon ?? '',
                     height: 150,
                     width: 150,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
@@ -305,12 +287,12 @@ class _MyWidgetState extends State<ProjectDialog> {
               child: RawScrollbar(
                 crossAxisMargin: 2,
                 thumbColor: theme.colorScheme.primaryContainer,
-                trackColor: Colors.grey[400]!.withOpacity(.75),
-                radius: Radius.circular(15),
-                trackRadius: Radius.circular(15),
+                trackColor: Colors.transparent,
+                radius: const Radius.circular(15),
+                trackRadius: const Radius.circular(15),
                 thumbVisibility: true,
-                trackVisibility: true,
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                trackVisibility: false,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 16.0,
@@ -318,6 +300,7 @@ class _MyWidgetState extends State<ProjectDialog> {
                   child: ListView(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
+                    cacheExtent: 2000,
                     children: [
                       ...project.images?.map(
                             (image) => Padding(
@@ -325,47 +308,48 @@ class _MyWidgetState extends State<ProjectDialog> {
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: OpenContainer(
                                 closedColor: Colors.transparent,
-                                openColor: theme.scaffoldBackgroundColor,
-                                closedShape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15)),
+                                openColor: Colors.black,
+                                closedShape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.zero),
                                 transitionType:
                                     ContainerTransitionType.fadeThrough,
-                                openBuilder: (context, action) => Stack(
-                                  children: [
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: Image.asset(
-                                        image ?? '',
-                                        fit: BoxFit.contain,
+                                openBuilder: (context, action) => Container(
+                                  color: Colors.black,
+                                  child: Stack(
+                                    children: [
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: _fadedAssetImage(
+                                          image,
+                                          fit: BoxFit.contain,
+                                        ),
                                       ),
-                                    ),
-                                    Positioned(
-                                      top: 8,
-                                      right: 8,
-                                      child: FloatingActionButton.small(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Icon(Icons.close)),
-                                    ),
-                                  ],
+                                      Positioned(
+                                        top: 8,
+                                        right: 8,
+                                        child: FloatingActionButton.small(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Icon(Icons.close)),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 closedBuilder: (context, action) => MouseRegion(
                                   cursor: SystemMouseCursors.click,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
-                                    child: Image.asset(
-                                      image ?? '',
-                                      fit: BoxFit.cover,
-                                    ),
+                                  child: _fadedAssetImage(
+                                    image,
+                                    fit: BoxFit.contain,
                                   ),
                                 ),
                               ),
                             ),
                           ) ??
-                          [Text('no image')]
+                          [const Text('no image')]
                     ],
                   ),
                 ),

@@ -1,12 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:timelines/timelines.dart';
+// Removed dependency on the timelines package to ensure Dart 3 compatibility
 
 final softwareJobs = [
   const WorkCard(
+    title: 'Lead Mobile Developer',
+    company: 'Immersion Neuroscience',
+    dates: 'March 2024- Present',
+    image: 'assets/immersion.jpg',
+  ),
+  const WorkCard(
     title: 'Flutter Developer',
     company: 'M Genio',
-    dates: 'June 2023 - Present',
+    dates: 'June 2023 - March 2024',
     image: 'assets/Mgenio.png',
   ),
   const WorkCard(
@@ -114,29 +120,29 @@ class _WorkPageState extends State<WorkPage> {
           // ),
           index == 0
               ? Expanded(
-                  child: Timeline.tileBuilder(
-                    scrollDirection: Axis.horizontal,
-                    builder: TimelineTileBuilder.fromStyle(
-                      contentsAlign: ContentsAlign.alternating,
-                      contentsBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.all(24.0),
-                        child: softwareJobs[index],
-                      ),
-                      itemCount: softwareJobs.length,
-                    ),
+                  child: ListView.builder(
+                    itemCount: softwareJobs.length,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24.0, vertical: 12.0),
+                    itemBuilder: (context, itemIndex) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12.0),
+                        child: softwareJobs[itemIndex],
+                      );
+                    },
                   ),
                 )
               : Expanded(
-                  child: Timeline.tileBuilder(
-                    scrollDirection: Axis.horizontal,
-                    builder: TimelineTileBuilder.fromStyle(
-                      contentsAlign: ContentsAlign.alternating,
-                      contentsBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.all(24.0),
-                        child: otherJobs[index],
-                      ),
-                      itemCount: otherJobs.length,
-                    ),
+                  child: ListView.builder(
+                    itemCount: otherJobs.length,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24.0, vertical: 12.0),
+                    itemBuilder: (context, itemIndex) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12.0),
+                        child: otherJobs[itemIndex],
+                      );
+                    },
                   ),
                 ),
         ],
@@ -170,38 +176,46 @@ class WorkCard extends StatelessWidget {
             border: Border.all(color: Colors.black12),
             borderRadius: BorderRadius.circular(12)),
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title,
-                    style: theme.textTheme.titleLarge!
-                        .copyWith(color: Colors.blue)),
-                Text(company,
-                    style: theme.textTheme.titleMedium!
-                        .copyWith(fontWeight: FontWeight.w600)),
-                Text(dates),
-                Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Material(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image.asset(
-                          image,
-                          height: 100,
-                          width: 100,
-                        ),
-                      ),
-                    ),
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Material(
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    image,
+                    height: 56,
+                    width: 56,
+                    fit: BoxFit.cover,
                   ),
                 ),
-              ]),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: theme.textTheme.titleMedium!
+                          .copyWith(fontWeight: FontWeight.w700),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      dates,
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -263,38 +277,30 @@ class _MobileWorkPageState extends State<MobileWorkPage> {
         index == 0
             ? Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Timeline.tileBuilder(
-                  theme: TimelineTheme.of(context).copyWith(
-                    nodePosition: .9,
-                  ),
+                child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  builder: TimelineTileBuilder.fromStyle(
-                    contentsAlign: ContentsAlign.reverse,
-                    contentsBuilder: (context, index) => Padding(
+                  itemCount: softwareJobs.length,
+                  itemBuilder: (context, itemIndex) {
+                    return Padding(
                       padding: const EdgeInsets.all(24.0),
-                      child: softwareJobs[index],
-                    ),
-                    itemCount: softwareJobs.length,
-                  ),
+                      child: softwareJobs[itemIndex],
+                    );
+                  },
                 ),
               )
             : Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Timeline.tileBuilder(
-                  theme: TimelineTheme.of(context).copyWith(
-                    nodePosition: .1,
-                  ),
+                child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  builder: TimelineTileBuilder.fromStyle(
-                    contentsAlign: ContentsAlign.basic,
-                    contentsBuilder: (context, index) => Padding(
+                  itemCount: otherJobs.length,
+                  itemBuilder: (context, itemIndex) {
+                    return Padding(
                       padding: const EdgeInsets.all(24.0),
-                      child: otherJobs[index],
-                    ),
-                    itemCount: otherJobs.length,
-                  ),
+                      child: otherJobs[itemIndex],
+                    );
+                  },
                 ),
               ),
       ]),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_website/main.dart';
+import 'package:portfolio_website/Homepage/scaffolds.dart';
 import 'package:portfolio_website/theme.dart';
 
 class MyHomePage extends StatefulWidget {

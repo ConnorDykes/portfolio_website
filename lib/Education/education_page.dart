@@ -10,8 +10,6 @@ class EducationPage extends StatefulWidget {
 }
 
 class _EducationPageState extends State<EducationPage> {
-  int _index = 2;
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -223,51 +221,70 @@ class _EducationPageState extends State<EducationPage> {
     ];
 
     return Expanded(
-      child: Row(
-        children: [
-          Flexible(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    "Education",
-                    style: theme.textTheme.headlineMedium,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 32),
+        child: Row(
+          children: [
+            Flexible(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      "Education",
+                      style: theme.textTheme.headlineMedium,
+                    ),
                   ),
-                ),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200),
-                  child: Divider(
-                    indent: 10,
-                    endIndent: 10,
-                    thickness: 3,
-                    color: theme.colorScheme.primary,
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: Divider(
+                      indent: 10,
+                      endIndent: 10,
+                      thickness: 3,
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
-                ),
-                EnhanceStepper(
-                    stepIconSize: 30,
-                    type: StepperType.vertical,
-                    // horizontalTitlePosition: HorizontalTitlePosition.bottom,
-                    // horizontalLinePosition: HorizontalLinePosition.top,
-                    currentStep: _index,
-                    physics: const ClampingScrollPhysics(),
-                    steps: steps,
-                    onStepTapped: (index) {
-                      setState(() {
-                        _index = index;
-                      });
-                    },
-                    controlsBuilder:
-                        (BuildContext context, ControlsDetails details) {
-                      return const Row(
-                        children: [],
-                      );
-                    })
-              ],
+                  Expanded(
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: steps.length,
+                      itemBuilder: (context, i) {
+                        final step = steps[i];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 40,
+                                child: Center(
+                                    child:
+                                        step.icon ?? const SizedBox.shrink()),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    step.title,
+                                    if (step.subtitle != null) step.subtitle!,
+                                    const SizedBox(height: 8),
+                                    step.content,
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -281,8 +298,6 @@ class MobileEducationPage extends StatefulWidget {
 }
 
 class _MobileEducationPageState extends State<MobileEducationPage> {
-  int _index = 0;
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -497,24 +512,39 @@ class _MobileEducationPageState extends State<MobileEducationPage> {
           thickness: 3,
           color: theme.colorScheme.primary,
         ),
-        EnhanceStepper(
-            stepIconSize: 30,
-            type: StepperType.vertical,
-            // horizontalTitlePosition: HorizontalTitlePosition.bottom,
-            // horizontalLinePosition: HorizontalLinePosition.top,
-            currentStep: _index,
-            physics: const ClampingScrollPhysics(),
-            steps: steps,
-            onStepTapped: (index) {
-              setState(() {
-                _index = index;
-              });
-            },
-            controlsBuilder: (BuildContext context, ControlsDetails details) {
-              return const Row(
-                children: [],
-              );
-            })
+        ...steps.map((step) {
+          return Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 30,
+                      child:
+                          Center(child: step.icon ?? const SizedBox.shrink()),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          step.title,
+                          if (step.subtitle != null) step.subtitle!,
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                step.content,
+              ],
+            ),
+          );
+        }).toList(),
       ],
     );
   }
