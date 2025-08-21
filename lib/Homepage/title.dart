@@ -6,9 +6,11 @@ class MyTitle extends StatelessWidget {
   const MyTitle({
     super.key,
     required this.theme,
+    this.onSeeApps,
   });
 
   final ThemeData theme;
+  final VoidCallback? onSeeApps;
   Future<void> _github() async {
     final uri = Uri.parse('https://github.com/ConnorDykes');
     if (!await launchUrl(uri)) {
@@ -28,32 +30,57 @@ class MyTitle extends StatelessWidget {
             style: theme.textTheme.headlineLarge!
                 .copyWith(color: theme.colorScheme.primary, fontSize: 42),
           ),
-          Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
           Text(
             textAlign: TextAlign.center,
             "I build apps, like this website!",
             style: theme.textTheme.headlineLarge!.copyWith(fontSize: 32),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(vertical: 10),
           ),
-          FilledButton(
-              onPressed: () => _github(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FaIcon(FontAwesomeIcons.github),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                  ),
-                  Text('See The Code'),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                  ),
-                  Icon(Icons.arrow_forward_ios_rounded)
-                ],
-              ))
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FilledButton(
+                  onPressed: () => _github(),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FaIcon(FontAwesomeIcons.github),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                      ),
+                      Text('See The Code'),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                      ),
+                      Icon(Icons.arrow_forward_ios_rounded)
+                    ],
+                  )),
+              const SizedBox(width: 12),
+              FilledButton(
+                  style: FilledButton.styleFrom(foregroundColor: Colors.white),
+                  onPressed: onSeeApps,
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.apps_rounded, color: Colors.white),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                      ),
+                      Text('See the apps',
+                          style: TextStyle(color: Colors.white)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                      ),
+                      Icon(Icons.arrow_forward_ios_rounded, color: Colors.white)
+                    ],
+                  ))
+            ],
+          )
         ],
       ),
     );

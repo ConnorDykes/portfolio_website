@@ -6,6 +6,11 @@ import 'package:portfolio_website/Homepage/what_I_do.dart';
 import 'package:portfolio_website/NavBar/name_and_description.dart';
 import 'package:portfolio_website/NavBar/profile_photo.dart';
 
+class SelectNavIndexNotification extends Notification {
+  const SelectNavIndexNotification(this.index);
+  final int index;
+}
+
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
@@ -15,18 +20,23 @@ class AboutPage extends StatelessWidget {
     return Expanded(
       child: Row(
         children: [
-          SizedBox(width: 25),
+          const SizedBox(width: 25),
           Flexible(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MyTitle(theme: theme),
+                MyTitle(
+                  theme: theme,
+                  onSeeApps: () {
+                    const SelectNavIndexNotification(2).dispatch(context);
+                  },
+                ),
                 Divider(thickness: 1, color: Colors.grey[300]),
                 AboutMe(),
               ],
             ),
           ),
-          SizedBox(width: 50),
+          const SizedBox(width: 50),
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: Column(
@@ -34,7 +44,7 @@ class AboutPage extends StatelessWidget {
               children: <Widget>[WhatIDo(isMobile: false)],
             ),
           ),
-          SizedBox(width: 25),
+          const SizedBox(width: 25),
         ],
       ),
     );
@@ -56,14 +66,14 @@ class MobileAboutPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: const NameAndDescription(),
+            const Padding(
+              padding: EdgeInsets.only(top: 16.0),
+              child: NameAndDescription(),
             ),
             ProfilePhoto(
               size: Size(size, size),
             ),
-            MyInfo(),
+            const MyInfo(),
             AboutMe(),
             WhatIDo(isMobile: true)
           ],

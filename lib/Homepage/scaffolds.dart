@@ -164,18 +164,26 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: widget.theme.scaffoldBackgroundColor,
-      body: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width,
-        ),
-        child: Row(
-          children: [
-            MyNavigationRail(
-                theme: widget.theme,
-                selectedIndex: selectedIndex,
-                onTap: onTap),
-            mainPageView(selectedIndex)
-          ],
+      body: NotificationListener<SelectNavIndexNotification>(
+        onNotification: (notification) {
+          setState(() {
+            selectedIndex = notification.index;
+          });
+          return true;
+        },
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+          ),
+          child: Row(
+            children: [
+              MyNavigationRail(
+                  theme: widget.theme,
+                  selectedIndex: selectedIndex,
+                  onTap: onTap),
+              mainPageView(selectedIndex)
+            ],
+          ),
         ),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
