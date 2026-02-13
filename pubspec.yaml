@@ -81,6 +81,7 @@ flutter:
     - assets/the_stack/
     - assets/longs_peak_parts/
     - assets/sendtrain/
+    - assets/vsbl/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

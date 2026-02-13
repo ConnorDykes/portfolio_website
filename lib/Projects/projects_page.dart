@@ -243,6 +243,34 @@ class _ProjectCardState extends State<ProjectCard> {
 }
 
 List<ProjectModel> projects = [
+  //* VSBL
+  ProjectModel(
+      name: 'VSBL',
+      summary: 'Operations visibility and team execution platform',
+      icon: 'assets/vsbl/icon.png',
+      description:
+          'VSBL helps teams stay aligned with a feature-rich mobile experience for day-to-day operations.'
+          ' It includes home screen workflows, team feed communication, checklists and tasks, shift tools, reporting, rewards, waste tracking, and setup management.'
+          ' This project entry uses screenshots from the VSBL features page at vsblapp.com.',
+      images: [
+        'assets/vsbl/screen1.png',
+        'assets/vsbl/screen2.png',
+        'assets/vsbl/screen3.png',
+        'assets/vsbl/screen4.png',
+        'assets/vsbl/screen5.png',
+        'assets/vsbl/screen6.png',
+        'assets/vsbl/screen7.png',
+        'assets/vsbl/screen8.png',
+      ],
+      platforms: [
+        Platforms.iOS,
+        Platforms.android,
+        Platforms.web,
+      ],
+      iOSLink: null,
+      androidLink: null,
+      webLink: 'https://vsblapp.com'),
+
   //* SIX
   ProjectModel(
       name: 'SIX',
