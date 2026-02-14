@@ -1,24 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_website/Homepage/homepage_view.dart';
-import 'package:portfolio_website/theme.dart';
+import 'package:portfolio_website/designs/showcase/showcase_app.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ShowcaseApp());
 }
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Connor Dykes - Flutter Developer',
-      theme: theme,
-      home: const MyHomePage(title: 'About Me'),
-    );
-  }
-}
-
-// Scaffolds moved to `Homepage/scaffolds.dart` to avoid circular imports.
