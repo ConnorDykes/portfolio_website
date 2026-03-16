@@ -35,7 +35,7 @@ dependencies:
   enhance_stepper: ^1.0.1
   colorful_safe_area: ^1.0.0
   animations: ^2.0.7
-  google_fonts: ^4.0.3
+  google_fonts: ^8.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -82,6 +82,7 @@ flutter:
     - assets/longs_peak_parts/
     - assets/sendtrain/
     - assets/vsbl/
+    - assets/engage/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

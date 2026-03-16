@@ -204,7 +204,8 @@ class MyInfo extends StatelessWidget {
                       color: Colors.white,
                     ),
                     onPressed: () async {
-                      final Uri uri = Uri.parse('assets/resume.pdf');
+                      final Uri uri =
+                          Uri.parse('assets/Connor_Dykes_Resume_.pdf');
                       if (!await launchUrl(uri, webOnlyWindowName: '_blank')) {
                         throw Exception('Could not launch $uri');
                       }

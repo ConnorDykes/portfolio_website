@@ -328,7 +328,7 @@ class _Hero extends StatelessWidget {
             false,
             () => downloadResume(
               PortfolioData.resumePath,
-              fileName: 'Connor Dykes - Resume.pdf',
+              fileName: 'Connor_Dykes_Resume_.pdf',
             ),
             icon: Icons.description_outlined,
           ),
@@ -342,63 +342,156 @@ class _Hero extends StatelessWidget {
 
 class _AboutSection extends StatelessWidget {
   const _AboutSection({super.key});
+
+  static const _categoryIcons = <String, IconData>{
+    'mobile': Icons.phone_iphone_rounded,
+    'brain': Icons.psychology_rounded,
+    'web': Icons.language_rounded,
+    'state': Icons.account_tree_rounded,
+    'database': Icons.storage_rounded,
+    'devops': Icons.rocket_launch_rounded,
+    'design': Icons.brush_rounded,
+  };
+
   @override
   Widget build(BuildContext context) {
     final wide = MediaQuery.of(context).size.width > 900;
+    const cats = PortfolioData.skillCategories;
     return _W(
         bg: _C.white,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('About Me',
-              style: GoogleFonts.inter(
-                  fontSize: 32, fontWeight: FontWeight.w800, color: _C.black)),
-          Container(
-              width: 40,
-              height: 4,
-              margin: const EdgeInsets.symmetric(vertical: 16),
-              decoration: BoxDecoration(
-                  color: _C.accent, borderRadius: BorderRadius.circular(2))),
-          Text(PortfolioData.aboutParagraph2,
-              style: GoogleFonts.inter(
-                  fontSize: 16, color: _C.textSec, height: 1.7)),
-          const SizedBox(height: 32),
+          Center(
+            child: Column(children: [
+              Text('About Me',
+                  style: GoogleFonts.inter(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: _C.black)),
+              Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.only(top: 16, bottom: 32),
+                  decoration: BoxDecoration(
+                      color: _C.accent,
+                      borderRadius: BorderRadius.circular(2))),
+            ]),
+          ),
           if (wide)
-            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Expanded(child: _skillCard('Platforms', PortfolioData.platforms)),
-              const SizedBox(width: 16),
-              Expanded(child: _skillCard('Languages', PortfolioData.languages)),
-              const SizedBox(width: 16),
+            Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              Expanded(
+                  child: Text(PortfolioData.aboutParagraph2,
+                      style: GoogleFonts.inter(
+                          fontSize: 16, color: _C.textSec, height: 1.7))),
+              const SizedBox(width: 48),
               Expanded(child: _statsCard()),
             ])
           else ...[
-            _skillCard('Platforms', PortfolioData.platforms),
-            const SizedBox(height: 16),
-            _skillCard('Languages', PortfolioData.languages),
-            const SizedBox(height: 16),
-            _statsCard()
+            Text(PortfolioData.aboutParagraph2,
+                style: GoogleFonts.inter(
+                    fontSize: 16, color: _C.textSec, height: 1.7)),
+            const SizedBox(height: 24),
+            _statsCard(),
           ],
+          const SizedBox(height: 56),
+          Center(
+            child: Column(children: [
+              Text('Technical Skills',
+                  style: GoogleFonts.inter(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                      color: _C.black)),
+              const SizedBox(height: 6),
+              Text(
+                  '6+ years building cross-platform apps across the full stack',
+                  style: GoogleFonts.inter(
+                      fontSize: 14, color: _C.textSec, height: 1.5)),
+            ]),
+          ),
+          const SizedBox(height: 28),
+          Container(
+            decoration: BoxDecoration(
+              color: _C.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: _C.border),
+            ),
+            child: Column(
+              children: [
+                for (var i = 0; i < cats.length; i++) ...[
+                  if (i > 0)
+                    Divider(height: 1, thickness: 1, color: _C.border),
+                  _skillRow(cats[i], wide),
+                ],
+              ],
+            ),
+          ),
         ]));
   }
 
-  Widget _skillCard(String title, List<SkillItem> items) => Container(
-        padding: const EdgeInsets.all(24),
+  Widget _skillRow(SkillCategory cat, bool wide) {
+    final icon = _categoryIcons[cat.icon] ?? Icons.code_rounded;
+    final isAI = cat.icon == 'brain';
+
+    final chips = Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: cat.skills
+          .map((s) => Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: isAI
+                      ? _C.accent.withAlpha(25)
+                      : _C.accent.withAlpha(12),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(s,
+                    style: GoogleFonts.inter(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: isAI ? _C.accent : _C.text)),
+              ))
+          .toList(),
+    );
+
+    final label = Row(mainAxisSize: MainAxisSize.min, children: [
+      Container(
+        width: 36,
+        height: 36,
         decoration: BoxDecoration(
-            color: _C.bg,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: _C.border)),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(title,
-              style: GoogleFonts.inter(
-                  fontSize: 14, fontWeight: FontWeight.w700, color: _C.accent)),
-          const SizedBox(height: 12),
-          Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: items.map((s) => _Tag(s.name)).toList()),
+          color: isAI ? _C.accent.withAlpha(30) : _C.accent.withAlpha(18),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Icon(icon, size: 18, color: _C.accent),
+      ),
+      const SizedBox(width: 12),
+      Text(cat.title,
+          style: GoogleFonts.inter(
+              fontSize: 14, fontWeight: FontWeight.w700, color: _C.text)),
+    ]);
+
+    if (wide) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 22),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          SizedBox(width: 220, child: label),
+          const SizedBox(width: 24),
+          Expanded(child: chips),
         ]),
       );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        label,
+        const SizedBox(height: 14),
+        chips,
+      ]),
+    );
+  }
 
   Widget _statsCard() => Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(28),
         decoration: BoxDecoration(
             color: _C.accent, borderRadius: BorderRadius.circular(16)),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -407,15 +500,15 @@ class _AboutSection extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: Colors.white70)),
-          const SizedBox(height: 16),
-          _row('4+', 'Years of Experience'),
-          _row('${PortfolioData.projects.length}', 'Apps Built'),
-          _row('6', 'Platforms Supported'),
+          const SizedBox(height: 20),
+          _statRow('6+', 'Years of Experience'),
+          _statRow('${PortfolioData.projects.length}', 'Apps Built'),
+          _statRow('6', 'Platforms Supported'),
         ]),
       );
 
-  Widget _row(String v, String l) => Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+  Widget _statRow(String v, String l) => Padding(
+      padding: const EdgeInsets.only(bottom: 14),
       child: Row(children: [
         Text(v,
             style: GoogleFonts.inter(
@@ -462,10 +555,10 @@ class _WRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           border: Border.all(color: _C.border)),
       child: Row(children: [
-        ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(job.image,
-                width: 48, height: 48, fit: BoxFit.cover)),
+        SizedBox(
+            width: 72,
+            height: 48,
+            child: Image.asset(job.image, fit: BoxFit.contain)),
         const SizedBox(width: 16),
         Expanded(
             child:

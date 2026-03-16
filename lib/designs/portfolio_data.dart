@@ -16,7 +16,7 @@ class PortfolioData {
   static const String phoneFormatted = '(417) 861-1985';
   static const String githubUrl = 'https://github.com/ConnorDykes';
   static const String githubHandle = 'ConnorDykes';
-  static const String resumePath = 'assets/Connor Dykes - Resume.pdf';
+  static const String resumePath = 'assets/Connor_Dykes_Resume_.pdf';
   static const String profilePhoto = 'assets/profile_photo.png';
 
   static const String heroTagline = 'I am a Fullstack Flutter Developer.';
@@ -53,50 +53,135 @@ class PortfolioData {
     SkillItem(name: 'JavaScript', assetIcon: null, faIcon: 'js'),
   ];
 
+  static const List<SkillCategory> skillCategories = [
+    SkillCategory(
+      title: 'Mobile Development',
+      icon: 'mobile',
+      skills: [
+        'Flutter',
+        'Dart',
+        'iOS',
+        'Android',
+        'Swift',
+        'Kotlin',
+        'Method Channels',
+        'Push Notifications',
+        'Biometric Auth',
+        'BLE',
+        'Background Processing',
+        'Apple Watch',
+        'Wear OS',
+      ],
+    ),
+    SkillCategory(
+      title: 'AI & Automation',
+      icon: 'brain',
+      skills: [
+        'Cursor',
+        'Claude Code',
+        'OpenAI Codex',
+        'GitHub Copilot',
+        'Prompt Engineering',
+        'Context Engineering',
+        'RAG',
+        'Agentic Workflows',
+        'MCP',
+        'N8N',
+      ],
+    ),
+    SkillCategory(
+      title: 'Frontend & Web',
+      icon: 'web',
+      skills: [
+        'Angular',
+        'Ionic',
+        'Node.js',
+        'JavaScript',
+        'TypeScript',
+        'HTML',
+        'CSS',
+      ],
+    ),
+    SkillCategory(
+      title: 'State Management',
+      icon: 'state',
+      skills: ['BLoC', 'Riverpod', 'Provider', 'GetX'],
+    ),
+    SkillCategory(
+      title: 'Backend & Databases',
+      icon: 'database',
+      skills: [
+        'Firebase',
+        'Firestore',
+        'InfluxDB',
+        'PostgreSQL',
+        'SQL',
+        'Laravel',
+        'AWS Lambda',
+        'REST APIs',
+        'GraphQL',
+      ],
+    ),
+    SkillCategory(
+      title: 'DevOps & CI/CD',
+      icon: 'devops',
+      skills: [
+        'Git',
+        'GitHub Actions',
+        'Codemagic',
+        'Fastlane',
+        'App Store Deploy',
+        'Google Play Deploy',
+        'TestFlight',
+        'Automated Testing',
+      ],
+    ),
+    SkillCategory(
+      title: 'Design & Collaboration',
+      icon: 'design',
+      skills: [
+        'UI/UX Design',
+        'Figma',
+        'Canva',
+        'Agile/Scrum',
+        'JIRA',
+        'Confluence',
+      ],
+    ),
+  ];
+
   // ─── Work Experience ─────────────────────────────────────────────────────
 
   static const List<WorkItem> softwareJobs = [
     WorkItem(
-      title: 'Senior Flutter Developer',
+      title: 'Senior Mobile Developer',
       company: 'goTenna',
-      dates: 'September 2025 - Present',
+      dates: 'October 2025 - Present',
       image: 'assets/gotenna_icon.png',
     ),
     WorkItem(
       title: 'Lead Mobile Developer',
       company: 'Immersion Neuroscience',
-      dates: 'March 2024 - September 2025',
+      dates: 'March 2024 - October 2025',
       image: 'assets/immersion.jpg',
     ),
     WorkItem(
       title: 'Flutter Developer',
-      company: 'M Genio',
-      dates: 'June 2023 - March 2024',
+      company: 'MGenio',
+      dates: 'May 2023 - March 2024',
       image: 'assets/Mgenio.png',
     ),
     WorkItem(
       title: 'Flutter Developer',
-      company: 'Eqalink',
-      dates: 'November 2022 - June 2023',
-      image: 'assets/eqalink_logo.png',
+      company: 'Engage Mobilize',
+      dates: 'June 2022 - May 2023',
+      image: 'assets/engage_mobilize_logo.jpeg',
     ),
     WorkItem(
       title: 'Flutter Developer',
-      company: 'ABC Kids Climbing',
-      dates: 'July 2022 - August 2022',
-      image: 'assets/abc_climbing.png',
-    ),
-    WorkItem(
-      title: 'Flutter Developer',
-      company: 'Kokoro Academy',
-      dates: 'March 2022 - June 2022',
-      image: 'assets/kokoro_logo.png',
-    ),
-    WorkItem(
-      title: 'Flutter Developer',
-      company: 'BelayTrader',
-      dates: 'Nov 2021 - March 2022',
-      image: 'assets/belayTrader.png',
+      company: 'Ecolab',
+      dates: 'January 2020 - June 2022',
+      image: 'assets/ecolab_logo.jpg',
     ),
   ];
 
@@ -176,6 +261,24 @@ class PortfolioData {
       ],
       platforms: [Platforms.iOS, Platforms.android, Platforms.web],
       webLink: 'https://vsblapp.com',
+    ),
+    ProjectModel(
+      name: 'Engage DoD',
+      summary:
+          'Oil and gas logistics platform for global Air Force fuel operations',
+      icon: 'assets/engage_mobilize_logo.jpeg',
+      description:
+          'Built for Engage Mobilize, this platform helps Air Force teams manage fuel requests, track personnel and operators, monitor equipment and inventory across locations, and maintain full audit visibility for mission-critical logistics workflows around the world.',
+      images: [
+        'assets/engage/dashboard.png',
+        'assets/engage/fuel_requests.png',
+        'assets/engage/request_audit_detail.png',
+        'assets/engage/operators.png',
+        'assets/engage/master_data.png',
+        'assets/engage/metrics.png',
+        'assets/engage/inventory.png',
+      ],
+      platforms: [Platforms.web],
     ),
     ProjectModel(
       name: 'SIX',
@@ -417,9 +520,9 @@ class PortfolioData {
     ),
   ];
 
-  static const int projectCount = 16;
+  static const int projectCount = 17;
   static const int yearsExperience = 4; // 2021 - present
-  static const int appsBuilt = 16;
+  static const int appsBuilt = 17;
   static const int platformCount = 6;
 }
 
@@ -436,6 +539,18 @@ class SkillItem {
     this.assetIcon,
     this.faIcon,
     this.isFlutterLogo = false,
+  });
+}
+
+class SkillCategory {
+  final String title;
+  final String icon;
+  final List<String> skills;
+
+  const SkillCategory({
+    required this.title,
+    required this.icon,
+    required this.skills,
   });
 }
 
