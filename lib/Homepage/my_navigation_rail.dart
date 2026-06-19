@@ -27,7 +27,7 @@ class MyNavigationRail extends StatelessWidget {
             style: TextStyle(fontSize: 22),
           ),
           Text(
-            "Flutter Developer",
+            "Mobile Developer",
             style: TextStyle(color: theme.colorScheme.primary, fontSize: 20),
           ),
           Container(

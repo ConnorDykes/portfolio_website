@@ -54,7 +54,7 @@ class _NameAndDescriptionState extends State<NameAndDescription>
               style: theme.textTheme.headlineLarge,
             ),
             Text(
-              "Fullstack Flutter Developer",
+              "Senior Mobile Developer",
               style: TextStyle(fontSize: 25, color: Colors.blue[800]),
             ),
           ],

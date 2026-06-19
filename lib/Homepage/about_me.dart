@@ -35,7 +35,7 @@ class AboutMe extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   child: Text(
                     textAlign: TextAlign.center,
-                    """I am a driven self taught Fullstack Flutter Developer. I make apps for iOS, Android, Web, Windows, Mac & Linux. I love turning ideas into interactive experiences. I have worked at several start ups as well as developed apps for personal and professional use.
+                    """I am a driven, self-taught Senior Mobile Developer. I build cross-platform apps for iOS and Android, as well as Web, Windows, Mac & Linux, using Flutter, React Native, and native Swift and Kotlin. I love turning ideas into interactive experiences. I have worked at several start ups as well as developed apps for personal and professional use.
           """,
                     style: theme.textTheme.bodyLarge,
                   ),

@@ -76,7 +76,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                 style: TextStyle(fontSize: 22),
               ),
               Text(
-                "Flutter Developer",
+                "Mobile Developer",
                 style:
                     TextStyle(color: theme.colorScheme.primary, fontSize: 20),
               ),

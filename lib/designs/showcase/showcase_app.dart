@@ -6,10 +6,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:portfolio_website/designs/portfolio_data.dart';
 import 'package:portfolio_website/designs/showcase/resume_download.dart';
+
+// GitHub glyph from the bundled Font Awesome Brands font. We reference the
+// IconData directly instead of importing font_awesome_flutter, whose classes
+// extend the now-sealed IconData and fail to compile on this Flutter SDK.
+const IconData _githubIcon = IconData(0xf09b,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
 
 class _C {
   static const bg = Color(0xFFFBFBFB);
@@ -28,7 +33,7 @@ class ShowcaseApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Connor Dykes — Senior Flutter Developer',
+      title: 'Connor Dykes — Senior Mobile Developer',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           scaffoldBackgroundColor: _C.bg,
@@ -328,12 +333,12 @@ class _Hero extends StatelessWidget {
             false,
             () => downloadResume(
               PortfolioData.resumePath,
-              fileName: 'Connor_Dykes_Resume_.pdf',
+              fileName: 'Connor_Dykes_Resume.pdf',
             ),
             icon: Icons.description_outlined,
           ),
           _Btn('GitHub', false, () => _open(PortfolioData.githubUrl),
-              icon: FontAwesomeIcons.github),
+              icon: _githubIcon),
         ]),
       ]);
 }
@@ -956,7 +961,7 @@ class _Footer extends StatelessWidget {
                         () => _open('tel:${PortfolioData.phone}'),
                         icon: Icons.phone_outlined),
                     _Btn('GitHub', false, () => _open(PortfolioData.githubUrl),
-                        icon: FontAwesomeIcons.github),
+                        icon: _githubIcon),
                   ]),
                   const SizedBox(height: 40),
                   Text('${PortfolioData.name} · ${PortfolioData.title}',

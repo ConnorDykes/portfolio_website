@@ -8,28 +8,28 @@ import 'package:portfolio_website/Projects/project_modle.dart';
 
 class PortfolioData {
   static const String name = 'Connor Dykes';
-  static const String title = 'Fullstack Flutter Developer';
-  static const String shortTitle = 'Flutter Developer';
+  static const String title = 'Senior Mobile Developer';
+  static const String shortTitle = 'Mobile Developer';
   static const String location = 'Longmont, Colorado';
   static const String email = 'connormdykes@gmail.com';
   static const String phone = '4178611985';
   static const String phoneFormatted = '(417) 861-1985';
   static const String githubUrl = 'https://github.com/ConnorDykes';
   static const String githubHandle = 'ConnorDykes';
-  static const String resumePath = 'assets/Connor_Dykes_Resume_.pdf';
+  static const String resumePath = 'assets/Connor_Dykes_Resume.pdf';
   static const String profilePhoto = 'assets/profile_photo.png';
 
-  static const String heroTagline = 'I am a Fullstack Flutter Developer.';
+  static const String heroTagline = 'I am a Senior Mobile Developer.';
   static const String heroSubtitle = 'I build apps, like this website!';
 
   static const String aboutParagraph1 =
-      'I am a driven self taught Fullstack Flutter Developer. I make apps for iOS, Android, Web, Windows, Mac & Linux. I love turning ideas into interactive experiences. I have worked at several start ups as well as developed apps for personal and professional use.';
+      'I am a driven, self-taught Senior Mobile Developer with 6+ years building and shipping cross-platform apps for iOS and Android — plus Web, Windows, Mac & Linux. I work across the stack and across frameworks, from Flutter and React Native to native Swift and Kotlin, and I love turning ideas into polished, interactive experiences. I have shipped products for startups, enterprises, and government contracts, as well as plenty of apps of my own.';
 
   static const String aboutParagraph2 =
       'I live in Longmont Colorado with my wife, daughter, two dogs, and three cats. In my free time I explore the mountains as a rock climber. I am a nerd at heart. You can catch me playing Dungeons and Dragons or Magic The Gathering.';
 
   static const String selfTaughtStory =
-      'I began by learning Swift and SwiftUI to develop mobile applications for iOS and macOS. Then turned my focus to Java and Kotlin for Android apps. After that I dove into web development with HTML, CSS, and JavaScript. I was eager to begin developing some of my ideas but it was very time consuming to develop for all these platforms at once. Which led me to dabble in React and React Native. Once I got comfortable there I stumbled upon Flutter and have been completely in love with it ever since.';
+      'I began by learning Swift and SwiftUI to build apps for iOS and macOS, then turned to Java and Kotlin for Android. After that I dove into web development with HTML, CSS, and JavaScript. Eager to ship my own ideas without building everything several times over, I moved into React and React Native and released my first cross-platform apps. From there I picked up Flutter, which quickly became a favorite. Today I reach for whatever serves the product best — Flutter, React Native, or fully native iOS and Android.';
 
   // ─── Skills ──────────────────────────────────────────────────────────────
 
@@ -59,6 +59,7 @@ class PortfolioData {
       icon: 'mobile',
       skills: [
         'Flutter',
+        'React Native',
         'Dart',
         'iOS',
         'Android',
@@ -93,6 +94,7 @@ class PortfolioData {
       title: 'Frontend & Web',
       icon: 'web',
       skills: [
+        'React',
         'Angular',
         'Ionic',
         'Node.js',
@@ -105,7 +107,18 @@ class PortfolioData {
     SkillCategory(
       title: 'State Management',
       icon: 'state',
-      skills: ['BLoC', 'Riverpod', 'Provider', 'GetX'],
+      skills: [
+        'BLoC',
+        'Riverpod',
+        'Provider',
+        'GetX',
+        'Redux',
+        'Redux Toolkit',
+        'Zustand',
+        'MobX',
+        'React Query',
+        'Context API',
+      ],
     ),
     SkillCategory(
       title: 'Backend & Databases',
@@ -166,19 +179,19 @@ class PortfolioData {
       image: 'assets/immersion.jpg',
     ),
     WorkItem(
-      title: 'Flutter Developer',
+      title: 'Mobile Developer',
       company: 'MGenio',
       dates: 'May 2023 - March 2024',
       image: 'assets/Mgenio.png',
     ),
     WorkItem(
-      title: 'Flutter Developer',
+      title: 'Mobile Developer',
       company: 'Engage Mobilize',
       dates: 'June 2022 - May 2023',
       image: 'assets/engage_mobilize_logo.jpeg',
     ),
     WorkItem(
-      title: 'Flutter Developer',
+      title: 'Mobile Developer',
       company: 'Ecolab',
       dates: 'January 2020 - June 2022',
       image: 'assets/ecolab_logo.jpg',

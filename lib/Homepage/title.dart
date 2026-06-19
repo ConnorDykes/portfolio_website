@@ -26,7 +26,7 @@ class MyTitle extends StatelessWidget {
         children: [
           Text(
             textAlign: TextAlign.center,
-            "I am a Fullstack Flutter Developer.",
+            "I am a Senior Mobile Developer.",
             style: theme.textTheme.headlineLarge!
                 .copyWith(color: theme.colorScheme.primary, fontSize: 42),
           ),
