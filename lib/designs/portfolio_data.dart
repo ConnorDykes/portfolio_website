@@ -257,6 +257,22 @@ class PortfolioData {
 
   static final List<ProjectModel> projects = [
     ProjectModel(
+      name: 'goTenna Pro',
+      summary:
+          'Off-grid mesh networking and tactical communications for un-networked environments',
+      icon: 'assets/gotenna_pro/icon.png',
+      description:
+          'The Pro app connects to a mesh network radio, allowing operators in un-networked areas to coordinate and communicate without traditional WiFi and cell networks. This app and its companion radio are utilized by all branches of the US military, as well as state and local governments, for off-grid communications. Wildfire fighters, Border Patrol, disaster relief efforts, foreign country operators, and many other groups also utilize this app.',
+      images: [
+        'assets/gotenna_pro/map.png',
+        'assets/gotenna_pro/home_config.png',
+        'assets/gotenna_pro/chat_broadcast.png',
+        'assets/gotenna_pro/radio.jpg',
+        'assets/gotenna_pro/radio_views.jpg',
+      ],
+      platforms: [Platforms.iOS, Platforms.android],
+    ),
+    ProjectModel(
       name: 'VSBL',
       summary: 'Operations visibility and team execution platform',
       icon: 'assets/vsbl/icon.png',
@@ -533,9 +549,9 @@ class PortfolioData {
     ),
   ];
 
-  static const int projectCount = 17;
+  static const int projectCount = 18;
   static const int yearsExperience = 4; // 2021 - present
-  static const int appsBuilt = 17;
+  static const int appsBuilt = 18;
   static const int platformCount = 6;
 }
 
