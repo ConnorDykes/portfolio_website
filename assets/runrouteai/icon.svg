@@ -1,0 +1,66 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E5BFF"/>
+      <stop offset="1" stop-color="#00AFC8"/>
+    </linearGradient>
+    <linearGradient id="detail" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E5BFF"/>
+      <stop offset="1" stop-color="#00AFC8"/>
+    </linearGradient>
+    <clipPath id="upperClip">
+      <path d="
+        M 220 662
+        C 210 570, 228 474, 274 440
+        C 296 420, 332 418, 354 438
+        C 410 492, 490 548, 588 576
+        C 682 602, 766 606, 822 622
+        C 848 630, 858 644, 855 662
+        Z"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+
+  <!-- dashed route motif echoing the app's hero header -->
+  <g stroke="#FFFFFF" stroke-opacity="0.38" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 40">
+    <path d="M 130 310 C 270 190, 430 330, 570 240 C 690 165, 800 200, 894 158"/>
+  </g>
+  <circle cx="130" cy="310" r="17" fill="#FFFFFF" fill-opacity="0.5"/>
+  <circle cx="894" cy="158" r="17" fill="#FFFFFF" fill-opacity="0.5"/>
+
+  <!-- ground shadow -->
+  <ellipse cx="540" cy="792" rx="330" ry="22" fill="#000000" fill-opacity="0.10"/>
+
+  <!-- white running shoe -->
+  <g>
+    <!-- upper -->
+    <path fill="#FFFFFF" d="
+      M 220 662
+      C 210 570, 228 474, 274 440
+      C 296 420, 332 418, 354 438
+      C 410 492, 490 548, 588 576
+      C 682 602, 766 606, 822 622
+      C 848 630, 858 644, 855 662
+      Z"/>
+    <!-- laces, clipped to the upper -->
+    <g clip-path="url(#upperClip)" stroke="url(#detail)" stroke-width="20" stroke-linecap="round" fill="none">
+      <path d="M 412 456 L 362 562"/>
+      <path d="M 468 494 L 418 602"/>
+      <path d="M 530 528 L 480 636"/>
+    </g>
+    <!-- ankle collar -->
+    <path d="M 296 474 C 314 458, 340 458, 358 476" stroke="url(#detail)" stroke-width="14" stroke-linecap="round" fill="none"/>
+    <!-- sole -->
+    <path fill="#FFFFFF" d="
+      M 210 680
+      C 204 736, 240 758, 300 758
+      L 780 758
+      C 850 758, 878 730, 870 684
+      C 868 670, 856 662, 840 662
+      L 238 662
+      C 224 662, 212 668, 210 680 Z"/>
+    <!-- sole groove -->
+    <path d="M 248 712 C 420 726, 640 722, 834 704" stroke="url(#detail)" stroke-opacity="0.55" stroke-width="11" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>

@@ -243,6 +243,38 @@ class _ProjectCardState extends State<ProjectCard> {
 }
 
 List<ProjectModel> projects = [
+  //* TrustLedgerAI
+  ProjectModel(
+    name: 'TrustLedgerAI',
+    summary:
+        'AI-powered billing integrity and discrepancy analysis platform for the payments ecosystem',
+    icon: 'assets/trustledgerai/icon.png',
+    description:
+        'TrustLedgerAI audits processor billing for ISOs and payment companies with an end-to-end AI document pipeline.'
+        ' Uploaded Schedule A contracts run through AI-powered document parsing and LLM extraction that reads dense pricing exhibits into structured rate lines,'
+        ' each tagged with a confidence score, source-page citation, and quote for human-in-the-loop verification.'
+        ' Processor statements are auto-classified by format, parsed into fee line items, and reconciled against the verified contract rates by an asynchronous'
+        ' job pipeline (SQS-driven ECS workers and Lambdas) that flags rate variances, unauthorized fees, duplicates, and residual leakage.'
+        ' Each discrepancy ships with an AI-generated analysis summary and Schedule A citation, and can be compiled into audit-grade evidence packages for'
+        ' processor disputes. Built with Next.js, React, and Tailwind on the frontend and a FastAPI + PostgreSQL backend on AWS.',
+    images: [
+      'assets/trustledgerai/screen01.png',
+      'assets/trustledgerai/screen02.png',
+      'assets/trustledgerai/screen03.png',
+      'assets/trustledgerai/screen04.png',
+      'assets/trustledgerai/screen05.png',
+      'assets/trustledgerai/screen06.png',
+      'assets/trustledgerai/screen07.png',
+      'assets/trustledgerai/screen08.png',
+      'assets/trustledgerai/screen09.png',
+      'assets/trustledgerai/screen10.png',
+      'assets/trustledgerai/screen11.png',
+      'assets/trustledgerai/screen12.png',
+      'assets/trustledgerai/screen13.png',
+      'assets/trustledgerai/screen14.png',
+    ],
+    platforms: [Platforms.web],
+  ),
   //* VSBL
   ProjectModel(
       name: 'VSBL',
@@ -429,6 +461,29 @@ List<ProjectModel> projects = [
     iOSLink: null,
     androidLink: null,
     webLink: 'https://thestackmarketplace.com',
+  ),
+
+  //* RunRouteAI
+  ProjectModel(
+    name: 'RunRouteAI',
+    summary: 'AI-assisted running route planning with live GPS tracking',
+    icon: 'assets/runrouteai/icon.png',
+    description:
+        'Describe the run you want - the distance, the vibe, the terrain - and RunRouteAI turns it into a real, followable route on the map.'
+        ' An LLM parses your free-text description into structured route preferences, then the Mapbox Directions and Optimization APIs generate a route matched to your target distance, with optional loops back to your start.'
+        ' Once you set off, live GPS tracking snaps your position to the route and shows real-time distance, time, and pace.'
+        ' Built with Flutter, Mapbox, Riverpod, and a local Drift database for run history.',
+    images: [
+      'assets/runrouteai/screen1.png',
+      'assets/runrouteai/screen2.png',
+      'assets/runrouteai/screen3.png',
+    ],
+    platforms: [
+      Platforms.iOS,
+      Platforms.android,
+    ],
+    iOSLink: null,
+    androidLink: null,
   ),
 
   //* Bitmo

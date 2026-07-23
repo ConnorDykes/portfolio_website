@@ -84,6 +84,8 @@ flutter:
     - assets/vsbl/
     - assets/engage/
     - assets/gotenna_pro/
+    - assets/runrouteai/
+    - assets/trustledgerai/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
