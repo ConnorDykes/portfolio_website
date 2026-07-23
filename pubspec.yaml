@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.3.0
-  font_awesome_flutter: ^10.3.0
+  font_awesome_flutter: ^11.0.0
   enhance_stepper: ^1.0.1
   colorful_safe_area: ^1.0.0
   animations: ^2.0.7
