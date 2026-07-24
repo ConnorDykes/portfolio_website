@@ -727,12 +727,6 @@ class _ExperienceBand extends StatelessWidget {
               SizedBox(height: mobile ? 28 : 48),
               for (var i = 0; i < PortfolioData.softwareJobs.length; i++)
                 _row(PortfolioData.softwareJobs[i], i),
-              const SizedBox(height: 40),
-              Text('BEFORE SOFTWARE', style: bpLabel(13, color: BP.yellow)),
-              const SizedBox(height: 8),
-              for (var i = 0; i < PortfolioData.otherJobs.length; i++)
-                _row(PortfolioData.otherJobs[i],
-                    PortfolioData.softwareJobs.length + i),
             ],
           ),
         ),
