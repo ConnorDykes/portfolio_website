@@ -579,16 +579,12 @@ class _StatsBand extends StatelessWidget {
               color: BP.blue,
               borderRadius: BorderRadius.circular(28),
             ),
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Row(
-                children: [
-                  for (var i = 0; i < stats.length; i++) ...[
-                    if (i > 0) SizedBox(width: mobile ? 24 : 90),
-                    _stat(stats[i], mobile ? 34 : 68, stacked: mobile),
-                  ],
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                for (final s in stats)
+                  _stat(s, mobile ? 34 : 68, stacked: mobile),
+              ],
             ),
           ),
         ),
