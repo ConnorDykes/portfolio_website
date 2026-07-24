@@ -218,7 +218,7 @@ class _Hero extends StatelessWidget {
                 FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: Alignment.centerLeft,
-                  child: Text('MOBILE\nDEVELOPER',
+                  child: Text('MOBILE\n& WEB',
                       style: bpDisplay(76, color: Colors.white)),
                 ),
                 const Spacer(),
@@ -284,7 +284,7 @@ class _Hero extends StatelessWidget {
           fit: BoxFit.scaleDown,
           alignment: Alignment.centerLeft,
           child:
-              Text('MOBILE\nDEVELOPER', style: bpDisplay(52, color: Colors.white)),
+              Text('MOBILE\n& WEB', style: bpDisplay(52, color: Colors.white)),
         ),
         const SizedBox(height: 8),
         Align(
