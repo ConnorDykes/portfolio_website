@@ -822,12 +822,40 @@ class _ProjectCard extends StatelessWidget {
                     Positioned(
                       left: 16,
                       bottom: 16,
-                      child: YellowPill(
-                        label: 'See Details',
-                        fontSize: 10,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 10),
-                        onTap: () => _open(context),
+                      child: Row(
+                        children: [
+                          YellowPill(
+                            label: 'See Details',
+                            fontSize: 10,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 10),
+                            onTap: () => _open(context),
+                          ),
+                          if (project.icon != null) ...[
+                            const SizedBox(width: 12),
+                            Container(
+                              width: 42,
+                              height: 42,
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color:
+                                          BP.ink.withValues(alpha: 0.10),
+                                      blurRadius: 10,
+                                      offset: const Offset(0, 3)),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.asset(project.icon!,
+                                    fit: BoxFit.contain),
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                     ),
                     Positioned(
