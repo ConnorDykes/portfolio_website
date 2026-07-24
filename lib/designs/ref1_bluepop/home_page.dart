@@ -262,9 +262,9 @@ class _Hero extends StatelessWidget {
                 FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: Alignment.centerRight,
-                  child: Text('FLUTTER\n& NATIVE',
+                  child: Text('ENTERPRISE AI\nAUTOMATIONS &\nAGENTIC WORKFLOWS',
                       textAlign: TextAlign.right,
-                      style: bpDisplay(64, color: Colors.white)),
+                      style: bpDisplay(48, color: Colors.white)),
                 ),
                 const SizedBox(height: 80),
               ],
@@ -292,10 +292,10 @@ class _Hero extends StatelessWidget {
           child: FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerRight,
-            child: Text('FLUTTER\n& NATIVE',
+            child: Text('ENTERPRISE AI\nAUTOMATIONS &\nAGENTIC WORKFLOWS',
                 textAlign: TextAlign.right,
                 style:
-                    bpDisplay(34, color: Colors.white.withValues(alpha: 0.92))),
+                    bpDisplay(26, color: Colors.white.withValues(alpha: 0.92))),
           ),
         ),
         SizedBox(height: 330, child: _photo(double.infinity)),
