@@ -125,46 +125,22 @@ class _Hero extends StatefulWidget {
   State<_Hero> createState() => _HeroState();
 }
 
-class _HeroState extends State<_Hero> with SingleTickerProviderStateMixin {
-  late final AnimationController _drift = AnimationController(
-      vsync: this, duration: const Duration(seconds: 10))
-    ..repeat();
-
+class _HeroState extends State<_Hero> {
   bool get mobile => widget.mobile;
   ValueChanged<int> get onNav => widget.onNav;
-
-  @override
-  void dispose() {
-    _drift.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: BP.blue,
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: IgnorePointer(
-              child: AnimatedBuilder(
-                animation: _drift,
-                builder: (context, _) => CustomPaint(
-                  painter: _HeroWavesPainter(t: _drift.value),
-                ),
-              ),
-            ),
-          ),
-          _Constrained(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _nav(context),
-                mobile ? _mobileBody(context) : _desktopBody(context),
-              ],
-            ),
-          ),
-        ],
+      child: _Constrained(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _nav(context),
+            mobile ? _mobileBody(context) : _desktopBody(context),
+          ],
+        ),
       ),
     );
   }
@@ -1384,92 +1360,6 @@ class _FooterLinkState extends State<_FooterLink> {
       ),
     );
   }
-}
-
-// ─── Hero background shapes (Folio-style playful geometry) ──────────────────
-
-class _HeroWavesPainter extends CustomPainter {
-  _HeroWavesPainter({required this.t});
-
-  /// 0..1 loop position of the drift animation (seamless: integer speeds).
-  final double t;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
-
-    void wave({
-      required double baseY,
-      required double amp,
-      required double wavelength,
-      required int speed, // full cycles per loop; sign = direction
-      required Color color,
-      double stroke = 1.6,
-      double phase = 0,
-    }) {
-      final path = Path();
-      final k = 2 * math.pi / wavelength;
-      final drift = 2 * math.pi * t * speed;
-      for (double x = 0; x <= w; x += 6) {
-        final y = baseY +
-            amp * math.sin(k * x + phase + drift) +
-            amp * 0.30 * math.sin(k * 2.3 * x - 2 * drift + phase * 1.7);
-        if (x == 0) {
-          path.moveTo(x, y);
-        } else {
-          path.lineTo(x, y);
-        }
-      }
-      canvas.drawPath(
-        path,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = stroke
-          ..strokeCap = StrokeCap.round
-          ..color = color,
-      );
-    }
-
-    wave(
-        baseY: h * 0.28,
-        amp: 13,
-        wavelength: w * 0.52,
-        speed: 1,
-        color: Colors.white.withValues(alpha: 0.26));
-    wave(
-        baseY: h * 0.44,
-        amp: 17,
-        wavelength: w * 0.40,
-        speed: -1,
-        phase: 1.4,
-        color: Colors.white.withValues(alpha: 0.20));
-    wave(
-        baseY: h * 0.60,
-        amp: 12,
-        wavelength: w * 0.60,
-        speed: 1,
-        phase: 3.1,
-        stroke: 1.8,
-        color: BP.yellow.withValues(alpha: 0.50));
-    wave(
-        baseY: h * 0.76,
-        amp: 16,
-        wavelength: w * 0.46,
-        speed: -1,
-        phase: 4.4,
-        color: Colors.white.withValues(alpha: 0.22));
-    wave(
-        baseY: h * 0.90,
-        amp: 10,
-        wavelength: w * 0.56,
-        speed: 1,
-        phase: 5.6,
-        color: Colors.white.withValues(alpha: 0.16));
-  }
-
-  @override
-  bool shouldRepaint(_HeroWavesPainter oldDelegate) => oldDelegate.t != t;
 }
 
 // ─── Scroll reveal — subtle fade / rise / settle on first visibility ────────
