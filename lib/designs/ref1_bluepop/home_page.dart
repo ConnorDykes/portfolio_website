@@ -471,16 +471,6 @@ class _WhatIBuild extends StatelessWidget {
   const _WhatIBuild({super.key, required this.mobile});
   final bool mobile;
 
-  static const _categoryImages = {
-    'mobile': 'assets/six/screen1.png',
-    'brain': 'assets/runrouteai/screen1.png',
-    'web': 'assets/trustledgerai/screen01.png',
-    'state': 'assets/vsbl/screen1.png',
-    'database': 'assets/the_stack/screen1.png',
-    'devops': 'assets/engage/dashboard.png',
-    'design': 'assets/potlucky/mockup.png',
-  };
-
   static IconData _categoryIcon(String key) {
     switch (key) {
       case 'mobile':
@@ -540,36 +530,32 @@ class _WhatIBuild extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(22),
-          child: SizedBox(
-            height: 210,
-            width: double.infinity,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                DuotoneImage(
-                    asset: _categoryImages[cat.icon] ??
-                        'assets/six/screen1.png'),
-                Positioned(
-                  left: 16,
-                  bottom: 16,
-                  child: Container(
-                    width: 44,
-                    height: 44,
-                    decoration: const BoxDecoration(
-                        color: BP.yellow, shape: BoxShape.circle),
-                    child: Icon(_categoryIcon(cat.icon),
-                        size: 20, color: BP.ink),
-                  ),
-                ),
-              ],
+        Row(
+          children: [
+            Container(
+              width: 64,
+              height: 64,
+              decoration: BoxDecoration(
+                color: BP.blueTint,
+                borderRadius: BorderRadius.circular(18),
+              ),
+              alignment: Alignment.center,
+              child: Container(
+                width: 42,
+                height: 42,
+                decoration: const BoxDecoration(
+                    color: BP.yellow, shape: BoxShape.circle),
+                child: Icon(_categoryIcon(cat.icon),
+                    size: 20, color: BP.ink),
+              ),
             ),
-          ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(cat.title.toUpperCase(), style: bpDisplay(19)),
+            ),
+          ],
         ),
-        const SizedBox(height: 18),
-        Text(cat.title.toUpperCase(), style: bpDisplay(19)),
-        const SizedBox(height: 12),
+        const SizedBox(height: 16),
         Wrap(
           spacing: 6,
           runSpacing: 6,
