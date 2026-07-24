@@ -217,7 +217,7 @@ class _HeroState extends State<_Hero> with SingleTickerProviderStateMixin {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          // Left: MOBILE / DEVELOPER + intro
+          // Left column: MOBILE & WEB (top) / FULL STACK ENGINEERING (bottom)
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -230,21 +230,36 @@ class _HeroState extends State<_Hero> with SingleTickerProviderStateMixin {
                       style: bpDisplay(54, color: Colors.white)),
                 ),
                 const Spacer(),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text('FULL STACK\nENGINEERING',
+                      style: bpDisplay(54, color: Colors.white)),
+                ),
+                const SizedBox(height: 80),
               ],
             ),
           ),
           // Center: cut-out photo sitting on the blue
           _photo(photoW),
-          // Right: FOLLOW ME + FLUTTER / & NATIVE
+          // Right column: ENTERPRISE AI (top) / AGENTIC WORKFLOWS (bottom)
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+                const SizedBox(height: 90),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerRight,
+                  child: Text('ENTERPRISE\nAI',
+                      textAlign: TextAlign.right,
+                      style: bpDisplay(54, color: Colors.white)),
+                ),
                 const Spacer(),
                 FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: Alignment.centerRight,
-                  child: Text('ENTERPRISE AI\nAUTOMATIONS\n& AGENTIC\nWORKFLOWS',
+                  child: Text('AGENTIC\nWORKFLOWS',
                       textAlign: TextAlign.right,
                       style: bpDisplay(54, color: Colors.white)),
                 ),
@@ -274,13 +289,32 @@ class _HeroState extends State<_Hero> with SingleTickerProviderStateMixin {
           child: FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerRight,
-            child: Text('ENTERPRISE AI\nAUTOMATIONS\n& AGENTIC\nWORKFLOWS',
+            child: Text('ENTERPRISE\nAI',
                 textAlign: TextAlign.right,
                 style:
                     bpDisplay(34, color: Colors.white.withValues(alpha: 0.92))),
           ),
         ),
         SizedBox(height: 330, child: _photo(double.infinity)),
+        const SizedBox(height: 18),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Text('FULL STACK\nENGINEERING',
+              style: bpDisplay(34, color: Colors.white)),
+        ),
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.centerRight,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerRight,
+            child: Text('AGENTIC\nWORKFLOWS',
+                textAlign: TextAlign.right,
+                style:
+                    bpDisplay(34, color: Colors.white.withValues(alpha: 0.92))),
+          ),
+        ),
         const SizedBox(height: 36),
       ],
     );
