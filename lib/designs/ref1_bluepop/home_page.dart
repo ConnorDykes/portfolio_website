@@ -1492,6 +1492,16 @@ Widget bpSkillGlyph(String skill, {required double size, required Color color}) 
       icon = Icons.manage_search_rounded;
     case 'agentic workflows':
       icon = Icons.account_tree_rounded;
+    case 'agentic testing':
+      icon = Icons.bug_report_rounded;
+    case 'harness engineering':
+      icon = Icons.construction_rounded;
+    case 'ai data pipelines':
+      icon = Icons.timeline_rounded;
+    case 'loops':
+      icon = Icons.all_inclusive_rounded;
+    case 'skills':
+      icon = Icons.menu_book_rounded;
     case 'mcp':
       icon = Icons.hub_rounded;
     case 'n8n':
