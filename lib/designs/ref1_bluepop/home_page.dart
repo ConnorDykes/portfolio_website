@@ -579,9 +579,16 @@ class _StatsBand extends StatelessWidget {
               color: BP.blue,
               borderRadius: BorderRadius.circular(28),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [for (final s in stats) _stat(s, mobile ? 30 : 68)],
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Row(
+                children: [
+                  for (var i = 0; i < stats.length; i++) ...[
+                    if (i > 0) SizedBox(width: mobile ? 24 : 90),
+                    _stat(stats[i], mobile ? 34 : 68),
+                  ],
+                ],
+              ),
             ),
           ),
         ),
@@ -601,10 +608,10 @@ class _StatsBand extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(s.$2.isEmpty ? ' ' : s.$2,
-                style: bpDisplay(size * 0.32, color: BP.yellow)),
+                style: bpDisplay(math.max(size * 0.32, 12), color: BP.yellow)),
             const SizedBox(height: 4),
             Text(s.$3,
-                style: bpLabel(size * 0.16,
+                style: bpLabel(math.max(size * 0.16, 10),
                     color: Colors.white, weight: FontWeight.w700)),
           ],
         ),
