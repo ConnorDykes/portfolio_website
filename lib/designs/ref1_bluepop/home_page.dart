@@ -154,12 +154,7 @@ class _Hero extends StatelessWidget {
                   onTap: () => onNav(i)),
             const Spacer(),
           ],
-          YellowPill(
-            label: 'Contact Me',
-            fontSize: 11,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 11),
-            onTap: () => bpLaunch('mailto:${PortfolioData.email}'),
-          ),
+          const _ContactMenuButton(),
         ],
       ),
     );
@@ -179,25 +174,6 @@ class _Hero extends StatelessWidget {
         child: Image.asset(PortfolioData.profilePhoto,
             fit: BoxFit.contain, alignment: Alignment.bottomCenter),
       ),
-    );
-  }
-
-  Widget _socials({MainAxisAlignment align = MainAxisAlignment.end}) {
-    return Row(
-      mainAxisAlignment: align,
-      children: [
-        _SocialDot(
-            icon: bpGithubIcon,
-            onTap: () => bpLaunch(PortfolioData.githubUrl)),
-        const SizedBox(width: 10),
-        _SocialDot(
-            icon: Icons.alternate_email,
-            onTap: () => bpLaunch('mailto:${PortfolioData.email}')),
-        const SizedBox(width: 10),
-        _SocialDot(
-            icon: Icons.phone,
-            onTap: () => bpLaunch('tel:${PortfolioData.phone}')),
-      ],
     );
   }
 
@@ -245,10 +221,6 @@ class _Hero extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 const SizedBox(height: 56),
-                Text('FOLLOW ME', style: bpLabel(12, color: Colors.white)),
-                const SizedBox(height: 12),
-                _socials(),
-                const SizedBox(height: 18),
                 SizedBox(
                   width: 250,
                   child: Text(
@@ -307,14 +279,6 @@ class _Hero extends StatelessWidget {
               .toUpperCase(),
           style: bpLabel(12, color: Colors.white, weight: FontWeight.w600),
         ),
-        const SizedBox(height: 22),
-        Row(
-          children: [
-            Text('FOLLOW ME', style: bpLabel(11, color: Colors.white)),
-            const Spacer(),
-            _socials(),
-          ],
-        ),
         const SizedBox(height: 36),
       ],
     );
@@ -350,6 +314,189 @@ class _NavLinkState extends State<_NavLink> {
             style: bpLabel(11,
                 color: highlight ? BP.yellow : Colors.white,
                 weight: FontWeight.w700),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// "Contact Me" nav pill that opens a dropdown card with all contact info
+/// and a resume download, anchored under the button.
+class _ContactMenuButton extends StatefulWidget {
+  const _ContactMenuButton();
+
+  @override
+  State<_ContactMenuButton> createState() => _ContactMenuButtonState();
+}
+
+class _ContactMenuButtonState extends State<_ContactMenuButton> {
+  final _link = LayerLink();
+  OverlayEntry? _entry;
+
+  void _close() {
+    _entry?.remove();
+    _entry = null;
+  }
+
+  void _toggle() {
+    if (_entry != null) {
+      _close();
+      return;
+    }
+    _entry = OverlayEntry(
+      builder: (context) => Stack(
+        children: [
+          Positioned.fill(
+            child: GestureDetector(
+                behavior: HitTestBehavior.opaque, onTap: _close),
+          ),
+          CompositedTransformFollower(
+            link: _link,
+            targetAnchor: Alignment.bottomRight,
+            followerAnchor: Alignment.topRight,
+            offset: const Offset(0, 12),
+            child: _ContactMenuCard(onAction: _close),
+          ),
+        ],
+      ),
+    );
+    Overlay.of(context).insert(_entry!);
+  }
+
+  @override
+  void dispose() {
+    _close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CompositedTransformTarget(
+      link: _link,
+      child: YellowPill(
+        label: 'Contact Me',
+        fontSize: 11,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 11),
+        onTap: _toggle,
+      ),
+    );
+  }
+}
+
+class _ContactMenuCard extends StatelessWidget {
+  const _ContactMenuCard({required this.onAction});
+  final VoidCallback onAction;
+
+  Widget _row(IconData icon, String label, String value, VoidCallback onTap) {
+    return _ContactMenuRow(icon: icon, label: label, value: value, onTap: () {
+      onAction();
+      onTap();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        width: 300,
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+                color: BP.ink.withValues(alpha: 0.18),
+                blurRadius: 30,
+                offset: const Offset(0, 12)),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _row(Icons.alternate_email, 'EMAIL', PortfolioData.email,
+                () => bpLaunch('mailto:${PortfolioData.email}')),
+            const SizedBox(height: 6),
+            _row(Icons.phone, 'PHONE', PortfolioData.phoneFormatted,
+                () => bpLaunch('tel:${PortfolioData.phone}')),
+            const SizedBox(height: 6),
+            _row(bpGithubIcon, 'GITHUB', PortfolioData.githubHandle,
+                () => bpLaunch(PortfolioData.githubUrl)),
+            const SizedBox(height: 14),
+            YellowPill(
+              label: 'Download Resume',
+              fontSize: 11,
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 22, vertical: 13),
+              onTap: () {
+                onAction();
+                downloadResume(PortfolioData.resumePath,
+                    fileName: 'Connor_Dykes_Resume.pdf');
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ContactMenuRow extends StatefulWidget {
+  const _ContactMenuRow(
+      {required this.icon,
+      required this.label,
+      required this.value,
+      required this.onTap});
+  final IconData icon;
+  final String label;
+  final String value;
+  final VoidCallback onTap;
+
+  @override
+  State<_ContactMenuRow> createState() => _ContactMenuRowState();
+}
+
+class _ContactMenuRowState extends State<_ContactMenuRow> {
+  bool _hover = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hover = true),
+      onExit: (_) => setState(() => _hover = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 120),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
+          decoration: BoxDecoration(
+            color: _hover ? BP.blueTint : Colors.transparent,
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 34,
+                height: 34,
+                decoration: const BoxDecoration(
+                    color: BP.yellow, shape: BoxShape.circle),
+                child: Icon(widget.icon, size: 16, color: BP.ink),
+              ),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(widget.label, style: bpLabel(8.5, color: BP.grey)),
+                  const SizedBox(height: 2),
+                  Text(widget.value,
+                      style: bpBody(13, color: BP.ink, height: 1.2)
+                          .copyWith(fontWeight: FontWeight.w700)),
+                ],
+              ),
+            ],
           ),
         ),
       ),
