@@ -227,7 +227,7 @@ class _HeroState extends State<_Hero> {
                 FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: Alignment.centerRight,
-                  child: Text('ENTERPRISE\nAI',
+                  child: Text('ENTERPRISE\nAI PIPELINES',
                       textAlign: TextAlign.right,
                       style: bpDisplay(54, color: Colors.white)),
                 ),
@@ -265,7 +265,7 @@ class _HeroState extends State<_Hero> {
           child: FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerRight,
-            child: Text('ENTERPRISE\nAI',
+            child: Text('ENTERPRISE\nAI PIPELINES',
                 textAlign: TextAlign.right,
                 style:
                     bpDisplay(34, color: Colors.white.withValues(alpha: 0.92))),
