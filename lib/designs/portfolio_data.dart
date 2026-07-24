@@ -146,6 +146,7 @@ class PortfolioData {
       skills: [
         'Git',
         'GitHub Actions',
+        'CircleCI',
         'Codemagic',
         'Fastlane',
         'App Store Deploy',

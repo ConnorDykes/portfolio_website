@@ -1559,6 +1559,8 @@ Widget bpSkillGlyph(String skill, {required double size, required Color color}) 
       icon = bpGitIcon;
     case 'github actions':
       icon = bpGithubIcon;
+    case 'circleci':
+      icon = Icons.adjust_rounded;
     case 'codemagic':
       icon = Icons.auto_fix_high_rounded;
     case 'fastlane':
