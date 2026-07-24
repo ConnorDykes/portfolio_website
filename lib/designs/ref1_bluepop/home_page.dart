@@ -585,7 +585,7 @@ class _StatsBand extends StatelessWidget {
                 children: [
                   for (var i = 0; i < stats.length; i++) ...[
                     if (i > 0) SizedBox(width: mobile ? 24 : 90),
-                    _stat(stats[i], mobile ? 34 : 68),
+                    _stat(stats[i], mobile ? 34 : 68, stacked: mobile),
                   ],
                 ],
               ),
@@ -596,26 +596,39 @@ class _StatsBand extends StatelessWidget {
     );
   }
 
-  Widget _stat((String, String, String) s, double size) {
+  Widget _stat((String, String, String) s, double size,
+      {bool stacked = false}) {
+    final number = Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(s.$1, style: bpDisplay(size, color: Colors.white)),
+        if (s.$2.isNotEmpty) ...[
+          const SizedBox(width: 3),
+          Padding(
+            padding: EdgeInsets.only(top: size * 0.10),
+            child: Text(s.$2,
+                style: bpDisplay(math.max(size * 0.32, 12), color: BP.yellow)),
+          ),
+        ],
+      ],
+    );
+    final label = Text(
+      s.$3,
+      textAlign: stacked ? TextAlign.center : TextAlign.left,
+      style: bpLabel(math.max(size * 0.16, 10),
+          color: Colors.white, weight: FontWeight.w700),
+    );
+    if (stacked) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [number, const SizedBox(height: 8), label],
+      );
+    }
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(s.$1, style: bpDisplay(size, color: Colors.white)),
-        const SizedBox(width: 8),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(s.$2.isEmpty ? ' ' : s.$2,
-                style: bpDisplay(math.max(size * 0.32, 12), color: BP.yellow)),
-            const SizedBox(height: 4),
-            Text(s.$3,
-                style: bpLabel(math.max(size * 0.16, 10),
-                    color: Colors.white, weight: FontWeight.w700)),
-          ],
-        ),
-      ],
+      children: [number, const SizedBox(width: 10), label],
     );
   }
 }
