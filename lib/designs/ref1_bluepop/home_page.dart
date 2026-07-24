@@ -143,28 +143,28 @@ class _HeroState extends State<_Hero> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Container(
       color: BP.blue,
-      child: _Constrained(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _nav(context),
-            Stack(
-              children: [
-                Positioned.fill(
-                  child: IgnorePointer(
-                    child: AnimatedBuilder(
-                      animation: _drift,
-                      builder: (context, _) => CustomPaint(
-                        painter: _HeroShapesPainter(t: _drift.value),
-                      ),
-                    ),
-                  ),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: IgnorePointer(
+              child: AnimatedBuilder(
+                animation: _drift,
+                builder: (context, _) => CustomPaint(
+                  painter: _HeroWavesPainter(t: _drift.value),
                 ),
+              ),
+            ),
+          ),
+          _Constrained(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _nav(context),
                 mobile ? _mobileBody(context) : _desktopBody(context),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -1354,110 +1354,88 @@ class _FooterLinkState extends State<_FooterLink> {
 
 // ─── Hero background shapes (Folio-style playful geometry) ──────────────────
 
-class _HeroShapesPainter extends CustomPainter {
-  _HeroShapesPainter({required this.t});
+class _HeroWavesPainter extends CustomPainter {
+  _HeroWavesPainter({required this.t});
 
-  /// 0..1 loop position of the drift animation.
+  /// 0..1 loop position of the drift animation (seamless: integer speeds).
   final double t;
-
-  double _bob(double phase, double amp) =>
-      math.sin(2 * math.pi * (t + phase)) * amp;
-
-  double _sway(double phase, double amp) =>
-      math.cos(2 * math.pi * (t + phase)) * amp;
 
   @override
   void paint(Canvas canvas, Size size) {
     final w = size.width;
     final h = size.height;
-    final white = Colors.white;
 
-    void ring(double x, double y, double r, double stroke, Color color,
-        double phase) {
-      canvas.drawCircle(
-        Offset(x + _sway(phase, 5), y + _bob(phase, 12)),
-        r,
+    void wave({
+      required double baseY,
+      required double amp,
+      required double wavelength,
+      required int speed, // full cycles per loop; sign = direction
+      required Color color,
+      double stroke = 1.6,
+      double phase = 0,
+    }) {
+      final path = Path();
+      final k = 2 * math.pi / wavelength;
+      final drift = 2 * math.pi * t * speed;
+      for (double x = 0; x <= w; x += 6) {
+        final y = baseY +
+            amp * math.sin(k * x + phase + drift) +
+            amp * 0.30 * math.sin(k * 2.3 * x - 2 * drift + phase * 1.7);
+        if (x == 0) {
+          path.moveTo(x, y);
+        } else {
+          path.lineTo(x, y);
+        }
+      }
+      canvas.drawPath(
+        path,
         Paint()
           ..style = PaintingStyle.stroke
           ..strokeWidth = stroke
-          ..color = color,
-      );
-    }
-
-    void dot(double x, double y, double r, Color color, double phase) {
-      canvas.drawCircle(
-          Offset(x + _sway(phase, 4), y + _bob(phase, 10)), r, Paint()..color = color);
-    }
-
-    void square(double x, double y, double s, Color color, double phase,
-        {bool filled = false}) {
-      canvas.save();
-      canvas.translate(x + _sway(phase, 5), y + _bob(phase, 14));
-      canvas.rotate(math.pi / 12 + math.sin(2 * math.pi * (t + phase)) * 0.22);
-      final rect = Rect.fromCenter(center: Offset.zero, width: s, height: s);
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(rect, Radius.circular(s * 0.22)),
-        Paint()
-          ..style = filled ? PaintingStyle.fill : PaintingStyle.stroke
-          ..strokeWidth = 3
-          ..color = color,
-      );
-      canvas.restore();
-    }
-
-    void plus(double x, double y, double arm, Color color, double phase) {
-      final p = Paint()
-        ..color = color
-        ..strokeWidth = 5
-        ..strokeCap = StrokeCap.round;
-      final c = Offset(x + _sway(phase, 4), y + _bob(phase, 12));
-      canvas.drawLine(c - Offset(arm, 0), c + Offset(arm, 0), p);
-      canvas.drawLine(c - Offset(0, arm), c + Offset(0, arm), p);
-    }
-
-    void dotGrid(double x, double y, double phase) {
-      final p = Paint()..color = white.withValues(alpha: 0.38);
-      final o = Offset(x + _sway(phase, 3), y + _bob(phase, 8));
-      for (var r = 0; r < 3; r++) {
-        for (var c = 0; c < 4; c++) {
-          canvas.drawCircle(o + Offset(c * 15.0, r * 15.0), 2.6, p);
-        }
-      }
-    }
-
-    void arc(double x, double y, double r, Color color, double phase) {
-      canvas.save();
-      canvas.translate(x + _sway(phase, 5), y + _bob(phase, 10));
-      canvas.rotate(math.sin(2 * math.pi * (t + phase)) * 0.35);
-      canvas.drawArc(
-        Rect.fromCircle(center: Offset.zero, radius: r),
-        0,
-        math.pi,
-        false,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 4
           ..strokeCap = StrokeCap.round
           ..color = color,
       );
-      canvas.restore();
     }
 
-    // Composition — clustered around the centre photo, sparse near headlines.
-    ring(w * 0.335, h * 0.18, 42, 3.5, white.withValues(alpha: 0.40), 0.05);
-    dot(w * 0.645, h * 0.10, 13, BP.yellow, 0.30);
-    square(w * 0.685, h * 0.30, 34, white.withValues(alpha: 0.55), 0.55);
-    dot(w * 0.29, h * 0.44, 7, white.withValues(alpha: 0.55), 0.72);
-    plus(w * 0.36, h * 0.70, 13, BP.yellow, 0.42);
-    dotGrid(w * 0.660, h * 0.62, 0.18);
-    arc(w * 0.475, h * 0.055, 22, BP.yellow, 0.62);
-    square(w * 0.305, h * 0.88, 26, BP.yellow, 0.86);
-    dot(w * 0.71, h * 0.86, 9, white.withValues(alpha: 0.42), 0.12);
-    ring(w * 0.665, h * 0.47, 17, 3, BP.yellow.withValues(alpha: 0.85), 0.95);
+    wave(
+        baseY: h * 0.28,
+        amp: 13,
+        wavelength: w * 0.52,
+        speed: 1,
+        color: Colors.white.withValues(alpha: 0.26));
+    wave(
+        baseY: h * 0.44,
+        amp: 17,
+        wavelength: w * 0.40,
+        speed: -1,
+        phase: 1.4,
+        color: Colors.white.withValues(alpha: 0.20));
+    wave(
+        baseY: h * 0.60,
+        amp: 12,
+        wavelength: w * 0.60,
+        speed: 1,
+        phase: 3.1,
+        stroke: 1.8,
+        color: BP.yellow.withValues(alpha: 0.50));
+    wave(
+        baseY: h * 0.76,
+        amp: 16,
+        wavelength: w * 0.46,
+        speed: -1,
+        phase: 4.4,
+        color: Colors.white.withValues(alpha: 0.22));
+    wave(
+        baseY: h * 0.90,
+        amp: 10,
+        wavelength: w * 0.56,
+        speed: 1,
+        phase: 5.6,
+        color: Colors.white.withValues(alpha: 0.16));
   }
 
   @override
-  bool shouldRepaint(_HeroShapesPainter oldDelegate) => oldDelegate.t != t;
+  bool shouldRepaint(_HeroWavesPainter oldDelegate) => oldDelegate.t != t;
 }
 
 // ─── Scroll reveal — subtle fade / rise / settle on first visibility ────────
