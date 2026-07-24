@@ -518,8 +518,6 @@ class _WhatIBuild extends StatelessWidget {
                 ],
               );
             }),
-            SizedBox(height: mobile ? 48 : 80),
-            _toolbelt(),
           ],
         ),
       ),
@@ -578,58 +576,6 @@ class _WhatIBuild extends StatelessWidget {
     );
   }
 
-  Widget _toolbelt() {
-    Widget chip(SkillItem item) {
-      Widget glyph;
-      if (item.isFlutterLogo) {
-        glyph = const FlutterLogo(size: 16);
-      } else if (item.assetIcon != null) {
-        glyph = Image.asset(item.assetIcon!, width: 16, height: 16);
-      } else {
-        glyph = Icon(bpFaGlyph(item.faIcon) ?? Icons.code,
-            size: 15, color: BP.ink);
-      }
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
-        decoration: BoxDecoration(
-          border: Border.all(color: BP.ink, width: 1.4),
-          borderRadius: BorderRadius.circular(999),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            glyph,
-            const SizedBox(width: 8),
-            Text(item.name.toUpperCase(), style: bpLabel(10.5)),
-          ],
-        ),
-      );
-    }
-
-    Widget group(String title, List<SkillItem> items) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: bpLabel(12, color: BP.blue)),
-          const SizedBox(height: 14),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: [for (final i in items) chip(i)],
-          ),
-        ],
-      );
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        group('PLATFORMS', PortfolioData.platforms),
-        const SizedBox(height: 28),
-        group('LANGUAGES', PortfolioData.languages),
-      ],
-    );
-  }
 }
 
 // ─── Projects ────────────────────────────────────────────────────────────────
