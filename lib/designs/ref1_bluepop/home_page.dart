@@ -407,7 +407,6 @@ class _StatsBand extends StatelessWidget {
       ('0${PortfolioData.yearsExperience}', '+', 'YEARS OF\nEXPERIENCE'),
       ('${PortfolioData.projects.length}', '', 'PROJECTS\nBUILT'),
       ('0${PortfolioData.platformCount}', '', 'PLATFORMS\nSHIPPED'),
-      ('0${PortfolioData.softwareJobs.length}', '', 'COMPANIES\nWORKED WITH'),
     ];
     return Padding(
       padding: EdgeInsets.fromLTRB(mobile ? 12 : 28, mobile ? 12 : 28,
