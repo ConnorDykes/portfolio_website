@@ -726,12 +726,17 @@ class _ProjectCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(22),
               child: SizedBox(
-                height: 260,
+                height: 280,
                 width: double.infinity,
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    DuotoneImage(asset: project.images!.first),
+                    Container(
+                      color: const Color(0xFFEDF1FC),
+                      padding: const EdgeInsets.fromLTRB(18, 18, 18, 52),
+                      child: Image.asset(project.images!.first,
+                          fit: BoxFit.contain),
+                    ),
                     Positioned(
                       left: 16,
                       bottom: 16,
@@ -748,7 +753,7 @@ class _ProjectCard extends StatelessWidget {
                       top: 14,
                       child: Text(
                         (index + 1).toString().padLeft(2, '0'),
-                        style: bpDisplay(20, color: Colors.white),
+                        style: bpDisplay(20, color: BP.blue),
                       ),
                     ),
                   ],

@@ -283,12 +283,15 @@ class _BluepopProjectDetailPageState extends State<BluepopProjectDetailPage> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(13),
-                            child: selected
-                                ? Image.asset(_images[i],
-                                    fit: BoxFit.cover,
-                                    alignment: Alignment.topCenter)
-                                : DuotoneImage(
-                                    asset: _images[i], hoverReveal: false),
+                            child: Container(
+                              color: const Color(0xFFEDF1FC),
+                              child: Image.asset(_images[i],
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.topCenter,
+                                  opacity: selected
+                                      ? null
+                                      : const AlwaysStoppedAnimation(0.55)),
+                            ),
                           ),
                         ),
                       ),

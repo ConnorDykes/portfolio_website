@@ -594,7 +594,7 @@ class PortfolioData {
   ];
 
   static const int projectCount = 18;
-  static const int yearsExperience = 4; // 2021 - present
+  static const int yearsExperience = 6; // 2020 - present
   static const int appsBuilt = 18;
   static const int platformCount = 6;
 }
