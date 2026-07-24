@@ -666,84 +666,99 @@ class _WhatIBuild extends StatelessWidget {
               'SEVEN DISCIPLINES. ONE GOAL: POLISHED, SHIPPED PRODUCT.',
               style: bpLabel(12, color: BP.grey, weight: FontWeight.w700),
             ),
-            SizedBox(height: mobile ? 32 : 56),
-            LayoutBuilder(builder: (context, c) {
-              final cols = mobile ? 1 : (c.maxWidth > 980 ? 3 : 2);
-              const gap = 28.0;
-              final cardW = (c.maxWidth - gap * (cols - 1)) / cols;
-              return Wrap(
-                spacing: gap,
-                runSpacing: 44,
-                children: [
-                  for (var i = 0;
-                      i < PortfolioData.skillCategories.length;
-                      i++)
-                    SizedBox(
-                        width: cardW,
-                        child: _Reveal(
-                            delayMs: (i % 3) * 90,
-                            child: _card(PortfolioData.skillCategories[i]))),
-                ],
-              );
-            }),
+            SizedBox(height: mobile ? 24 : 40),
+            for (var i = 0; i < PortfolioData.skillCategories.length; i++)
+              _Reveal(
+                delayMs: 60,
+                child: _row(PortfolioData.skillCategories[i], i, mobile,
+                    i == PortfolioData.skillCategories.length - 1),
+              ),
           ],
         ),
       ),
     );
   }
 
-  Widget _card(SkillCategory cat) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _row(SkillCategory cat, int index, bool mobile, bool last) {
+    final header = Row(
       children: [
-        Row(
-          children: [
-            Container(
-              width: 64,
-              height: 64,
-              decoration: BoxDecoration(
-                color: BP.blueTint,
-                borderRadius: BorderRadius.circular(18),
-              ),
-              alignment: Alignment.center,
-              child: Container(
-                width: 42,
-                height: 42,
-                decoration: const BoxDecoration(
-                    color: BP.yellow, shape: BoxShape.circle),
-                child: Icon(_categoryIcon(cat.icon),
-                    size: 20, color: BP.ink),
-              ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Text(cat.title.toUpperCase(), style: bpDisplay(19)),
-            ),
-          ],
+        Container(
+          width: 56,
+          height: 56,
+          decoration: BoxDecoration(
+            color: BP.blueTint,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          alignment: Alignment.center,
+          child: Container(
+            width: 38,
+            height: 38,
+            decoration:
+                const BoxDecoration(color: BP.yellow, shape: BoxShape.circle),
+            child: Icon(_categoryIcon(cat.icon), size: 18, color: BP.ink),
+          ),
         ),
-        const SizedBox(height: 16),
-        Wrap(
-          spacing: 6,
-          runSpacing: 6,
-          children: [
-            for (final s in cat.skills)
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                decoration: BoxDecoration(
-                  color: BP.blueTint,
-                  borderRadius: BorderRadius.circular(999),
-                ),
-                child: Text(s.toUpperCase(),
-                    style: bpLabel(9.5,
-                        color: BP.blueDuo, weight: FontWeight.w700)),
-              ),
-          ],
+        const SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('0${index + 1}',
+                  style: bpLabel(10, color: BP.blue, weight: FontWeight.w800)),
+              const SizedBox(height: 4),
+              Text(cat.title.toUpperCase(), style: bpDisplay(19)),
+            ],
+          ),
         ),
       ],
     );
-  }
 
+    final skills = Text.rich(
+      TextSpan(
+        children: [
+          for (var s = 0; s < cat.skills.length; s++) ...[
+            TextSpan(text: cat.skills[s].toUpperCase()),
+            if (s != cat.skills.length - 1)
+              TextSpan(
+                  text: '   ·   ',
+                  style: bpLabel(11,
+                      color: BP.blue, weight: FontWeight.w800)),
+          ],
+        ],
+      ),
+      style: bpLabel(11.5,
+              color: BP.ink.withValues(alpha: 0.72), weight: FontWeight.w700)
+          .copyWith(height: 2.1),
+    );
+
+    final row = mobile
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [header, const SizedBox(height: 14), skills],
+          )
+        : Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(width: 340, child: header),
+              const SizedBox(width: 40),
+              Expanded(
+                  child: Padding(
+                      padding: const EdgeInsets.only(top: 6), child: skills)),
+            ],
+          );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: mobile ? 22 : 28),
+          child: row,
+        ),
+        if (!last)
+          Container(height: 1, color: BP.ink.withValues(alpha: 0.08)),
+      ],
+    );
+  }
 }
 
 // ─── Projects ────────────────────────────────────────────────────────────────
