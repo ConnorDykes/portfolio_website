@@ -260,12 +260,12 @@ class _HeroState extends State<_Hero> {
     return Padding(
       padding: const EdgeInsets.only(top: 14),
       child: SizedBox(
-        height: 390,
+        height: 375,
         child: Stack(
           children: [
             // Photo anchored to the bottom of the blue section, like desktop.
             Positioned(
-              top: 70,
+              top: 30,
               bottom: 0,
               left: 0,
               right: 0,
