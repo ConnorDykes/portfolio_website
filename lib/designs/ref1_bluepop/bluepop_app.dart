@@ -73,6 +73,30 @@ const IconData bpJsIcon = IconData(0xf3b8,
     fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
 const IconData bpCodeIcon = IconData(0xf121,
     fontFamily: 'FontAwesomeSolid', fontPackage: 'font_awesome_flutter');
+const IconData bpReactIcon = IconData(0xf41b,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpAngularIcon = IconData(0xf420,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpNodeJsIcon = IconData(0xf3d3,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpFigmaIcon = IconData(0xf799,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpJiraIcon = IconData(0xf7b1,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpConfluenceIcon = IconData(0xf78d,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpAwsIcon = IconData(0xf375,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpLaravelIcon = IconData(0xf3bd,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpGitIcon = IconData(0xf841,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpAppStoreIcon = IconData(0xf36f,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpGooglePlayIcon = IconData(0xf3ab,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
+const IconData bpBluetoothIcon = IconData(0xf294,
+    fontFamily: 'FontAwesomeBrands', fontPackage: 'font_awesome_flutter');
 
 /// Maps the PortfolioData `faIcon` string keys to const glyphs.
 IconData? bpFaGlyph(String? key) {

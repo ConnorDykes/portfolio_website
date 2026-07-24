@@ -713,22 +713,10 @@ class _WhatIBuild extends StatelessWidget {
       ],
     );
 
-    final skills = Text.rich(
-      TextSpan(
-        children: [
-          for (var s = 0; s < cat.skills.length; s++) ...[
-            TextSpan(text: cat.skills[s].toUpperCase()),
-            if (s != cat.skills.length - 1)
-              TextSpan(
-                  text: '   ·   ',
-                  style: bpLabel(11,
-                      color: BP.blue, weight: FontWeight.w800)),
-          ],
-        ],
-      ),
-      style: bpLabel(11.5,
-              color: BP.ink.withValues(alpha: 0.72), weight: FontWeight.w700)
-          .copyWith(height: 2.1),
+    final skills = Wrap(
+      spacing: 22,
+      runSpacing: 14,
+      children: [for (final s in cat.skills) _SkillItem(label: s)],
     );
 
     final row = mobile
@@ -1441,6 +1429,189 @@ class _RevealState extends State<_Reveal> with SingleTickerProviderStateMixin {
         ),
       ),
       child: widget.child,
+    );
+  }
+}
+
+// ─── Skill entry with per-skill icon ─────────────────────────────────────────
+
+/// Best-fit glyph for each individual skill: brand glyphs (const Font Awesome
+/// or bundled asset logos) where they exist, Material concept icons otherwise.
+Widget bpSkillGlyph(String skill, {required double size, required Color color}) {
+  switch (skill.toLowerCase()) {
+    case 'flutter':
+      return FlutterLogo(size: size);
+    case 'dart':
+      return Image.asset('assets/dart.png', width: size, height: size);
+    case 'kotlin':
+      return Image.asset('assets/kotlin.png', width: size, height: size);
+    case 'swift':
+      return Image.asset('assets/swift.png', width: size, height: size);
+    case 'firebase':
+    case 'firestore':
+      return Image.asset('assets/firebase.png', width: size, height: size);
+  }
+  IconData icon;
+  switch (skill.toLowerCase()) {
+    // Mobile
+    case 'react native':
+    case 'react':
+    case 'react query':
+      icon = bpReactIcon;
+    case 'ios':
+      icon = bpAppleIcon;
+    case 'android':
+      icon = bpAndroidIcon;
+    case 'method channels':
+      icon = Icons.swap_horiz_rounded;
+    case 'push notifications':
+      icon = Icons.notifications_active_rounded;
+    case 'biometric auth':
+      icon = Icons.fingerprint_rounded;
+    case 'ble':
+      icon = bpBluetoothIcon;
+    case 'background processing':
+      icon = Icons.sync_rounded;
+    case 'apple watch':
+    case 'wear os':
+      icon = Icons.watch_rounded;
+    // AI & Automation
+    case 'cursor':
+      icon = Icons.terminal_rounded;
+    case 'claude code':
+      icon = Icons.auto_awesome_rounded;
+    case 'openai codex':
+      icon = Icons.smart_toy_rounded;
+    case 'github copilot':
+      icon = bpGithubIcon;
+    case 'prompt engineering':
+      icon = Icons.chat_bubble_outline_rounded;
+    case 'context engineering':
+      icon = Icons.layers_rounded;
+    case 'rag':
+      icon = Icons.manage_search_rounded;
+    case 'agentic workflows':
+      icon = Icons.account_tree_rounded;
+    case 'mcp':
+      icon = Icons.hub_rounded;
+    case 'n8n':
+      icon = Icons.device_hub_rounded;
+    // Frontend & Web
+    case 'angular':
+      icon = bpAngularIcon;
+    case 'ionic':
+      icon = Icons.flash_on_rounded;
+    case 'node.js':
+      icon = bpNodeJsIcon;
+    case 'javascript':
+      icon = bpJsIcon;
+    case 'typescript':
+      icon = Icons.data_object_rounded;
+    case 'html':
+      icon = bpHtml5Icon;
+    case 'css':
+      icon = bpCss3Icon;
+    // State management
+    case 'bloc':
+      icon = Icons.widgets_rounded;
+    case 'riverpod':
+      icon = Icons.water_drop_rounded;
+    case 'provider':
+      icon = Icons.extension_rounded;
+    case 'getx':
+      icon = Icons.speed_rounded;
+    case 'redux':
+    case 'redux toolkit':
+      icon = Icons.track_changes_rounded;
+    case 'zustand':
+      icon = Icons.pets_rounded;
+    case 'mobx':
+      icon = Icons.blur_circular_rounded;
+    case 'context api':
+      icon = Icons.share_rounded;
+    // Backend & Databases
+    case 'influxdb':
+      icon = Icons.show_chart_rounded;
+    case 'postgresql':
+      icon = Icons.dns_rounded;
+    case 'sql':
+      icon = Icons.table_chart_rounded;
+    case 'laravel':
+      icon = bpLaravelIcon;
+    case 'aws lambda':
+      icon = bpAwsIcon;
+    case 'rest apis':
+      icon = Icons.api_rounded;
+    case 'graphql':
+      icon = Icons.polyline_rounded;
+    // DevOps & CI/CD
+    case 'git':
+      icon = bpGitIcon;
+    case 'github actions':
+      icon = bpGithubIcon;
+    case 'codemagic':
+      icon = Icons.auto_fix_high_rounded;
+    case 'fastlane':
+      icon = Icons.route_rounded;
+    case 'app store deploy':
+      icon = bpAppStoreIcon;
+    case 'google play deploy':
+      icon = bpGooglePlayIcon;
+    case 'testflight':
+      icon = Icons.flight_takeoff_rounded;
+    case 'automated testing':
+      icon = Icons.rule_rounded;
+    // Design & Collaboration
+    case 'ui/ux design':
+      icon = Icons.design_services_rounded;
+    case 'figma':
+      icon = bpFigmaIcon;
+    case 'canva':
+      icon = Icons.palette_rounded;
+    case 'agile/scrum':
+      icon = Icons.loop_rounded;
+    case 'jira':
+      icon = bpJiraIcon;
+    case 'confluence':
+      icon = bpConfluenceIcon;
+    default:
+      icon = Icons.check_circle_outline_rounded;
+  }
+  return Icon(icon, size: size, color: color);
+}
+
+class _SkillItem extends StatefulWidget {
+  const _SkillItem({required this.label});
+  final String label;
+
+  @override
+  State<_SkillItem> createState() => _SkillItemState();
+}
+
+class _SkillItemState extends State<_SkillItem> {
+  bool _hover = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final iconColor = _hover ? BP.blueDuo : BP.blue;
+    final textColor = _hover ? BP.ink : BP.ink.withValues(alpha: 0.72);
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hover = true),
+      onExit: (_) => setState(() => _hover = false),
+      child: AnimatedScale(
+        duration: const Duration(milliseconds: 130),
+        scale: _hover ? 1.05 : 1.0,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            bpSkillGlyph(widget.label, size: 15, color: iconColor),
+            const SizedBox(width: 7),
+            Text(widget.label.toUpperCase(),
+                style:
+                    bpLabel(11, color: textColor, weight: FontWeight.w700)),
+          ],
+        ),
+      ),
     );
   }
 }
