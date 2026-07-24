@@ -258,15 +258,15 @@ class _HeroState extends State<_Hero> {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(top: 14, bottom: 26),
+      padding: const EdgeInsets.only(top: 14),
       child: SizedBox(
-        height: 560,
+        height: 470,
         child: Stack(
           children: [
-            // Photo fills the band between the top and bottom label rows.
+            // Photo anchored to the bottom of the blue section, like desktop.
             Positioned(
-              top: 88,
-              bottom: 92,
+              top: 76,
+              bottom: 0,
               left: 0,
               right: 0,
               child: _photo(double.infinity),
@@ -278,11 +278,11 @@ class _HeroState extends State<_Hero> {
                 right: 0,
                 child: corner('ENTERPRISE\nAI PIPELINES', right: true)),
             Positioned(
-                bottom: 0,
+                bottom: 10,
                 left: 0,
                 child: corner('FULL STACK\nENGINEERING', right: false)),
             Positioned(
-                bottom: 0,
+                bottom: 10,
                 right: 0,
                 child: corner('AGENTIC\nWORKFLOWS', right: true)),
           ],
