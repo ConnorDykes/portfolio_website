@@ -647,11 +647,6 @@ class _WhatIBuild extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SectionTitle('What I Build'),
-            const SizedBox(height: 14),
-            Text(
-              'SEVEN DISCIPLINES. ONE GOAL: POLISHED, SHIPPED PRODUCT.',
-              style: bpLabel(12, color: BP.grey, weight: FontWeight.w700),
-            ),
             SizedBox(height: mobile ? 24 : 40),
             for (var i = 0; i < PortfolioData.skillCategories.length; i++)
               _Reveal(
@@ -689,9 +684,6 @@ class _WhatIBuild extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('0${index + 1}',
-                  style: bpLabel(10, color: BP.blue, weight: FontWeight.w800)),
-              const SizedBox(height: 4),
               Text(cat.title.toUpperCase(), style: bpDisplay(19)),
             ],
           ),
