@@ -249,50 +249,45 @@ class _HeroState extends State<_Hero> {
   }
 
   Widget _mobileBody(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const SizedBox(height: 26),
-        FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: Alignment.centerLeft,
-          child:
-              Text('MOBILE\n& WEB', style: bpDisplay(24, color: Colors.white)),
+    Widget corner(String text, {required bool right}) {
+      return Text(
+        text,
+        textAlign: right ? TextAlign.right : TextAlign.left,
+        style: bpDisplay(19, color: Colors.white),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 14, bottom: 26),
+      child: SizedBox(
+        height: 560,
+        child: Stack(
+          children: [
+            // Photo fills the band between the top and bottom label rows.
+            Positioned(
+              top: 88,
+              bottom: 92,
+              left: 0,
+              right: 0,
+              child: _photo(double.infinity),
+            ),
+            Positioned(
+                top: 0, left: 0, child: corner('MOBILE\n& WEB', right: false)),
+            Positioned(
+                top: 0,
+                right: 0,
+                child: corner('ENTERPRISE\nAI PIPELINES', right: true)),
+            Positioned(
+                bottom: 0,
+                left: 0,
+                child: corner('FULL STACK\nENGINEERING', right: false)),
+            Positioned(
+                bottom: 0,
+                right: 0,
+                child: corner('AGENTIC\nWORKFLOWS', right: true)),
+          ],
         ),
-        const SizedBox(height: 8),
-        Align(
-          alignment: Alignment.centerRight,
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            alignment: Alignment.centerRight,
-            child: Text('ENTERPRISE\nAI PIPELINES',
-                textAlign: TextAlign.right,
-                style:
-                    bpDisplay(24, color: Colors.white.withValues(alpha: 0.92))),
-          ),
-        ),
-        SizedBox(height: 330, child: _photo(double.infinity)),
-        const SizedBox(height: 18),
-        FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: Alignment.centerLeft,
-          child: Text('FULL STACK\nENGINEERING',
-              style: bpDisplay(24, color: Colors.white)),
-        ),
-        const SizedBox(height: 8),
-        Align(
-          alignment: Alignment.centerRight,
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            alignment: Alignment.centerRight,
-            child: Text('AGENTIC\nWORKFLOWS',
-                textAlign: TextAlign.right,
-                style:
-                    bpDisplay(24, color: Colors.white.withValues(alpha: 0.92))),
-          ),
-        ),
-        const SizedBox(height: 36),
-      ],
+      ),
     );
   }
 }
