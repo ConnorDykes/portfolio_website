@@ -88,8 +88,8 @@ class _BluepopProjectDetailPageState extends State<BluepopProjectDetailPage> {
               padding: const EdgeInsets.symmetric(vertical: 22),
               child: Row(
                 children: [
-                  Text('CONNOR', style: bpLabel(16, color: Colors.white)),
-                  Text('.DEV', style: bpLabel(16, color: BP.yellow)),
+                  Text('CONNOR ', style: bpLabel(16, color: Colors.white)),
+                  Text('DYKES', style: bpLabel(16, color: BP.yellow)),
                   const Spacer(),
                   YellowPill(
                     label: 'Back',

@@ -142,8 +142,8 @@ class _Hero extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 22),
       child: Row(
         children: [
-          Text('CONNOR', style: bpLabel(16, color: Colors.white)),
-          Text('.DEV',
+          Text('CONNOR ', style: bpLabel(16, color: Colors.white)),
+          Text('DYKES',
               style: bpLabel(16, color: BP.yellow)),
           const Spacer(),
           if (!mobile) ...[
