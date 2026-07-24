@@ -155,7 +155,7 @@ class _Hero extends StatelessWidget {
             const Spacer(),
           ],
           YellowPill(
-            label: 'Hire Me',
+            label: 'Contact Me',
             fontSize: 11,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 11),
             onTap: () => bpLaunch('mailto:${PortfolioData.email}'),
@@ -1038,9 +1038,9 @@ class _HireMeCircleState extends State<_HireMeCircle> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('HIRE ME',
+              Text('CONTACT ME',
                   style:
-                      bpLabel(12, color: _hover ? BP.yellow : BP.ink)),
+                      bpLabel(10.5, color: _hover ? BP.yellow : BP.ink)),
               const SizedBox(height: 4),
               Icon(Icons.north_east,
                   size: 16, color: _hover ? BP.yellow : BP.ink),
