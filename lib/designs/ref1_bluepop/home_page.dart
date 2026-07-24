@@ -219,7 +219,7 @@ class _Hero extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                   alignment: Alignment.centerLeft,
                   child: Text('MOBILE\n& WEB',
-                      style: bpDisplay(76, color: Colors.white)),
+                      style: bpDisplay(54, color: Colors.white)),
                 ),
                 const Spacer(),
                 Text('HI, I AM CONNOR', style: bpLabel(14, color: BP.yellow)),
@@ -262,9 +262,9 @@ class _Hero extends StatelessWidget {
                 FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: Alignment.centerRight,
-                  child: Text('ENTERPRISE AI\nAUTOMATIONS &\nAGENTIC WORKFLOWS',
+                  child: Text('ENTERPRISE AI\nAUTOMATIONS\n& AGENTIC\nWORKFLOWS',
                       textAlign: TextAlign.right,
-                      style: bpDisplay(48, color: Colors.white)),
+                      style: bpDisplay(54, color: Colors.white)),
                 ),
                 const SizedBox(height: 80),
               ],
@@ -284,7 +284,7 @@ class _Hero extends StatelessWidget {
           fit: BoxFit.scaleDown,
           alignment: Alignment.centerLeft,
           child:
-              Text('MOBILE\n& WEB', style: bpDisplay(52, color: Colors.white)),
+              Text('MOBILE\n& WEB', style: bpDisplay(34, color: Colors.white)),
         ),
         const SizedBox(height: 8),
         Align(
@@ -292,10 +292,10 @@ class _Hero extends StatelessWidget {
           child: FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerRight,
-            child: Text('ENTERPRISE AI\nAUTOMATIONS &\nAGENTIC WORKFLOWS',
+            child: Text('ENTERPRISE AI\nAUTOMATIONS\n& AGENTIC\nWORKFLOWS',
                 textAlign: TextAlign.right,
                 style:
-                    bpDisplay(26, color: Colors.white.withValues(alpha: 0.92))),
+                    bpDisplay(34, color: Colors.white.withValues(alpha: 0.92))),
           ),
         ),
         SizedBox(height: 330, child: _photo(double.infinity)),
