@@ -61,12 +61,12 @@ class _BluepopHomePageState extends State<BluepopHomePage> {
                 _contactKey
               ][i]),
             ),
-            _StatsBand(mobile: mobile),
+            _Reveal(child: _StatsBand(mobile: mobile)),
             _WhatIBuild(key: _buildKey, mobile: mobile),
             _ProjectsSection(key: _projectsKey, mobile: mobile),
             _ExperienceBand(key: _experienceKey, mobile: mobile),
-            _EducationSection(mobile: mobile),
-            _LetsTalk(mobile: mobile),
+            _Reveal(child: _EducationSection(mobile: mobile)),
+            _Reveal(child: _LetsTalk(mobile: mobile)),
             _Footer(
               key: _contactKey,
               mobile: mobile,
@@ -108,7 +108,7 @@ class _Constrained extends StatelessWidget {
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
-class _Hero extends StatelessWidget {
+class _Hero extends StatefulWidget {
   const _Hero({required this.mobile, required this.onNav});
   final bool mobile;
   final ValueChanged<int> onNav;
@@ -122,6 +122,24 @@ class _Hero extends StatelessWidget {
   ];
 
   @override
+  State<_Hero> createState() => _HeroState();
+}
+
+class _HeroState extends State<_Hero> with SingleTickerProviderStateMixin {
+  late final AnimationController _drift = AnimationController(
+      vsync: this, duration: const Duration(seconds: 10))
+    ..repeat();
+
+  bool get mobile => widget.mobile;
+  ValueChanged<int> get onNav => widget.onNav;
+
+  @override
+  void dispose() {
+    _drift.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: BP.blue,
@@ -130,7 +148,21 @@ class _Hero extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _nav(context),
-            mobile ? _mobileBody(context) : _desktopBody(context),
+            Stack(
+              children: [
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: AnimatedBuilder(
+                      animation: _drift,
+                      builder: (context, _) => CustomPaint(
+                        painter: _HeroShapesPainter(t: _drift.value),
+                      ),
+                    ),
+                  ),
+                ),
+                mobile ? _mobileBody(context) : _desktopBody(context),
+              ],
+            ),
           ],
         ),
       ),
@@ -147,9 +179,9 @@ class _Hero extends StatelessWidget {
               style: bpLabel(16, color: BP.yellow)),
           const Spacer(),
           if (!mobile) ...[
-            for (var i = 0; i < _navItems.length; i++)
+            for (var i = 0; i < _Hero._navItems.length; i++)
               _NavLink(
-                  label: _navItems[i],
+                  label: _Hero._navItems[i],
                   active: i == 0,
                   onTap: () => onNav(i)),
             const Spacer(),
@@ -198,18 +230,6 @@ class _Hero extends StatelessWidget {
                       style: bpDisplay(54, color: Colors.white)),
                 ),
                 const Spacer(),
-                Text('HI, I AM CONNOR', style: bpLabel(14, color: BP.yellow)),
-                const SizedBox(height: 14),
-                SizedBox(
-                  width: 300,
-                  child: Text(
-                    '${PortfolioData.heroTagline} ${PortfolioData.heroSubtitle}'
-                        .toUpperCase(),
-                    style: bpLabel(12,
-                        color: Colors.white, weight: FontWeight.w600),
-                  ),
-                ),
-                const SizedBox(height: 46),
               ],
             ),
           ),
@@ -220,16 +240,6 @@ class _Hero extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const SizedBox(height: 56),
-                SizedBox(
-                  width: 250,
-                  child: Text(
-                    'I BUILD CROSS-PLATFORM APPS FOR IOS, ANDROID, WEB & DESKTOP',
-                    textAlign: TextAlign.right,
-                    style: bpLabel(11,
-                        color: Colors.white, weight: FontWeight.w600),
-                  ),
-                ),
                 const Spacer(),
                 FittedBox(
                   fit: BoxFit.scaleDown,
@@ -271,14 +281,6 @@ class _Hero extends StatelessWidget {
           ),
         ),
         SizedBox(height: 330, child: _photo(double.infinity)),
-        const SizedBox(height: 26),
-        Text('HI, I AM CONNOR', style: bpLabel(13, color: BP.yellow)),
-        const SizedBox(height: 12),
-        Text(
-          '${PortfolioData.heroTagline} ${PortfolioData.heroSubtitle}'
-              .toUpperCase(),
-          style: bpLabel(12, color: Colors.white, weight: FontWeight.w600),
-        ),
         const SizedBox(height: 36),
       ],
     );
@@ -663,8 +665,14 @@ class _WhatIBuild extends StatelessWidget {
                 spacing: gap,
                 runSpacing: 44,
                 children: [
-                  for (final cat in PortfolioData.skillCategories)
-                    SizedBox(width: cardW, child: _card(cat)),
+                  for (var i = 0;
+                      i < PortfolioData.skillCategories.length;
+                      i++)
+                    SizedBox(
+                        width: cardW,
+                        child: _Reveal(
+                            delayMs: (i % 3) * 90,
+                            child: _card(PortfolioData.skillCategories[i]))),
                 ],
               );
             }),
@@ -768,7 +776,10 @@ class _ProjectsSection extends StatelessWidget {
                   for (var i = 0; i < projects.length; i++)
                     SizedBox(
                         width: cardW,
-                        child: _ProjectCard(project: projects[i], index: i)),
+                        child: _Reveal(
+                            delayMs: (i % 3) * 90,
+                            child: _ProjectCard(
+                                project: projects[i], index: i))),
                 ],
               );
             }),
@@ -819,43 +830,40 @@ class _ProjectCard extends StatelessWidget {
                       child: Image.asset(project.images!.first,
                           fit: BoxFit.contain),
                     ),
-                    Positioned(
-                      left: 16,
-                      bottom: 16,
-                      child: Row(
-                        children: [
-                          YellowPill(
-                            label: 'See Details',
-                            fontSize: 10,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 10),
-                            onTap: () => _open(context),
+                    if (project.icon != null)
+                      Positioned(
+                        left: 16,
+                        bottom: 16,
+                        child: Container(
+                          width: 42,
+                          height: 42,
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: BP.ink.withValues(alpha: 0.10),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 3)),
+                            ],
                           ),
-                          if (project.icon != null) ...[
-                            const SizedBox(width: 12),
-                            Container(
-                              width: 42,
-                              height: 42,
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(12),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color:
-                                          BP.ink.withValues(alpha: 0.10),
-                                      blurRadius: 10,
-                                      offset: const Offset(0, 3)),
-                                ],
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.asset(project.icon!,
-                                    fit: BoxFit.contain),
-                              ),
-                            ),
-                          ],
-                        ],
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.asset(project.icon!,
+                                fit: BoxFit.contain),
+                          ),
+                        ),
+                      ),
+                    Positioned(
+                      right: 16,
+                      bottom: 16,
+                      child: YellowPill(
+                        label: 'See Details',
+                        fontSize: 10,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 10),
+                        onTap: () => _open(context),
                       ),
                     ),
                     Positioned(
@@ -904,7 +912,9 @@ class _ExperienceBand extends StatelessWidget {
               const SectionTitle('My Work Experience', color: Colors.white),
               SizedBox(height: mobile ? 28 : 48),
               for (var i = 0; i < PortfolioData.softwareJobs.length; i++)
-                _row(PortfolioData.softwareJobs[i], i),
+                _Reveal(
+                    delayMs: i * 70,
+                    child: _row(PortfolioData.softwareJobs[i], i)),
             ],
           ),
         ),
@@ -1338,6 +1348,182 @@ class _FooterLinkState extends State<_FooterLink> {
               weight: FontWeight.w600),
         ),
       ),
+    );
+  }
+}
+
+// ─── Hero background shapes (Folio-style playful geometry) ──────────────────
+
+class _HeroShapesPainter extends CustomPainter {
+  _HeroShapesPainter({required this.t});
+
+  /// 0..1 loop position of the drift animation.
+  final double t;
+
+  double _bob(double phase, double amp) =>
+      math.sin(2 * math.pi * (t + phase)) * amp;
+
+  double _sway(double phase, double amp) =>
+      math.cos(2 * math.pi * (t + phase)) * amp;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
+    final white = Colors.white;
+
+    void ring(double x, double y, double r, double stroke, Color color,
+        double phase) {
+      canvas.drawCircle(
+        Offset(x + _sway(phase, 5), y + _bob(phase, 12)),
+        r,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = stroke
+          ..color = color,
+      );
+    }
+
+    void dot(double x, double y, double r, Color color, double phase) {
+      canvas.drawCircle(
+          Offset(x + _sway(phase, 4), y + _bob(phase, 10)), r, Paint()..color = color);
+    }
+
+    void square(double x, double y, double s, Color color, double phase,
+        {bool filled = false}) {
+      canvas.save();
+      canvas.translate(x + _sway(phase, 5), y + _bob(phase, 14));
+      canvas.rotate(math.pi / 12 + math.sin(2 * math.pi * (t + phase)) * 0.22);
+      final rect = Rect.fromCenter(center: Offset.zero, width: s, height: s);
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(rect, Radius.circular(s * 0.22)),
+        Paint()
+          ..style = filled ? PaintingStyle.fill : PaintingStyle.stroke
+          ..strokeWidth = 3
+          ..color = color,
+      );
+      canvas.restore();
+    }
+
+    void plus(double x, double y, double arm, Color color, double phase) {
+      final p = Paint()
+        ..color = color
+        ..strokeWidth = 5
+        ..strokeCap = StrokeCap.round;
+      final c = Offset(x + _sway(phase, 4), y + _bob(phase, 12));
+      canvas.drawLine(c - Offset(arm, 0), c + Offset(arm, 0), p);
+      canvas.drawLine(c - Offset(0, arm), c + Offset(0, arm), p);
+    }
+
+    void dotGrid(double x, double y, double phase) {
+      final p = Paint()..color = white.withValues(alpha: 0.38);
+      final o = Offset(x + _sway(phase, 3), y + _bob(phase, 8));
+      for (var r = 0; r < 3; r++) {
+        for (var c = 0; c < 4; c++) {
+          canvas.drawCircle(o + Offset(c * 15.0, r * 15.0), 2.6, p);
+        }
+      }
+    }
+
+    void arc(double x, double y, double r, Color color, double phase) {
+      canvas.save();
+      canvas.translate(x + _sway(phase, 5), y + _bob(phase, 10));
+      canvas.rotate(math.sin(2 * math.pi * (t + phase)) * 0.35);
+      canvas.drawArc(
+        Rect.fromCircle(center: Offset.zero, radius: r),
+        0,
+        math.pi,
+        false,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 4
+          ..strokeCap = StrokeCap.round
+          ..color = color,
+      );
+      canvas.restore();
+    }
+
+    // Composition — clustered around the centre photo, sparse near headlines.
+    ring(w * 0.335, h * 0.18, 42, 3.5, white.withValues(alpha: 0.40), 0.05);
+    dot(w * 0.645, h * 0.10, 13, BP.yellow, 0.30);
+    square(w * 0.685, h * 0.30, 34, white.withValues(alpha: 0.55), 0.55);
+    dot(w * 0.29, h * 0.44, 7, white.withValues(alpha: 0.55), 0.72);
+    plus(w * 0.36, h * 0.70, 13, BP.yellow, 0.42);
+    dotGrid(w * 0.660, h * 0.62, 0.18);
+    arc(w * 0.475, h * 0.055, 22, BP.yellow, 0.62);
+    square(w * 0.305, h * 0.88, 26, BP.yellow, 0.86);
+    dot(w * 0.71, h * 0.86, 9, white.withValues(alpha: 0.42), 0.12);
+    ring(w * 0.665, h * 0.47, 17, 3, BP.yellow.withValues(alpha: 0.85), 0.95);
+  }
+
+  @override
+  bool shouldRepaint(_HeroShapesPainter oldDelegate) => oldDelegate.t != t;
+}
+
+// ─── Scroll reveal — subtle fade / rise / settle on first visibility ────────
+
+class _Reveal extends StatefulWidget {
+  const _Reveal({super.key, required this.child, this.delayMs = 0});
+  final Widget child;
+  final int delayMs;
+
+  @override
+  State<_Reveal> createState() => _RevealState();
+}
+
+class _RevealState extends State<_Reveal> with SingleTickerProviderStateMixin {
+  late final AnimationController _c = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 640));
+  ScrollPosition? _pos;
+  bool _played = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final pos = Scrollable.maybeOf(context)?.position;
+    if (!identical(pos, _pos)) {
+      _pos?.removeListener(_check);
+      _pos = pos;
+      _pos?.addListener(_check);
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) => _check());
+  }
+
+  void _check() {
+    if (_played || !mounted) return;
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null || !box.attached || !box.hasSize) return;
+    final dy = box.localToGlobal(Offset.zero).dy;
+    final vh = MediaQuery.of(context).size.height;
+    if (dy < vh * 0.92) {
+      _played = true;
+      Future.delayed(Duration(milliseconds: widget.delayMs), () {
+        if (mounted) _c.forward();
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _pos?.removeListener(_check);
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final a = CurvedAnimation(parent: _c, curve: Curves.easeOutCubic);
+    return AnimatedBuilder(
+      animation: a,
+      builder: (context, child) => Opacity(
+        opacity: a.value,
+        child: Transform.translate(
+          offset: Offset(0, 26 * (1 - a.value)),
+          child: Transform.scale(
+              scale: 0.985 + 0.015 * a.value, child: child),
+        ),
+      ),
+      child: widget.child,
     );
   }
 }
