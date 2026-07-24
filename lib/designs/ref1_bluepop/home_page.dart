@@ -257,7 +257,7 @@ class _HeroState extends State<_Hero> {
           fit: BoxFit.scaleDown,
           alignment: Alignment.centerLeft,
           child:
-              Text('MOBILE\n& WEB', style: bpDisplay(34, color: Colors.white)),
+              Text('MOBILE\n& WEB', style: bpDisplay(24, color: Colors.white)),
         ),
         const SizedBox(height: 8),
         Align(
@@ -268,7 +268,7 @@ class _HeroState extends State<_Hero> {
             child: Text('ENTERPRISE\nAI PIPELINES',
                 textAlign: TextAlign.right,
                 style:
-                    bpDisplay(34, color: Colors.white.withValues(alpha: 0.92))),
+                    bpDisplay(24, color: Colors.white.withValues(alpha: 0.92))),
           ),
         ),
         SizedBox(height: 330, child: _photo(double.infinity)),
@@ -277,7 +277,7 @@ class _HeroState extends State<_Hero> {
           fit: BoxFit.scaleDown,
           alignment: Alignment.centerLeft,
           child: Text('FULL STACK\nENGINEERING',
-              style: bpDisplay(34, color: Colors.white)),
+              style: bpDisplay(24, color: Colors.white)),
         ),
         const SizedBox(height: 8),
         Align(
@@ -288,7 +288,7 @@ class _HeroState extends State<_Hero> {
             child: Text('AGENTIC\nWORKFLOWS',
                 textAlign: TextAlign.right,
                 style:
-                    bpDisplay(34, color: Colors.white.withValues(alpha: 0.92))),
+                    bpDisplay(24, color: Colors.white.withValues(alpha: 0.92))),
           ),
         ),
         const SizedBox(height: 36),
@@ -584,19 +584,10 @@ class _StatsBand extends StatelessWidget {
               color: BP.blue,
               borderRadius: BorderRadius.circular(28),
             ),
-            child: mobile
-                ? Wrap(
-                    runSpacing: 30,
-                    children: [
-                      for (final s in stats)
-                        FractionallySizedBox(
-                            widthFactor: 0.5, child: _stat(s, 42)),
-                    ],
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [for (final s in stats) _stat(s, 68)],
-                  ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [for (final s in stats) _stat(s, mobile ? 30 : 68)],
+            ),
           ),
         ),
       ),
