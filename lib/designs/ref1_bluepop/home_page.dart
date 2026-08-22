@@ -639,6 +639,14 @@ class _WhatIBuild extends StatelessWidget {
     switch (key) {
       case 'mobile':
         return Icons.smartphone;
+      case 'react':
+        return Icons.blur_on;
+      case 'flutter':
+        return Icons.flutter_dash;
+      case 'ios':
+        return Icons.apple;
+      case 'android':
+        return Icons.android;
       case 'brain':
         return Icons.psychology;
       case 'web':

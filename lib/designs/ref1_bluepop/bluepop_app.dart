@@ -316,7 +316,7 @@ class BluepopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Connor Dykes — Senior Mobile Developer',
+      title: 'Connor Dykes — Senior Mobile Engineer',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
